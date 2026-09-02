@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Calleby — Links</title>
+    <title>Rarison — Desenvolvedor Web</title>
 
-    <meta name="description" content="Calleby — Desenvolvimento Web & Tecnologia">
+    <meta
+        name="description"
+        content="Rarison — Desenvolvedor Web. Criação de páginas, landing pages, portfólios e interfaces personalizadas."
+    >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
 
     <style>
         :root {
@@ -57,13 +63,8 @@
                 var(--bg);
 
             color: var(--text);
-
             font-family: "Inter", sans-serif;
         }
-
-        /* =========================
-           BACKGROUND
-        ========================= */
 
         body::before {
             content: "";
@@ -91,7 +92,6 @@
             height: 350px;
 
             border-radius: 50%;
-
             filter: blur(100px);
             opacity: .18;
 
@@ -110,10 +110,6 @@
             background: var(--purple);
         }
 
-        /* =========================
-           CONTAINER
-        ========================= */
-
         .container {
             position: relative;
             z-index: 2;
@@ -125,7 +121,7 @@
         }
 
         /* =========================
-           PROFILE
+           PERFIL
         ========================= */
 
         .profile {
@@ -203,8 +199,7 @@
             font-weight: 900;
 
             letter-spacing: -2px;
-
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .gradient-text {
@@ -222,8 +217,17 @@
             color: transparent;
         }
 
+        .role {
+            color: #a8b6c8;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            margin-bottom: 12px;
+        }
+
         .description {
-            max-width: 450px;
+            max-width: 500px;
 
             margin: auto;
 
@@ -248,14 +252,58 @@
 
             color: #9defff;
 
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
 
             letter-spacing: .5px;
         }
 
         /* =========================
-           SECTION TITLE
+           BOTÃO DE CONTATO
+        ========================= */
+
+        .contact-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            width: 100%;
+
+            margin-top: 25px;
+            padding: 15px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--blue),
+                    var(--purple)
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            box-shadow:
+                0 10px 30px rgba(22,140,255,.15);
+
+            transition: .25s;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 40px rgba(112,71,255,.25);
+        }
+
+        /* =========================
+           TÍTULOS
         ========================= */
 
         .section-title {
@@ -263,7 +311,7 @@
             align-items: center;
             gap: 15px;
 
-            margin: 38px 0 16px;
+            margin: 42px 0 16px;
 
             color: #dbe5f1;
 
@@ -296,6 +344,33 @@
                     rgba(255,255,255,.18),
                     transparent
                 );
+        }
+
+        /* =========================
+           SOBRE
+        ========================= */
+
+        .about {
+            padding: 22px;
+
+            border: 1px solid var(--border);
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(17,29,44,.75),
+                    rgba(10,17,28,.65)
+                );
+
+            color: #aab7c7;
+
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .about strong {
+            color: white;
         }
 
         /* =========================
@@ -377,8 +452,8 @@
         }
 
         .icon {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
 
             display: grid;
             place-items: center;
@@ -396,7 +471,18 @@
 
             border: 1px solid rgba(255,255,255,.08);
 
-            font-size: 18px;
+            overflow: hidden;
+        }
+
+        .icon img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            padding: 7px;
+
+            border-radius: 13px;
         }
 
         .link-content {
@@ -435,32 +521,94 @@
         }
 
         /* =========================
-           FEATURED PORTFOLIO
+           SERVIÇOS
         ========================= */
 
-        .featured {
+        .services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .service {
+            padding: 20px;
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(17,29,44,.8),
+                    rgba(10,17,28,.65)
+                );
+
+            transition: .25s;
+        }
+
+        .service:hover {
+            transform: translateY(-4px);
+
+            border-color: rgba(0,229,255,.25);
+        }
+
+        .service-number {
+            color: var(--cyan);
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .service h3 {
+            margin: 10px 0 8px;
+
+            font-size: 14px;
+        }
+
+        .service p {
+            color: var(--muted);
+
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           PORTFÓLIO
+        ========================= */
+
+        .portfolio-intro {
+            color: var(--muted);
+
+            font-size: 12px;
+            line-height: 1.7;
+
+            margin-bottom: 14px;
+        }
+
+        .projects {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .project {
             position: relative;
 
-            margin-top: 14px;
+            min-height: 180px;
 
-            padding: 25px;
-
-            min-height: 190px;
+            padding: 24px;
 
             border-radius: 22px;
 
-            border: 1px solid rgba(0,229,255,.2);
+            border: 1px solid rgba(0,229,255,.16);
 
             background:
                 radial-gradient(
                     circle at 100% 0%,
-                    rgba(112,71,255,.25),
+                    rgba(112,71,255,.22),
                     transparent 40%
-                ),
-                radial-gradient(
-                    circle at 0% 100%,
-                    rgba(0,229,255,.13),
-                    transparent 45%
                 ),
                 #0c1521;
 
@@ -476,40 +624,41 @@
             transition: .3s;
         }
 
-        .featured:hover {
+        .project:hover {
             transform: translateY(-5px);
 
-            border-color: rgba(0,229,255,.5);
+            border-color: rgba(0,229,255,.4);
 
             box-shadow:
-                0 20px 50px rgba(0,0,0,.4),
-                0 0 35px rgba(0,229,255,.08);
+                0 20px 50px rgba(0,0,0,.4);
         }
 
-        .featured::after {
-            content: "";
-
+        .project-image {
             position: absolute;
 
-            width: 200px;
-            height: 200px;
+            inset: 0;
 
-            top: -100px;
-            right: -60px;
+            width: 100%;
+            height: 100%;
 
-            border-radius: 50%;
+            object-fit: cover;
 
-            background: var(--purple);
+            opacity: .18;
 
-            filter: blur(80px);
-
-            opacity: .25;
+            transition: .4s;
         }
 
-        .featured-label {
+        .project:hover .project-image {
+            opacity: .27;
+            transform: scale(1.04);
+        }
+
+        .project-content {
             position: relative;
             z-index: 2;
+        }
 
+        .project-label {
             color: var(--cyan);
 
             font-size: 10px;
@@ -518,26 +667,16 @@
             letter-spacing: 2px;
             text-transform: uppercase;
 
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        .featured h2 {
-            position: relative;
-            z-index: 2;
-
-            font-size: 27px;
-            font-weight: 900;
-
-            letter-spacing: -1px;
-
+        .project h3 {
+            font-size: 22px;
             margin-bottom: 7px;
         }
 
-        .featured p {
-            position: relative;
-            z-index: 2;
-
-            max-width: 420px;
+        .project p {
+            max-width: 450px;
 
             color: #8e9bad;
 
@@ -545,17 +684,14 @@
             line-height: 1.6;
         }
 
-        .featured-button {
-            position: relative;
-            z-index: 2;
-
+        .project-button {
             display: inline-block;
 
             width: fit-content;
 
-            margin-top: 18px;
+            margin-top: 15px;
 
-            padding: 10px 16px;
+            padding: 9px 14px;
 
             border-radius: 9px;
 
@@ -566,14 +702,69 @@
                     var(--purple)
                 );
 
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 800;
-
-            box-shadow: 0 8px 25px rgba(112,71,255,.25);
         }
 
         /* =========================
-           SOCIAL
+           PERSONALIZAÇÃO
+        ========================= */
+
+        .custom-box {
+            padding: 24px;
+
+            border-radius: 20px;
+
+            border: 1px solid rgba(112,71,255,.2);
+
+            background:
+                radial-gradient(
+                    circle at 100% 0%,
+                    rgba(112,71,255,.18),
+                    transparent 45%
+                ),
+                rgba(12,21,33,.8);
+        }
+
+        .custom-box h2 {
+            font-size: 20px;
+
+            margin-bottom: 10px;
+        }
+
+        .custom-box p {
+            color: var(--muted);
+
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .custom-list {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-top: 16px;
+        }
+
+        .custom-list span {
+            padding: 8px 11px;
+
+            border-radius: 8px;
+
+            background: rgba(255,255,255,.04);
+
+            border: 1px solid rgba(255,255,255,.07);
+
+            color: #aebdce;
+
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        /* =========================
+           REDES
         ========================= */
 
         .social {
@@ -581,35 +772,39 @@
             justify-content: center;
             gap: 12px;
 
-            margin-top: 35px;
+            margin-top: 25px;
         }
 
         .social a {
-            width: 42px;
-            height: 42px;
+            width: 46px;
+            height: 46px;
 
             display: grid;
             place-items: center;
 
-            border-radius: 12px;
+            border-radius: 13px;
 
             border: 1px solid var(--border);
 
             background: rgba(255,255,255,.03);
 
-            color: #b8c4d2;
-
-            text-decoration: none;
-
-            font-size: 13px;
-            font-weight: 800;
+            overflow: hidden;
 
             transition: .25s;
         }
 
-        .social a:hover {
-            color: white;
+        .social a img {
+            width: 100%;
+            height: 100%;
 
+            object-fit: cover;
+
+            padding: 9px;
+
+            border-radius: 13px;
+        }
+
+        .social a:hover {
             border-color: rgba(0,229,255,.3);
 
             background: rgba(0,229,255,.08);
@@ -624,7 +819,7 @@
         footer {
             text-align: center;
 
-            margin-top: 30px;
+            margin-top: 35px;
 
             padding-top: 22px;
 
@@ -638,7 +833,7 @@
         }
 
         /* =========================
-           ANIMATIONS
+           ANIMAÇÕES
         ========================= */
 
         @keyframes fadeUp {
@@ -663,25 +858,14 @@
             }
         }
 
-        .links .link:nth-child(1) {
-            animation: fadeUp .5s .1s both;
+        .link {
+            animation: fadeUp .5s both;
         }
 
-        .links .link:nth-child(2) {
-            animation: fadeUp .5s .2s both;
-        }
-
-        .links .link:nth-child(3) {
-            animation: fadeUp .5s .3s both;
-        }
-
-        .links .link:nth-child(4) {
-            animation: fadeUp .5s .4s both;
-        }
-
-        .featured {
-            animation: fadeUp .6s .5s both;
-        }
+        .link:nth-child(1) { animation-delay: .1s; }
+        .link:nth-child(2) { animation-delay: .2s; }
+        .link:nth-child(3) { animation-delay: .3s; }
+        .link:nth-child(4) { animation-delay: .4s; }
 
         /* =========================
            MOBILE
@@ -694,10 +878,6 @@
                 padding-top: 35px;
             }
 
-            .profile {
-                margin-bottom: 30px;
-            }
-
             .avatar-wrapper,
             .avatar {
                 width: 105px;
@@ -706,6 +886,10 @@
 
             h1 {
                 font-size: 35px;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
             }
 
             .link {
@@ -717,11 +901,10 @@
             .icon {
                 width: 38px;
                 height: 38px;
-
                 margin-right: 12px;
             }
 
-            .featured {
+            .project {
                 min-height: 210px;
                 padding: 21px;
             }
@@ -736,7 +919,9 @@
 
     <main class="container">
 
-        <!-- PERFIL -->
+        <!-- =========================
+             PERFIL
+        ========================= -->
 
         <section class="profile">
 
@@ -744,8 +929,8 @@
 
                 <img
                     class="avatar"
-                    src="https://cdn.discordapp.com/attachments/1513764148553584680/1544596757852454953/WA_1784422331777.jpg?ex=6a991554&is=6a97c3d4&hm=ec5ef2f76ed31f854046296b05ff20f0fda987c93fe9f1daa41a158eb241d9a4&"
-                    alt="Calleby"
+                    src="https://raw.githubusercontent.com/callebydev/link/main/img/WA_1784422331777.jpeg"
+                    alt="Foto de perfil de Rarison"
                 >
 
                 <span class="status"></span>
@@ -753,22 +938,65 @@
             </div>
 
             <h1>
-                <span class="gradient-text">Calleby</span>
+                <span class="gradient-text">Rarison</span>
             </h1>
 
+            <p class="role">
+                Desenvolvedor Web em início de carreira
+            </p>
+
             <p class="description">
-                Desenvolvimento Web & Tecnologia.
-                Criando projetos, experiências e soluções digitais.
+                Criando páginas simples, modernas e funcionais,
+                enquanto evoluo constantemente minhas habilidades
+                em desenvolvimento web.
             </p>
 
             <span class="tag">
-                WEB DEVELOPER • CREATOR
+                HTML • CSS • JAVASCRIPT
             </span>
+
+            <a
+                class="contact-button"
+                href="https://wa.me/5595991501077"
+                target="_blank"
+                rel="noopener"
+            >
+                Fale comigo pelo WhatsApp →
+            </a>
 
         </section>
 
 
-        <!-- LINKS -->
+        <!-- =========================
+             SOBRE MIM
+        ========================= -->
+
+        <div class="section-title">
+            Sobre mim
+        </div>
+
+        <section class="about">
+
+            <strong>Olá, sou Rarison.</strong>
+
+            <br><br>
+
+            Estou iniciando minha carreira na programação e atualmente
+            estudo e desenvolvo projetos utilizando HTML, CSS, JavaScript
+            e outras tecnologias.
+
+            <br><br>
+
+            Meu objetivo é transformar ideias em experiências digitais
+            simples, funcionais e bem apresentadas, enquanto continuo
+            aprendendo e aprimorando cada projeto.
+
+        </section>
+
+
+        <!-- =========================
+             CONECTE-SE
+        ========================= -->
 
         <div class="section-title">
             Conecte-se comigo
@@ -776,61 +1004,7 @@
 
         <nav class="links">
 
-            <a
-                class="link"
-                href="https://github.com/callebydev"
-                target="_blank"
-                rel="noopener"
-            >
-
-                <div class="icon">
-                    GH
-                </div>
-
-                <div class="link-content">
-                    <span class="link-title">
-                        GitHub
-                    </span>
-
-                    <span class="link-description">
-                        Meus projetos e códigos
-                    </span>
-                </div>
-
-                <span class="arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <a
-                class="link"
-                href="https://discord.gg/H3mnq7Nfp"
-                target="_blank"
-                rel="noopener"
-            >
-
-                <div class="icon">
-                    DC
-                </div>
-
-                <div class="link-content">
-                    <span class="link-title">
-                        Discord
-                    </span>
-
-                    <span class="link-description">
-                        Entre na minha comunidade
-                    </span>
-                </div>
-
-                <span class="arrow">
-                    →
-                </span>
-
-            </a>
-
+            <!-- WHATSAPP -->
 
             <a
                 class="link"
@@ -840,10 +1014,16 @@
             >
 
                 <div class="icon">
-                    WA
+
+                    <img
+                        src="https://raw.githubusercontent.com/callebydev/link/main/img/ef55acaed134cf97d2a5f9f1e4815295.jp"
+                        alt="WhatsApp"
+                    >
+
                 </div>
 
                 <div class="link-content">
+
                     <span class="link-title">
                         WhatsApp
                     </span>
@@ -851,14 +1031,50 @@
                     <span class="link-description">
                         Fale comigo diretamente
                     </span>
+
                 </div>
 
-                <span class="arrow">
-                    →
-                </span>
+                <span class="arrow">→</span>
 
             </a>
 
+
+            <!-- GITHUB -->
+
+            <a
+                class="link"
+                href="https://github.com/callebydev"
+                target="_blank"
+                rel="noopener"
+            >
+
+                <div class="icon">
+
+                    <img
+                        src="https://raw.githubusercontent.com/callebydev/link/main/img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+                        alt="GitHub"
+                    >
+
+                </div>
+
+                <div class="link-content">
+
+                    <span class="link-title">
+                        GitHub
+                    </span>
+
+                    <span class="link-description">
+                        Meus projetos e códigos
+                    </span>
+
+                </div>
+
+                <span class="arrow">→</span>
+
+            </a>
+
+
+            <!-- INSTAGRAM -->
 
             <a
                 class="link"
@@ -868,10 +1084,16 @@
             >
 
                 <div class="icon">
-                    IG
+
+                    <img
+                        src="https://raw.githubusercontent.com/callebydev/link/main/img/ae599d8043cac580437e26da1f8c8aeb.jpg"
+                        alt="Instagram"
+                    >
+
                 </div>
 
                 <div class="link-content">
+
                     <span class="link-title">
                         Instagram
                     </span>
@@ -879,51 +1101,300 @@
                     <span class="link-description">
                         Acompanhe meu conteúdo
                     </span>
+
                 </div>
 
-                <span class="arrow">
-                    →
-                </span>
+                <span class="arrow">→</span>
+
+            </a>
+
+
+            <!-- DISCORD -->
+
+            <a
+                class="link"
+                href="https://discord.gg/H3mnq7Nfp"
+                target="_blank"
+                rel="noopener"
+            >
+
+                <div class="icon">
+
+                    <img
+                        src="https://raw.githubusercontent.com/callebydev/link/main/img/b5d4ce10a744861ffd3314d20d116976.jpg"
+                        alt="Discord"
+                    >
+
+                </div>
+
+                <div class="link-content">
+
+                    <span class="link-title">
+                        Discord
+                    </span>
+
+                    <span class="link-description">
+                        Entre na minha comunidade
+                    </span>
+
+                </div>
+
+                <span class="arrow">→</span>
 
             </a>
 
         </nav>
 
 
-        <!-- PORTFÓLIO -->
+        <!-- =========================
+             SERVIÇOS
+        ========================= -->
 
         <div class="section-title">
-            Destaque
+            Serviços
         </div>
 
-        <a
-            class="featured"
-            href="https://paleascendancy.github.io/index.html"
-            target="_blank"
-            rel="noopener"
-        >
+        <section class="services">
 
-            <span class="featured-label">
-                PROJETO EM DESTAQUE
-            </span>
+            <article class="service">
+
+                <span class="service-number">01</span>
+
+                <h3>Páginas de Links</h3>
+
+                <p>
+                    Páginas personalizadas para reunir
+                    WhatsApp, Instagram, Discord, portfólio
+                    e outros contatos.
+                </p>
+
+            </article>
+
+
+            <article class="service">
+
+                <span class="service-number">02</span>
+
+                <h3>Landing Pages</h3>
+
+                <p>
+                    Páginas de apresentação para pessoas,
+                    projetos, serviços e pequenos negócios.
+                </p>
+
+            </article>
+
+
+            <article class="service">
+
+                <span class="service-number">03</span>
+
+                <h3>Sites Básicos</h3>
+
+                <p>
+                    Sites institucionais simples para
+                    apresentar informações, serviços e contatos.
+                </p>
+
+            </article>
+
+
+            <article class="service">
+
+                <span class="service-number">04</span>
+
+                <h3>Páginas Personalizadas</h3>
+
+                <p>
+                    Desenvolvimento de páginas de acordo
+                    com a identidade e necessidade do projeto.
+                </p>
+
+            </article>
+
+
+            <article class="service">
+
+                <span class="service-number">05</span>
+
+                <h3>Manutenção e Ajustes</h3>
+
+                <p>
+                    Correções, alterações e melhorias
+                    em projetos HTML, CSS e JavaScript.
+                </p>
+
+            </article>
+
+
+            <article class="service">
+
+                <span class="service-number">06</span>
+
+                <h3>Interfaces Web</h3>
+
+                <p>
+                    Criação de interfaces responsivas
+                    para ideias e projetos digitais.
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- =========================
+             PERSONALIZAÇÃO
+        ========================= -->
+
+        <div class="section-title">
+            Página personalizada
+        </div>
+
+        <section class="custom-box">
 
             <h2>
-                Meu Portfólio
+                Crio sua página do seu jeito.
             </h2>
 
             <p>
-                Confira meus principais projetos, trabalhos
-                e experiências em desenvolvimento web.
+                Posso criar uma página para você apresentar
+                seu portfólio, redes sociais, serviços,
+                contatos ou qualquer outra informação importante.
             </p>
 
-            <span class="featured-button">
-                VISITAR PORTFÓLIO →
-            </span>
+            <div class="custom-list">
 
-        </a>
+                <span>Portfólio</span>
+                <span>Links</span>
+                <span>Redes sociais</span>
+                <span>WhatsApp</span>
+                <span>Landing Page</span>
+                <span>Design personalizado</span>
+
+            </div>
+
+        </section>
 
 
-        <!-- REDES -->
+        <!-- =========================
+             MEUS TRABALHOS
+        ========================= -->
+
+        <div class="section-title">
+            Meus trabalhos
+        </div>
+
+        <p class="portfolio-intro">
+            Alguns dos projetos que desenvolvi durante minha jornada
+            na programação. Atualmente foco em interfaces web e
+            projetos básicos, buscando melhorar cada trabalho.
+        </p>
+
+        <section class="projects">
+
+            <a
+                class="project"
+                href="https://github.com/callebydev"
+                target="_blank"
+                rel="noopener"
+            >
+
+                <img
+                    class="project-image"
+                    src="https://raw.githubusercontent.com/callebydev/link/main/img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+                    alt=""
+                >
+
+                <div class="project-content">
+
+                    <span class="project-label">
+                        PROJETO
+                    </span>
+
+                    <h3>
+                        Projetos no GitHub
+                    </h3>
+
+                    <p>
+                        Confira meus códigos, experimentos e
+                        projetos desenvolvidos durante meus estudos.
+                    </p>
+
+                    <span class="project-button">
+                        VER PROJETOS →
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <a
+                class="project"
+                href="https://paleascendancy.github.io/index.html"
+                target="_blank"
+                rel="noopener"
+            >
+
+                <img
+                    class="project-image"
+                    src="https://raw.githubusercontent.com/callebydev/link/main/img/WA_1784422331777.jpeg"
+                    alt=""
+                >
+
+                <div class="project-content">
+
+                    <span class="project-label">
+                        PROJETO EM DESTAQUE
+                    </span>
+
+                    <h3>
+                        Meu Portfólio
+                    </h3>
+
+                    <p>
+                        Uma página para apresentar meus trabalhos,
+                        projetos e minha evolução como desenvolvedor.
+                    </p>
+
+                    <span class="project-button">
+                        VISITAR PORTFÓLIO →
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <article class="project">
+
+                <div class="project-content">
+
+                    <span class="project-label">
+                        PROJETO PESSOAL
+                    </span>
+
+                    <h3>
+                        Este site
+                    </h3>
+
+                    <p>
+                        Este próprio site é um dos projetos que
+                        desenvolvi para praticar e demonstrar
+                        minhas habilidades em desenvolvimento web.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =========================
+             REDES
+        ========================= -->
 
         <div class="section-title">
             Redes sociais
@@ -935,31 +1406,51 @@
                 href="https://github.com/callebydev"
                 target="_blank"
                 rel="noopener"
+                aria-label="GitHub"
             >
-                GH
+
+                <img
+                    src="https://raw.githubusercontent.com/callebydev/link/main/img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+                    alt="GitHub"
+                >
+
             </a>
+
 
             <a
                 href="https://www.instagram.com/rk.dacruz?igsi=a3lnbWQwOTQ4b3Vo"
                 target="_blank"
                 rel="noopener"
+                aria-label="Instagram"
             >
-                IG
+
+                <img
+                    src="https://raw.githubusercontent.com/callebydev/link/main/img/ae599d8043cac580437e26da1f8c8aeb.jpg"
+                    alt="Instagram"
+                >
+
             </a>
+
 
             <a
                 href="https://discord.gg/H3mnq7Nfp"
                 target="_blank"
                 rel="noopener"
+                aria-label="Discord"
             >
-                DC
+
+                <img
+                    src="https://raw.githubusercontent.com/callebydev/link/main/img/b5d4ce10a744861ffd3314d20d116976.jpg"
+                    alt="Discord"
+                >
+
             </a>
 
         </div>
 
 
         <footer>
-            © 2026 CALLEBY — DESENVOLVIMENTO WEB & TECNOLOGIA
+            © 2026 RARISON — DESENVOLVIMENTO WEB
         </footer>
 
     </main>
