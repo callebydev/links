@@ -4,143 +4,962 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Calleby | Links</title>
+    <title>Calleby — Links</title>
+
+    <meta name="description" content="Calleby — Desenvolvimento Web & Tecnologia">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --bg: #070b12;
+            --bg-2: #0b111b;
+            --card: rgba(15, 24, 37, 0.72);
+
+            --text: #f4f8ff;
+            --muted: #8493a7;
+
+            --cyan: #00e5ff;
+            --blue: #168cff;
+            --purple: #7047ff;
+
+            --border: rgba(255,255,255,.09);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background: #011e31;
-            color: #d7e0eb;
-            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(0, 229, 255, .13),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 100% 40%,
+                    rgba(112, 71, 255, .12),
+                    transparent 35%
+                ),
+                var(--bg);
+
+            color: var(--text);
+
+            font-family: "Inter", sans-serif;
         }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+                linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+
+            background-size: 55px 55px;
+
+            mask-image: linear-gradient(
+                to bottom,
+                black,
+                transparent 75%
+            );
+        }
+
+        .glow {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            filter: blur(100px);
+            opacity: .18;
+
+            pointer-events: none;
+        }
+
+        .glow.one {
+            top: 5%;
+            left: -150px;
+            background: var(--cyan);
+        }
+
+        .glow.two {
+            top: 45%;
+            right: -150px;
+            background: var(--purple);
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
 
         .container {
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
+            position: relative;
+            z-index: 2;
+
+            width: min(100% - 32px, 680px);
+
+            margin: auto;
+            padding: 60px 0 40px;
         }
 
+        /* =========================
+           PROFILE
+        ========================= */
+
         .profile {
-            margin-bottom: 28px;
+            text-align: center;
+            margin-bottom: 42px;
+
+            animation: fadeUp .8s ease both;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+
+            width: 120px;
+            height: 120px;
+
+            margin: 0 auto 22px;
+        }
+
+        .avatar-wrapper::before {
+            content: "";
+
+            position: absolute;
+            inset: -5px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--cyan),
+                    var(--blue),
+                    var(--purple)
+                );
+
+            filter: blur(1px);
+
+            animation: rotate 5s linear infinite;
         }
 
         .avatar {
-            width: 95px;
-            height: 95px;
-            margin: 0 auto 15px;
-            border-radius: 50%;
+            position: relative;
+
+            width: 120px;
+            height: 120px;
+
             object-fit: cover;
+
+            border-radius: 50%;
+
+            border: 4px solid #080d15;
+
             display: block;
-            border: 2px solid #0c4160;
+        }
+
+        .status {
+            position: absolute;
+
+            right: 4px;
+            bottom: 8px;
+
+            width: 22px;
+            height: 22px;
+
+            border-radius: 50%;
+
+            background: #22d36b;
+
+            border: 4px solid #080d15;
+
+            box-shadow: 0 0 15px rgba(34,211,107,.8);
         }
 
         h1 {
-            font-size: 26px;
-            margin-bottom: 6px;
+            font-size: clamp(32px, 8vw, 46px);
+            font-weight: 900;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 10px;
+        }
+
+        .gradient-text {
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #8cefff,
+                    #a68aff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
         }
 
         .description {
-            color: #68869a;
+            max-width: 450px;
+
+            margin: auto;
+
+            color: var(--muted);
+
             font-size: 14px;
+            line-height: 1.7;
         }
+
+        .tag {
+            display: inline-flex;
+
+            margin-top: 18px;
+
+            padding: 8px 14px;
+
+            border-radius: 100px;
+
+            border: 1px solid rgba(0,229,255,.2);
+
+            background: rgba(0,229,255,.05);
+
+            color: #9defff;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: .5px;
+        }
+
+        /* =========================
+           SECTION TITLE
+        ========================= */
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            margin: 38px 0 16px;
+
+            color: #dbe5f1;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title::before,
+        .section-title::after {
+            content: "";
+
+            height: 1px;
+            flex: 1;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.18)
+                );
+        }
+
+        .section-title::after {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.18),
+                    transparent
+                );
+        }
+
+        /* =========================
+           LINKS
+        ========================= */
 
         .links {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 13px;
         }
 
         .link {
-            display: block;
-            padding: 15px;
-            border: 1px solid #0c4160;
-            border-radius: 12px;
-            background: #062b40;
-            color: #d7e0eb;
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            min-height: 70px;
+
+            padding: 14px 20px;
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    rgba(17,29,44,.85),
+                    rgba(10,17,28,.7)
+                );
+
+            color: var(--text);
+
             text-decoration: none;
-            font-weight: 600;
-            transition: 0.2s;
+
+            overflow: hidden;
+
+            transition:
+                transform .25s ease,
+                border-color .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .link::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -100%;
+
+            width: 100%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.07),
+                    transparent
+                );
+
+            transition: .6s;
+        }
+
+        .link:hover::before {
+            left: 100%;
         }
 
         .link:hover {
-            transform: translateY(-2px);
-            background: #0c4160;
+            transform: translateY(-4px);
+
+            border-color: rgba(0,229,255,.3);
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,.35),
+                0 0 25px rgba(0,229,255,.06);
         }
 
-        footer {
-            margin-top: 28px;
-            color: #68869a;
+        .icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            margin-right: 15px;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,229,255,.14),
+                    rgba(112,71,255,.14)
+                );
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            font-size: 18px;
+        }
+
+        .link-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .link-title {
+            display: block;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            margin-bottom: 4px;
+        }
+
+        .link-description {
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+        .arrow {
+            color: #63748a;
+
+            font-size: 18px;
+
+            transition: .25s;
+        }
+
+        .link:hover .arrow {
+            color: var(--cyan);
+            transform: translateX(4px);
+        }
+
+        /* =========================
+           FEATURED PORTFOLIO
+        ========================= */
+
+        .featured {
+            position: relative;
+
+            margin-top: 14px;
+
+            padding: 25px;
+
+            min-height: 190px;
+
+            border-radius: 22px;
+
+            border: 1px solid rgba(0,229,255,.2);
+
+            background:
+                radial-gradient(
+                    circle at 100% 0%,
+                    rgba(112,71,255,.25),
+                    transparent 40%
+                ),
+                radial-gradient(
+                    circle at 0% 100%,
+                    rgba(0,229,255,.13),
+                    transparent 45%
+                ),
+                #0c1521;
+
+            overflow: hidden;
+
+            text-decoration: none;
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            transition: .3s;
+        }
+
+        .featured:hover {
+            transform: translateY(-5px);
+
+            border-color: rgba(0,229,255,.5);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.4),
+                0 0 35px rgba(0,229,255,.08);
+        }
+
+        .featured::after {
+            content: "";
+
+            position: absolute;
+
+            width: 200px;
+            height: 200px;
+
+            top: -100px;
+            right: -60px;
+
+            border-radius: 50%;
+
+            background: var(--purple);
+
+            filter: blur(80px);
+
+            opacity: .25;
+        }
+
+        .featured-label {
+            position: relative;
+            z-index: 2;
+
+            color: var(--cyan);
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            margin-bottom: 10px;
+        }
+
+        .featured h2 {
+            position: relative;
+            z-index: 2;
+
+            font-size: 27px;
+            font-weight: 900;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 7px;
+        }
+
+        .featured p {
+            position: relative;
+            z-index: 2;
+
+            max-width: 420px;
+
+            color: #8e9bad;
+
             font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .featured-button {
+            position: relative;
+            z-index: 2;
+
+            display: inline-block;
+
+            width: fit-content;
+
+            margin-top: 18px;
+
+            padding: 10px 16px;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--blue),
+                    var(--purple)
+                );
+
+            font-size: 11px;
+            font-weight: 800;
+
+            box-shadow: 0 8px 25px rgba(112,71,255,.25);
+        }
+
+        /* =========================
+           SOCIAL
+        ========================= */
+
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+
+            margin-top: 35px;
+        }
+
+        .social a {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            border: 1px solid var(--border);
+
+            background: rgba(255,255,255,.03);
+
+            color: #b8c4d2;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            transition: .25s;
+        }
+
+        .social a:hover {
+            color: white;
+
+            border-color: rgba(0,229,255,.3);
+
+            background: rgba(0,229,255,.08);
+
+            transform: translateY(-3px);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            margin-top: 30px;
+
+            padding-top: 22px;
+
+            border-top: 1px solid rgba(255,255,255,.06);
+
+            color: #536274;
+
+            font-size: 10px;
+
+            letter-spacing: .5px;
+        }
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .links .link:nth-child(1) {
+            animation: fadeUp .5s .1s both;
+        }
+
+        .links .link:nth-child(2) {
+            animation: fadeUp .5s .2s both;
+        }
+
+        .links .link:nth-child(3) {
+            animation: fadeUp .5s .3s both;
+        }
+
+        .links .link:nth-child(4) {
+            animation: fadeUp .5s .4s both;
+        }
+
+        .featured {
+            animation: fadeUp .6s .5s both;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 500px) {
+
+            .container {
+                width: min(100% - 24px, 680px);
+                padding-top: 35px;
+            }
+
+            .profile {
+                margin-bottom: 30px;
+            }
+
+            .avatar-wrapper,
+            .avatar {
+                width: 105px;
+                height: 105px;
+            }
+
+            h1 {
+                font-size: 35px;
+            }
+
+            .link {
+                min-height: 65px;
+                padding: 11px 14px;
+                border-radius: 15px;
+            }
+
+            .icon {
+                width: 38px;
+                height: 38px;
+
+                margin-right: 12px;
+            }
+
+            .featured {
+                min-height: 210px;
+                padding: 21px;
+            }
         }
     </style>
 </head>
 
 <body>
 
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
     <main class="container">
+
+        <!-- PERFIL -->
 
         <section class="profile">
 
-            <img
-                class="avatar"
-                src="https://cdn.discordapp.com/attachments/1513764148553584680/1544596757852454953/WA_1784422331777.jpg?ex=6a991554&is=6a97c3d4&hm=ec5ef2f76ed31f854046296b05ff20f0fda987c93fe9f1daa41a158eb241d9a4&"
-                alt="Foto de perfil"
-            >
+            <div class="avatar-wrapper">
 
-            <h1>Calleby</h1>
+                <img
+                    class="avatar"
+                    src="https://cdn.discordapp.com/attachments/1513764148553584680/1544596757852454953/WA_1784422331777.jpg?ex=6a991554&is=6a97c3d4&hm=ec5ef2f76ed31f854046296b05ff20f0fda987c93fe9f1daa41a158eb241d9a4&"
+                    alt="Calleby"
+                >
+
+                <span class="status"></span>
+
+            </div>
+
+            <h1>
+                <span class="gradient-text">Calleby</span>
+            </h1>
 
             <p class="description">
-                Desenvolvimento Web & Tecnologia
+                Desenvolvimento Web & Tecnologia.
+                Criando projetos, experiências e soluções digitais.
             </p>
+
+            <span class="tag">
+                WEB DEVELOPER • CREATOR
+            </span>
 
         </section>
 
+
+        <!-- LINKS -->
+
+        <div class="section-title">
+            Conecte-se comigo
+        </div>
+
         <nav class="links">
 
-            <a class="link"
-               href="https://github.com/callebydev"
-               target="_blank">
-                GitHub
+            <a
+                class="link"
+                href="https://github.com/callebydev"
+                target="_blank"
+                rel="noopener"
+            >
+
+                <div class="icon">
+                    GH
+                </div>
+
+                <div class="link-content">
+                    <span class="link-title">
+                        GitHub
+                    </span>
+
+                    <span class="link-description">
+                        Meus projetos e códigos
+                    </span>
+                </div>
+
+                <span class="arrow">
+                    →
+                </span>
+
             </a>
 
-            <a class="link"
-               href="https://discord.gg/H3mnq7Nfp"
-               target="_blank">
-                Discord
+
+            <a
+                class="link"
+                href="https://discord.gg/H3mnq7Nfp"
+                target="_blank"
+                rel="noopener"
+            >
+
+                <div class="icon">
+                    DC
+                </div>
+
+                <div class="link-content">
+                    <span class="link-title">
+                        Discord
+                    </span>
+
+                    <span class="link-description">
+                        Entre na minha comunidade
+                    </span>
+                </div>
+
+                <span class="arrow">
+                    →
+                </span>
+
             </a>
 
-            <a class="link"
-               href="https://wa.me/5595991501077"
-               target="_blank">
-                WhatsApp
+
+            <a
+                class="link"
+                href="https://wa.me/5595991501077"
+                target="_blank"
+                rel="noopener"
+            >
+
+                <div class="icon">
+                    WA
+                </div>
+
+                <div class="link-content">
+                    <span class="link-title">
+                        WhatsApp
+                    </span>
+
+                    <span class="link-description">
+                        Fale comigo diretamente
+                    </span>
+                </div>
+
+                <span class="arrow">
+                    →
+                </span>
+
             </a>
 
-            <a class="link"
-               href="https://www.instagram.com/rk.dacruz?igsi=a3lnbWQwOTQ4b3Vo"
-               target="_blank">
-                Instagram
-            </a>
 
-            <a class="link"
-               href="https://paleascendancy.github.io/index.html"
-               target="_blank">
-                Portfólio
+            <a
+                class="link"
+                href="https://www.instagram.com/rk.dacruz?igsi=a3lnbWQwOTQ4b3Vo"
+                target="_blank"
+                rel="noopener"
+            >
+
+                <div class="icon">
+                    IG
+                </div>
+
+                <div class="link-content">
+                    <span class="link-title">
+                        Instagram
+                    </span>
+
+                    <span class="link-description">
+                        Acompanhe meu conteúdo
+                    </span>
+                </div>
+
+                <span class="arrow">
+                    →
+                </span>
+
             </a>
 
         </nav>
 
+
+        <!-- PORTFÓLIO -->
+
+        <div class="section-title">
+            Destaque
+        </div>
+
+        <a
+            class="featured"
+            href="https://paleascendancy.github.io/index.html"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <span class="featured-label">
+                PROJETO EM DESTAQUE
+            </span>
+
+            <h2>
+                Meu Portfólio
+            </h2>
+
+            <p>
+                Confira meus principais projetos, trabalhos
+                e experiências em desenvolvimento web.
+            </p>
+
+            <span class="featured-button">
+                VISITAR PORTFÓLIO →
+            </span>
+
+        </a>
+
+
+        <!-- REDES -->
+
+        <div class="section-title">
+            Redes sociais
+        </div>
+
+        <div class="social">
+
+            <a
+                href="https://github.com/callebydev"
+                target="_blank"
+                rel="noopener"
+            >
+                GH
+            </a>
+
+            <a
+                href="https://www.instagram.com/rk.dacruz?igsi=a3lnbWQwOTQ4b3Vo"
+                target="_blank"
+                rel="noopener"
+            >
+                IG
+            </a>
+
+            <a
+                href="https://discord.gg/H3mnq7Nfp"
+                target="_blank"
+                rel="noopener"
+            >
+                DC
+            </a>
+
+        </div>
+
+
         <footer>
-            © 2026 Calleby
+            © 2026 CALLEBY — DESENVOLVIMENTO WEB & TECNOLOGIA
         </footer>
 
     </main>
