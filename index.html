@@ -9,14 +9,17 @@
   <style>
     :root {
       --bg: #03060b;
-      --card: rgba(10, 16, 27, 0.72);
-      --card-hover: rgba(15, 25, 40, 0.9);
+      --card: rgba(9, 15, 25, 0.72);
+      --card-hover: rgba(14, 23, 37, 0.86);
+
       --text: #f5f7fb;
       --muted: #8b98a9;
+
       --cyan: #00e5ff;
       --blue: #168cff;
       --purple: #7047ff;
-      --border: rgba(255,255,255,0.08);
+
+      --border: rgba(255, 255, 255, 0.08);
     }
 
     * {
@@ -33,194 +36,384 @@
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
       background: var(--bg);
+
       overflow-x: hidden;
+
       position: relative;
     }
 
-    /* =========================
-       FUNDO FUTURISTA
-    ========================= */
 
-    body::before {
-      content: "";
+    /* ==================================================
+       FUNDO
+    ================================================== */
+
+    .background {
       position: fixed;
       inset: 0;
-      z-index: -5;
+
+      overflow: hidden;
+
+      pointer-events: none;
+
+      z-index: -10;
 
       background:
         radial-gradient(
           circle at 50% 0%,
-          rgba(0, 229, 255, 0.12),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 10% 35%,
-          rgba(112, 71, 255, 0.12),
-          transparent 28%
-        ),
-        radial-gradient(
-          circle at 90% 70%,
-          rgba(22, 140, 255, 0.1),
-          transparent 30%
+          rgba(0, 229, 255, 0.07),
+          transparent 34%
         ),
         #03060b;
     }
 
-    /* Grade */
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -4;
-      pointer-events: none;
+    /* Grade extremamente sutil */
+
+    .grid {
+      position: absolute;
+      inset: -100px;
 
       background-image:
         linear-gradient(
-          rgba(0, 229, 255, 0.035) 1px,
+          rgba(0, 229, 255, 0.025) 1px,
           transparent 1px
         ),
         linear-gradient(
           90deg,
-          rgba(0, 229, 255, 0.035) 1px,
+          rgba(0, 229, 255, 0.025) 1px,
           transparent 1px
         );
 
-      background-size: 55px 55px;
+      background-size: 65px 65px;
 
-      mask-image: linear-gradient(
-        to bottom,
-        black,
-        transparent 90%
-      );
+      transform: perspective(700px) rotateX(55deg) scale(1.7);
+
+      transform-origin: center bottom;
+
+      opacity: 0.35;
+
+      animation: gridMove 35s linear infinite;
     }
 
-    /* Luzes */
+    @keyframes gridMove {
 
-    .background-light {
-      position: fixed;
-      width: 420px;
-      height: 420px;
+      0% {
+        transform:
+          perspective(700px)
+          rotateX(55deg)
+          scale(1.7)
+          translateY(0);
+      }
+
+      100% {
+        transform:
+          perspective(700px)
+          rotateX(55deg)
+          scale(1.7)
+          translateY(65px);
+      }
+    }
+
+
+    /* ==================================================
+       LUZES FLUTUANTES
+    ================================================== */
+
+    .orb {
+      position: absolute;
+
       border-radius: 50%;
+
       filter: blur(100px);
-      opacity: 0.12;
-      pointer-events: none;
-      z-index: -3;
+
+      opacity: 0.10;
+
+      will-change: transform;
+
+      animation-timing-function: ease-in-out;
+
+      animation-iteration-count: infinite;
     }
 
-    .light-one {
+
+    .orb-one {
+      width: 360px;
+      height: 360px;
+
       background: var(--cyan);
+
       top: -180px;
-      left: -160px;
-      animation: floatLight 10s ease-in-out infinite;
+      left: -120px;
+
+      animation:
+        orbOne 18s infinite;
     }
 
-    .light-two {
+
+    .orb-two {
+      width: 430px;
+      height: 430px;
+
       background: var(--purple);
-      right: -180px;
-      top: 35%;
-      animation: floatLight 13s ease-in-out infinite reverse;
+
+      right: -220px;
+      top: 25%;
+
+      animation:
+        orbTwo 24s infinite;
     }
 
-    .light-three {
+
+    .orb-three {
+      width: 330px;
+      height: 330px;
+
       background: var(--blue);
-      left: 30%;
-      bottom: -250px;
-      animation: floatLight 15s ease-in-out infinite;
+
+      left: 25%;
+      bottom: -220px;
+
+      animation:
+        orbThree 22s infinite;
     }
 
-    @keyframes floatLight {
+
+    @keyframes orbOne {
+
       0%, 100% {
-        transform: translate(0, 0) scale(1);
+        transform:
+          translate3d(0, 0, 0)
+          scale(1);
       }
 
       50% {
-        transform: translate(50px, -30px) scale(1.15);
+        transform:
+          translate3d(90px, 70px, 0)
+          scale(1.08);
       }
     }
 
-    /* =========================
+
+    @keyframes orbTwo {
+
+      0%, 100% {
+        transform:
+          translate3d(0, 0, 0)
+          scale(1);
+      }
+
+      50% {
+        transform:
+          translate3d(-80px, 70px, 0)
+          scale(1.08);
+      }
+    }
+
+
+    @keyframes orbThree {
+
+      0%, 100% {
+        transform:
+          translate3d(0, 0, 0)
+          scale(1);
+      }
+
+      50% {
+        transform:
+          translate3d(70px, -60px, 0)
+          scale(1.1);
+      }
+    }
+
+
+    /* ==================================================
+       PEQUENOS PONTOS DE LUZ
+    ================================================== */
+
+    .particles {
+      position: absolute;
+      inset: 0;
+
+      opacity: 0.25;
+    }
+
+    .particles span {
+      position: absolute;
+
+      width: 2px;
+      height: 2px;
+
+      border-radius: 50%;
+
+      background: rgba(0, 229, 255, 0.5);
+
+      animation:
+        particleFloat 12s ease-in-out infinite;
+    }
+
+    .particles span:nth-child(1) {
+      left: 12%;
+      top: 22%;
+      animation-delay: -2s;
+    }
+
+    .particles span:nth-child(2) {
+      left: 78%;
+      top: 18%;
+      animation-delay: -5s;
+    }
+
+    .particles span:nth-child(3) {
+      left: 24%;
+      top: 65%;
+      animation-delay: -8s;
+    }
+
+    .particles span:nth-child(4) {
+      left: 86%;
+      top: 72%;
+      animation-delay: -3s;
+    }
+
+    .particles span:nth-child(5) {
+      left: 52%;
+      top: 38%;
+      animation-delay: -7s;
+    }
+
+    .particles span:nth-child(6) {
+      left: 65%;
+      top: 88%;
+      animation-delay: -1s;
+    }
+
+
+    @keyframes particleFloat {
+
+      0%, 100% {
+        transform:
+          translate3d(0, 0, 0);
+
+        opacity: 0.2;
+      }
+
+      50% {
+        transform:
+          translate3d(15px, -25px, 0);
+
+        opacity: 0.55;
+      }
+    }
+
+
+    /* ==================================================
        NAVBAR
-    ========================= */
+    ================================================== */
 
     nav {
       position: sticky;
+
       top: 0;
+
       z-index: 100;
 
       width: 100%;
 
-      background: rgba(3, 6, 11, 0.72);
+      background:
+        rgba(3, 6, 11, 0.65);
+
       backdrop-filter: blur(18px);
 
-      border-bottom: 1px solid var(--border);
+      border-bottom:
+        1px solid var(--border);
     }
+
 
     .nav-container {
       max-width: 1050px;
+
       margin: auto;
 
-      padding: 18px 25px;
+      padding: 17px 25px;
 
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
     }
 
-    .logo {
-      font-size: 25px;
-      font-weight: 900;
 
+    .logo {
       color: var(--text);
 
       text-decoration: none;
+
+      font-size: 25px;
+
+      font-weight: 900;
     }
+
 
     .logo span {
       color: var(--cyan);
     }
 
+
     .nav-links {
       display: flex;
+
       gap: 25px;
     }
 
+
     .nav-links a {
       color: var(--muted);
+
       text-decoration: none;
+
       font-size: 14px;
 
-      transition: 0.3s;
+      transition: 0.3s ease;
     }
+
 
     .nav-links a:hover {
       color: var(--cyan);
     }
 
-    /* =========================
+
+    /* ==================================================
        CONTAINER
-    ========================= */
+    ================================================== */
 
     .container {
       max-width: 850px;
+
       margin: auto;
+
       padding: 0 20px;
     }
 
+
     section {
-      padding: 80px 0;
+      padding: 65px 0;
     }
 
-    /* =========================
+
+    /* ==================================================
        HERO
-    ========================= */
+    ================================================== */
 
     .hero {
-      min-height: 650px;
+      min-height: 610px;
 
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
+
       justify-content: center;
 
       text-align: center;
@@ -228,30 +421,35 @@
       position: relative;
     }
 
+
     .hero::before {
       content: "";
+
       position: absolute;
 
-      width: 500px;
-      height: 500px;
+      width: 480px;
+      height: 480px;
 
-      background: radial-gradient(
-        circle,
-        rgba(0, 229, 255, 0.12),
-        transparent 65%
-      );
+      background:
+        radial-gradient(
+          circle,
+          rgba(0, 229, 255, 0.08),
+          transparent 68%
+        );
 
       filter: blur(20px);
+
       z-index: -1;
     }
 
-    /* =========================
+
+    /* ==================================================
        FOTO
-    ========================= */
+    ================================================== */
 
     .avatar-wrapper {
-      width: 155px;
-      height: 155px;
+      width: 150px;
+      height: 150px;
 
       padding: 4px;
 
@@ -269,31 +467,36 @@
       background-size: 300% 300%;
 
       animation:
-        borderColor 7s ease infinite,
-        avatarGlow 3s ease-in-out infinite;
+        borderColor 8s ease infinite,
+        avatarGlow 4s ease-in-out infinite;
 
       position: relative;
     }
+
 
     .avatar-wrapper::before {
       content: "";
 
       position: absolute;
+
       inset: -12px;
 
       border-radius: 50%;
 
-      background: linear-gradient(
-        130deg,
-        var(--cyan),
-        var(--purple)
-      );
+      background:
+        linear-gradient(
+          130deg,
+          var(--cyan),
+          var(--purple)
+        );
 
       filter: blur(25px);
-      opacity: 0.35;
+
+      opacity: 0.3;
 
       z-index: -1;
     }
+
 
     .avatar {
       width: 100%;
@@ -307,12 +510,12 @@
 
       border: 3px solid #03060b;
 
-      /* IMPORTANTE:
-         não altera a cor da foto */
       filter: none !important;
     }
 
+
     @keyframes borderColor {
+
       0% {
         background-position: 0% 50%;
       }
@@ -326,280 +529,342 @@
       }
     }
 
+
     @keyframes avatarGlow {
+
       0%, 100% {
-        box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+        box-shadow:
+          0 0 20px rgba(0, 229, 255, 0.12);
       }
 
       50% {
-        box-shadow: 0 0 40px rgba(112, 71, 255, 0.25);
+        box-shadow:
+          0 0 35px rgba(112, 71, 255, 0.18);
       }
     }
 
-    .hero h1 {
-      margin-top: 28px;
 
-      font-size: clamp(38px, 7vw, 62px);
+    .hero h1 {
+      margin-top: 25px;
+
+      font-size:
+        clamp(38px, 7vw, 60px);
+
       font-weight: 900;
 
       letter-spacing: -2px;
     }
 
+
     .hero-description {
       max-width: 650px;
 
-      margin-top: 18px;
+      margin-top: 15px;
 
       color: var(--muted);
 
-      font-size: 16px;
+      font-size: 15px;
+
       line-height: 1.7;
     }
 
+
     .tech {
-      margin-top: 22px;
+      margin-top: 18px;
 
       display: inline-block;
 
-      padding: 9px 16px;
+      padding: 8px 15px;
 
-      border: 1px solid rgba(0, 229, 255, 0.2);
+      border:
+        1px solid rgba(0, 229, 255, 0.18);
 
       border-radius: 30px;
 
-      background: rgba(0, 229, 255, 0.04);
+      background:
+        rgba(0, 229, 255, 0.035);
 
       color: var(--cyan);
 
-      font-size: 12px;
+      font-size: 11px;
+
       font-weight: 700;
 
       letter-spacing: 1px;
     }
 
+
     .availability {
-      margin-top: 14px;
+      margin-top: 9px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
-      gap: 7px;
 
-      color: #6f7d8e;
+      gap: 6px;
 
-      font-size: 11px;
+      color: #667487;
+
+      font-size: 10px;
     }
 
+
     .status-dot {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
 
       border-radius: 50%;
 
       background: #40e38a;
 
-      box-shadow: 0 0 10px rgba(64, 227, 138, 0.7);
+      box-shadow:
+        0 0 8px rgba(64, 227, 138, 0.6);
     }
 
-    /* =========================
-       TITULOS
-    ========================= */
+
+    /* ==================================================
+       CABEÇALHOS
+    ================================================== */
 
     .section-header {
-      margin-bottom: 35px;
+      margin-bottom: 25px;
     }
+
 
     .section-label {
       color: var(--cyan);
 
-      font-size: 11px;
+      font-size: 10px;
+
       font-weight: 800;
 
       letter-spacing: 2px;
 
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
+
 
     .section-title {
-      font-size: 32px;
+      font-size: 31px;
+
       font-weight: 900;
 
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
+
 
     .section-description {
       color: var(--muted);
 
-      font-size: 14px;
-      line-height: 1.7;
+      font-size: 13px;
+
+      line-height: 1.6;
     }
 
-    /* =========================
-       LINKS VERTICAIS
-    ========================= */
+
+    /* ==================================================
+       LINKS — LISTA VERTICAL COMPACTA
+    ================================================== */
 
     .links-list {
       display: flex;
+
       flex-direction: column;
-      gap: 12px;
+
+      gap: 7px;
     }
+
 
     .link-item {
       position: relative;
 
       display: flex;
+
       align-items: center;
 
       width: 100%;
 
-      padding: 18px;
+      padding: 13px 15px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
-      border-radius: 16px;
+      border-radius: 13px;
 
-      background: var(--card);
+      background:
+        var(--card);
 
       backdrop-filter: blur(14px);
 
       text-decoration: none;
+
       color: var(--text);
 
       overflow: hidden;
 
       transition:
-        transform 0.3s,
-        border-color 0.3s,
-        background 0.3s,
-        box-shadow 0.3s;
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
     }
+
 
     .link-item::before {
       content: "";
 
       position: absolute;
+
       left: 0;
       top: 0;
 
       width: 2px;
       height: 100%;
 
-      background: linear-gradient(
-        to bottom,
-        var(--cyan),
-        var(--purple)
-      );
+      background:
+        linear-gradient(
+          to bottom,
+          var(--cyan),
+          var(--purple)
+        );
 
-      transform: scaleY(0);
+      transform:
+        scaleY(0);
 
-      transition: 0.3s;
+      transition:
+        transform 0.3s ease;
     }
+
 
     .link-item:hover {
-      transform: translateX(6px);
+      transform:
+        translateX(4px);
 
-      background: var(--card-hover);
+      background:
+        var(--card-hover);
 
-      border-color: rgba(0, 229, 255, 0.2);
+      border-color:
+        rgba(0, 229, 255, 0.16);
 
       box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.25),
-        0 0 25px rgba(0, 229, 255, 0.04);
+        0 8px 25px
+        rgba(0, 0, 0, 0.2);
     }
+
 
     .link-item:hover::before {
-      transform: scaleY(1);
+      transform:
+        scaleY(1);
     }
 
-    .link-image {
-      width: 48px;
-      height: 48px;
 
-      border-radius: 12px;
+    .link-image {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 10px;
 
       object-fit: cover;
 
-      margin-right: 16px;
+      margin-right: 14px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
     }
+
 
     .link-info {
       flex: 1;
     }
 
+
     .link-name {
-      font-size: 15px;
+      font-size: 14px;
+
       font-weight: 800;
 
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
+
 
     .link-description {
       color: var(--muted);
 
-      font-size: 12px;
+      font-size: 11px;
     }
+
 
     .link-arrow {
       color: #68778a;
 
-      font-size: 20px;
+      font-size: 18px;
 
-      transition: 0.3s;
+      transition: 0.3s ease;
     }
+
 
     .link-item:hover .link-arrow {
       color: var(--cyan);
-      transform: translateX(4px);
+
+      transform:
+        translateX(3px);
     }
 
-    /* =========================
+
+    /* ==================================================
        DESTAQUE
-    ========================= */
+    ================================================== */
 
     .highlight {
       position: relative;
 
-      padding: 35px;
+      padding: 30px;
 
-      border-radius: 22px;
+      border-radius: 20px;
 
-      border: 1px solid rgba(0, 229, 255, 0.12);
+      border:
+        1px solid
+        rgba(0, 229, 255, 0.1);
 
       background:
         linear-gradient(
           135deg,
-          rgba(0, 229, 255, 0.07),
-          rgba(112, 71, 255, 0.07)
+          rgba(0, 229, 255, 0.055),
+          rgba(112, 71, 255, 0.055)
         );
 
       overflow: hidden;
     }
+
 
     .highlight::before {
       content: "";
 
       position: absolute;
 
-      width: 250px;
-      height: 250px;
+      width: 220px;
+      height: 220px;
 
       right: -100px;
-      top: -120px;
+      top: -110px;
 
-      background: var(--cyan);
+      background:
+        var(--cyan);
 
       filter: blur(100px);
 
-      opacity: 0.12;
+      opacity: 0.09;
     }
+
 
     .highlight h3 {
-      font-size: 28px;
+      font-size: 27px;
 
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
+
 
     .highlight p {
       max-width: 600px;
@@ -608,20 +873,22 @@
 
       line-height: 1.7;
 
-      font-size: 14px;
+      font-size: 13px;
 
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
+
 
     .button {
       display: inline-flex;
 
       align-items: center;
+
       gap: 8px;
 
-      padding: 12px 18px;
+      padding: 11px 17px;
 
-      border-radius: 10px;
+      border-radius: 9px;
 
       text-decoration: none;
 
@@ -629,197 +896,154 @@
 
       color: #03060b;
 
-      font-size: 13px;
+      font-size: 12px;
+
       font-weight: 800;
 
-      transition: 0.3s;
+      transition: 0.3s ease;
     }
+
 
     .button:hover {
-      transform: translateY(-3px);
+      transform:
+        translateY(-2px);
 
       box-shadow:
-        0 10px 30px rgba(0, 229, 255, 0.15);
+        0 8px 25px
+        rgba(0, 229, 255, 0.12);
     }
 
-    /* =========================
+
+    /* ==================================================
        SOBRE
-    ========================= */
+    ================================================== */
 
     .about-grid {
       display: grid;
 
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns:
+        1fr 1fr;
 
-      gap: 18px;
+      gap: 15px;
     }
+
 
     .about-card {
-      padding: 25px;
+      padding: 22px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
-      border-radius: 18px;
+      border-radius: 16px;
 
-      background: var(--card);
+      background:
+        var(--card);
 
-      backdrop-filter: blur(12px);
+      backdrop-filter:
+        blur(12px);
     }
+
 
     .about-card h3 {
-      font-size: 17px;
+      font-size: 16px;
 
-      margin-bottom: 12px;
+      margin-bottom: 9px;
     }
+
 
     .about-card p {
       color: var(--muted);
 
-      font-size: 13px;
+      font-size: 12px;
 
-      line-height: 1.8;
+      line-height: 1.75;
     }
 
-    /* =========================
+
+    /* ==================================================
        SERVIÇOS
-    ========================= */
+    ================================================== */
 
     .services-list {
       display: flex;
+
       flex-direction: column;
     }
+
 
     .service {
       display: flex;
 
       align-items: center;
 
-      gap: 20px;
+      gap: 18px;
 
-      padding: 23px 5px;
+      padding: 20px 5px;
 
-      border-bottom: 1px solid var(--border);
+      border-bottom:
+        1px solid var(--border);
     }
 
+
     .service-number {
-      min-width: 35px;
+      min-width: 32px;
 
       color: var(--cyan);
 
-      font-size: 12px;
+      font-size: 11px;
+
       font-weight: 900;
     }
+
 
     .service-content {
       flex: 1;
     }
 
+
     .service h3 {
-      font-size: 16px;
-
-      margin-bottom: 6px;
-    }
-
-    .service p {
-      color: var(--muted);
-
-      font-size: 12px;
-
-      line-height: 1.6;
-    }
-
-    /* =========================
-       PROJETOS
-    ========================= */
-
-    .projects-list {
-      display: flex;
-      flex-direction: column;
-
-      gap: 12px;
-    }
-
-    .project {
-      display: flex;
-
-      align-items: center;
-
-      gap: 16px;
-
-      padding: 17px;
-
-      border: 1px solid var(--border);
-
-      border-radius: 15px;
-
-      background: var(--card);
-
-      text-decoration: none;
-
-      color: var(--text);
-
-      transition: 0.3s;
-    }
-
-    .project:hover {
-      transform: translateX(5px);
-
-      background: var(--card-hover);
-
-      border-color: rgba(0, 229, 255, 0.18);
-    }
-
-    .project-image {
-      width: 55px;
-      height: 55px;
-
-      object-fit: cover;
-
-      border-radius: 12px;
-    }
-
-    .project-info {
-      flex: 1;
-    }
-
-    .project-info h3 {
       font-size: 15px;
 
       margin-bottom: 5px;
     }
 
-    .project-info p {
+
+    .service p {
       color: var(--muted);
 
-      font-size: 12px;
+      font-size: 11px;
 
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
-    /* =========================
+
+    /* ==================================================
        REDES
-    ========================= */
+    ================================================== */
 
     .socials {
       display: flex;
 
       flex-wrap: wrap;
 
-      gap: 10px;
+      gap: 8px;
     }
+
 
     .social {
       flex: 1;
 
-      min-width: 150px;
+      min-width: 145px;
 
-      padding: 15px;
+      padding: 13px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
-      border-radius: 12px;
+      border-radius: 11px;
 
-      background: var(--card);
+      background:
+        var(--card);
 
       text-decoration: none;
 
@@ -827,40 +1051,46 @@
 
       text-align: center;
 
-      font-size: 13px;
+      font-size: 12px;
 
-      transition: 0.3s;
+      transition: 0.3s ease;
     }
 
+
     .social:hover {
-      border-color: rgba(0, 229, 255, 0.25);
+      border-color:
+        rgba(0, 229, 255, 0.2);
 
       color: var(--cyan);
 
-      transform: translateY(-3px);
+      transform:
+        translateY(-2px);
     }
 
-    /* =========================
+
+    /* ==================================================
        FOOTER
-    ========================= */
+    ================================================== */
 
     footer {
-      padding: 35px 20px;
+      padding: 30px 20px;
 
       text-align: center;
 
-      border-top: 1px solid var(--border);
+      border-top:
+        1px solid var(--border);
 
       color: #596677;
 
-      font-size: 10px;
+      font-size: 9px;
 
       letter-spacing: 1px;
     }
 
-    /* =========================
+
+    /* ==================================================
        RESPONSIVO
-    ========================= */
+    ================================================== */
 
     @media (max-width: 850px) {
 
@@ -873,18 +1103,19 @@
       }
 
       section {
-        padding: 65px 0;
+        padding: 55px 0;
       }
     }
+
 
     @media (max-width: 600px) {
 
       .container {
-        padding: 0 16px;
+        padding: 0 15px;
       }
 
       .hero {
-        min-height: 590px;
+        min-height: 570px;
       }
 
       .avatar-wrapper {
@@ -893,11 +1124,11 @@
       }
 
       .hero h1 {
-        font-size: 40px;
+        font-size: 39px;
       }
 
       .hero-description {
-        font-size: 14px;
+        font-size: 13px;
       }
 
       .section-title {
@@ -905,11 +1136,11 @@
       }
 
       .highlight {
-        padding: 25px;
+        padding: 24px;
       }
 
       .highlight h3 {
-        font-size: 24px;
+        font-size: 23px;
       }
 
       .social {
@@ -917,30 +1148,73 @@
       }
 
       .link-item {
-        padding: 15px;
+        padding: 12px;
       }
 
       .link-image {
-        width: 43px;
-        height: 43px;
+        width: 40px;
+        height: 40px;
       }
     }
+
+
+    /* ==================================================
+       ACESSIBILIDADE
+       Reduz animações se o dispositivo
+       pedir menos movimento.
+    ================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
+      }
+    }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- Luzes do fundo -->
-  <div class="background-light light-one"></div>
-  <div class="background-light light-two"></div>
-  <div class="background-light light-three"></div>
+
+  <!-- ==================================================
+       FUNDO ANIMADO
+  ================================================== -->
+
+  <div class="background">
+
+    <div class="grid"></div>
+
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
+
+    <div class="particles">
+
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+  </div>
 
 
-  <!-- =========================
+  <!-- ==================================================
        NAVBAR
-  ========================= -->
+  ================================================== -->
 
   <nav>
+
     <div class="nav-container">
 
       <a href="#" class="logo">
@@ -948,33 +1222,50 @@
       </a>
 
       <div class="nav-links">
-        <a href="#links">Links</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#projetos">Projetos</a>
+
+        <a href="#links">
+          Links
+        </a>
+
+        <a href="#sobre">
+          Sobre
+        </a>
+
+        <a href="#servicos">
+          Serviços
+        </a>
+
       </div>
 
     </div>
+
   </nav>
 
 
   <main>
 
-    <!-- =========================
+
+    <!-- ==================================================
          HERO
-    ========================= -->
+    ================================================== -->
 
     <section class="hero">
 
       <div class="avatar-wrapper">
+
         <img
           src="img/WA_1784422331777.jpeg"
           alt="Foto de perfil de Rarison Keven"
           class="avatar"
         >
+
       </div>
 
-      <h1>Rarison Keven</h1>
+
+      <h1>
+        Rarison Keven
+      </h1>
+
 
       <p class="hero-description">
         Desenvolvimento web & tecnologia.
@@ -982,25 +1273,31 @@
         Reparos de sites.
       </p>
 
+
       <div class="tech">
         HTML • CSS • JAVASCRIPT
       </div>
 
+
       <div class="availability">
+
         <span class="status-dot"></span>
+
         Disponível para projetos
+
       </div>
 
     </section>
 
 
-    <!-- =========================
+    <!-- ==================================================
          LINKS
-    ========================= -->
+    ================================================== -->
 
     <section id="links">
 
       <div class="container">
+
 
         <div class="section-header">
 
@@ -1021,6 +1318,9 @@
 
         <div class="links-list">
 
+
+          <!-- WhatsApp -->
+
           <a
             href="https://wa.me/5595991501077"
             target="_blank"
@@ -1034,6 +1334,7 @@
             >
 
             <div class="link-info">
+
               <div class="link-name">
                 WhatsApp
               </div>
@@ -1041,6 +1342,7 @@
               <div class="link-description">
                 Fale comigo
               </div>
+
             </div>
 
             <div class="link-arrow">
@@ -1049,6 +1351,8 @@
 
           </a>
 
+
+          <!-- GitHub -->
 
           <a
             href="https://github.com/callebydev"
@@ -1063,6 +1367,7 @@
             >
 
             <div class="link-info">
+
               <div class="link-name">
                 GitHub
               </div>
@@ -1070,6 +1375,7 @@
               <div class="link-description">
                 Meus códigos
               </div>
+
             </div>
 
             <div class="link-arrow">
@@ -1078,6 +1384,8 @@
 
           </a>
 
+
+          <!-- Instagram -->
 
           <a
             href="https://www.instagram.com/rk.dacruz"
@@ -1092,6 +1400,7 @@
             >
 
             <div class="link-info">
+
               <div class="link-name">
                 Instagram
               </div>
@@ -1099,6 +1408,7 @@
               <div class="link-description">
                 Meu perfil
               </div>
+
             </div>
 
             <div class="link-arrow">
@@ -1107,6 +1417,8 @@
 
           </a>
 
+
+          <!-- Discord -->
 
           <a
             href="https://discord.gg/H3mnq7Nfp"
@@ -1121,6 +1433,7 @@
             >
 
             <div class="link-info">
+
               <div class="link-name">
                 Discord
               </div>
@@ -1128,6 +1441,7 @@
               <div class="link-description">
                 Meu servidor
               </div>
+
             </div>
 
             <div class="link-arrow">
@@ -1136,34 +1450,6 @@
 
           </a>
 
-
-          <a
-            href="https://paleascendancy.github.io/index.html"
-            target="_blank"
-            class="link-item"
-          >
-
-            <img
-              src="img/WA_1784422331777.jpeg"
-              class="link-image"
-              alt="Portfólio"
-            >
-
-            <div class="link-info">
-              <div class="link-name">
-                Portfólio
-              </div>
-
-              <div class="link-description">
-                Ver página
-              </div>
-            </div>
-
-            <div class="link-arrow">
-              →
-            </div>
-
-          </a>
 
         </div>
 
@@ -1172,9 +1458,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- ==================================================
          DESTAQUE
-    ========================= -->
+    ================================================== -->
 
     <section>
 
@@ -1210,13 +1496,14 @@
     </section>
 
 
-    <!-- =========================
+    <!-- ==================================================
          SOBRE
-    ========================= -->
+    ================================================== -->
 
     <section id="sobre">
 
       <div class="container">
+
 
         <div class="section-header">
 
@@ -1237,6 +1524,7 @@
 
 
         <div class="about-grid">
+
 
           <div class="about-card">
 
@@ -1268,6 +1556,7 @@
 
           </div>
 
+
         </div>
 
       </div>
@@ -1275,13 +1564,14 @@
     </section>
 
 
-    <!-- =========================
+    <!-- ==================================================
          SERVIÇOS
-    ========================= -->
+    ================================================== -->
 
     <section id="servicos">
 
       <div class="container">
+
 
         <div class="section-header">
 
@@ -1302,6 +1592,7 @@
 
 
         <div class="services-list">
+
 
           <div class="service">
 
@@ -1434,133 +1725,6 @@
 
           </div>
 
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         PROJETOS
-    ========================= -->
-
-    <section id="projetos">
-
-      <div class="container">
-
-        <div class="section-header">
-
-          <div class="section-label">
-            MEUS TRABALHOS
-          </div>
-
-          <h2 class="section-title">
-            Projetos
-          </h2>
-
-          <p class="section-description">
-            Alguns projetos que fiz para estudar,
-            testar ideias e montar meu portfólio.
-          </p>
-
-        </div>
-
-
-        <div class="projects-list">
-
-
-          <a
-            href="https://github.com/callebydev"
-            target="_blank"
-            class="project"
-          >
-
-            <img
-              src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
-              class="project-image"
-              alt="Projetos no GitHub"
-            >
-
-            <div class="project-info">
-
-              <h3>
-                Projetos no GitHub
-              </h3>
-
-              <p>
-                Meus códigos e projetos desenvolvidos
-                durante meus estudos.
-              </p>
-
-            </div>
-
-            <span>
-              →
-            </span>
-
-          </a>
-
-
-          <a
-            href="https://paleascendancy.github.io/index.html"
-            target="_blank"
-            class="project"
-          >
-
-            <img
-              src="img/ae599d8043cac580437e26da1f8c8aeb.jpg"
-              class="project-image"
-              alt="Portfólio"
-            >
-
-            <div class="project-info">
-
-              <h3>
-                Portfólio
-              </h3>
-
-              <p>
-                Uma página para apresentar projetos,
-                informações e links.
-              </p>
-
-            </div>
-
-            <span>
-              →
-            </span>
-
-          </a>
-
-
-          <div class="project">
-
-            <img
-              src="img/WA_1784422331777.jpeg"
-              class="project-image"
-              alt="Página pessoal"
-            >
-
-            <div class="project-info">
-
-              <h3>
-                Esta página
-              </h3>
-
-              <p>
-                Página pessoal criada com HTML e CSS
-                para reunir meus links e apresentar
-                meu trabalho.
-              </p>
-
-            </div>
-
-            <span>
-              ✓
-            </span>
-
-          </div>
 
         </div>
 
@@ -1569,13 +1733,14 @@
     </section>
 
 
-    <!-- =========================
+    <!-- ==================================================
          REDES
-    ========================= -->
+    ================================================== -->
 
     <section>
 
       <div class="container">
+
 
         <div class="section-header">
 
@@ -1592,6 +1757,7 @@
 
         <div class="socials">
 
+
           <a
             href="https://wa.me/5595991501077"
             target="_blank"
@@ -1599,6 +1765,7 @@
           >
             WhatsApp
           </a>
+
 
           <a
             href="https://www.instagram.com/rk.dacruz"
@@ -1608,6 +1775,7 @@
             Instagram
           </a>
 
+
           <a
             href="https://github.com/callebydev"
             target="_blank"
@@ -1615,6 +1783,7 @@
           >
             GitHub
           </a>
+
 
           <a
             href="https://discord.gg/H3mnq7Nfp"
@@ -1624,22 +1793,21 @@
             Discord
           </a>
 
+
         </div>
 
       </div>
 
     </section>
 
+
   </main>
 
-
-  <!-- =========================
-       FOOTER
-  ========================= -->
 
   <footer>
     © 2026 RARISON KEVEN — DESENVOLVIMENTO WEB
   </footer>
+
 
 </body>
 </html>
