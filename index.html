@@ -37,12 +37,13 @@
     html {
       scroll-behavior: smooth;
       overflow-x: hidden;
+      width: 100%;
     }
 
     body {
       margin: 0;
-
       width: 100%;
+      max-width: 100%;
       min-height: 100vh;
 
       overflow-x: hidden;
@@ -50,7 +51,6 @@
       font-family: Arial, Helvetica, sans-serif;
 
       color: var(--text);
-
       background: var(--bg);
 
       position: relative;
@@ -66,7 +66,8 @@
 
       inset: 0;
 
-      width: 100vw;
+      width: 100%;
+      max-width: 100%;
       height: 100vh;
 
       overflow: hidden;
@@ -84,10 +85,6 @@
         #02050a;
     }
 
-
-    /* -----------------------------------------------------
-       GRADE
-    ----------------------------------------------------- */
 
     .grid {
       position: absolute;
@@ -143,9 +140,9 @@
     }
 
 
-    /* -----------------------------------------------------
+    /* =====================================================
        ORBES
-    ----------------------------------------------------- */
+    ===================================================== */
 
     .orb {
       position: absolute;
@@ -263,7 +260,6 @@
       position: absolute;
 
       height: 1px;
-
       width: 260px;
 
       background:
@@ -286,7 +282,6 @@
     .line-one {
       top: 18%;
       left: -300px;
-
       animation-delay: -2s;
     }
 
@@ -294,9 +289,7 @@
     .line-two {
       top: 57%;
       left: -300px;
-
       animation-delay: -7s;
-
       opacity: 0.22;
     }
 
@@ -304,9 +297,7 @@
     .line-three {
       top: 78%;
       left: -300px;
-
       animation-delay: -11s;
-
       opacity: 0.18;
     }
 
@@ -536,10 +527,10 @@
     ===================================================== */
 
     .hero {
-      min-height: 500px;
+      min-height: 430px;
 
       padding:
-        45px 20px 35px;
+        35px 20px 12px;
 
       display: flex;
 
@@ -552,10 +543,6 @@
       text-align: center;
     }
 
-
-    /* =====================================================
-       FOTO
-    ===================================================== */
 
     .avatar-wrapper {
       width: 145px;
@@ -715,7 +702,7 @@
 
 
     .availability {
-      margin-top: 7px;
+      margin-top: 6px;
 
       display: flex;
 
@@ -793,6 +780,11 @@
     /* =====================================================
        LINKS
     ===================================================== */
+
+    #links {
+      padding-top: 8px;
+    }
+
 
     .links-list {
       display: flex;
@@ -1430,10 +1422,10 @@
 
       .hero {
         min-height:
-          475px;
+          390px;
 
         padding:
-          30px 15px 25px;
+          25px 15px 8px;
       }
 
 
@@ -1478,7 +1470,13 @@
 
       .availability {
         margin-top:
-          6px;
+          5px;
+      }
+
+
+      #links {
+        padding-top:
+          5px;
       }
 
 
@@ -2261,35 +2259,36 @@
       document.getElementById("musicText");
 
 
-    let playing = false;
+    async function startMusic() {
+
+      try {
+
+        await music.play();
+
+        musicButton.textContent = "❚❚";
+
+        musicText.textContent = "Tocando";
+
+      } catch (error) {
+
+        musicText.textContent = "Toque para ouvir";
+
+      }
+
+    }
 
 
-    musicButton.addEventListener("click", async () => {
+    musicButton.addEventListener("click", async (event) => {
 
-      if (!playing) {
+      event.stopPropagation();
 
-        try {
+      if (music.paused) {
 
-          await music.play();
-
-          playing = true;
-
-          musicButton.textContent = "❚❚";
-
-          musicText.textContent = "Tocando";
-
-        } catch (error) {
-
-          musicText.textContent =
-            "Áudio indisponível";
-
-        }
+        await startMusic();
 
       } else {
 
         music.pause();
-
-        playing = false;
 
         musicButton.textContent = "▶";
 
@@ -2301,48 +2300,43 @@
 
 
     /*
-      Tenta iniciar após a primeira interação
-      do usuário na página.
+      O navegador pode bloquear o autoplay
+      com som.
 
-      Isso respeita as regras dos navegadores
-      que bloqueiam autoplay com som.
+      Quando isso acontecer, a música começa
+      no primeiro toque em qualquer lugar da página.
     */
 
-    document.addEventListener(
-      "click",
-      async function startMusic() {
+    document.addEventListener("click", async (event) => {
 
-        if (!playing) {
+      if (event.target.closest("#musicButton")) {
+        return;
+      }
 
-          try {
+      if (music.paused) {
+        await startMusic();
+      }
 
-            await music.play();
+    }, { once: true });
 
-            playing = true;
 
-            musicButton.textContent = "❚❚";
+    /*
+      Tenta tocar automaticamente quando
+      a página termina de carregar.
+    */
 
-            musicText.textContent = "Tocando";
+    window.addEventListener("load", () => {
 
-          } catch (error) {
+      startMusic();
 
-            /*
-              Se o navegador bloquear,
-              o botão continua disponível.
-            */
+    }, { once: true });
 
-          }
 
-        }
+    /*
+      Volume inicial.
+    */
 
-        document.removeEventListener(
-          "click",
-          startMusic
-        );
-
-      },
-      { once: true }
-    );
+    music.volume = 0.35;
 
   </script>
 
