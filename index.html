@@ -4,618 +4,208 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Rarison Keven | Desenvolvimento Web</title>
+  <title>Rarison Keven — Desenvolvimento Web</title>
+
+  <meta
+    name="description"
+    content="Rarison Keven — Desenvolvimento web, tecnologia, projetos digitais e reparos de sites."
+  >
 
   <style>
-
-    :root {
-      --bg: #02050a;
-      --card: rgba(8, 14, 24, 0.70);
-      --card-hover: rgba(13, 22, 36, 0.88);
-
-      --text: #f5f7fb;
-      --muted: #8996a8;
-
-      --cyan: #00e5ff;
-      --blue: #168cff;
-      --purple: #7047ff;
-
-      --border: rgba(255,255,255,0.08);
-    }
-
-
-    /* =====================================================
-       RESET
-    ===================================================== */
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-      overflow-x: hidden;
+    html,
+    body {
       width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
-      width: 100%;
-      max-width: 100%;
-      min-height: 100vh;
-
-      overflow-x: hidden;
-
+      background: #05070d;
+      color: #f4f7ff;
       font-family: Arial, Helvetica, sans-serif;
-
-      color: var(--text);
-      background: var(--bg);
-
-      position: relative;
+      line-height: 1.6;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    /* =====================================================
-       FUNDO ANIMADO
-    ===================================================== */
+    /* =========================
+       FUNDO
+    ========================= */
 
     .background {
       position: fixed;
-
       inset: 0;
-
       width: 100%;
-      max-width: 100%;
-      height: 100vh;
-
+      height: 100%;
       overflow: hidden;
-
       pointer-events: none;
-
-      z-index: -10;
-
+      z-index: -1;
       background:
-        radial-gradient(
-          circle at 50% 0%,
-          rgba(0,229,255,0.08),
-          transparent 35%
-        ),
-        #02050a;
+        radial-gradient(circle at 15% 20%, rgba(0, 183, 255, 0.09), transparent 28%),
+        radial-gradient(circle at 85% 70%, rgba(121, 66, 255, 0.08), transparent 30%),
+        #05070d;
     }
-
-
-    .grid {
-      position: absolute;
-
-      width: 180%;
-      height: 180%;
-
-      left: -40%;
-      top: -30%;
-
-      background-image:
-        linear-gradient(
-          rgba(0,229,255,0.035) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(0,229,255,0.035) 1px,
-          transparent 1px
-        );
-
-      background-size: 60px 60px;
-
-      transform:
-        perspective(700px)
-        rotateX(58deg);
-
-      transform-origin: center bottom;
-
-      opacity: 0.45;
-
-      animation:
-        gridMove 30s linear infinite;
-    }
-
-
-    @keyframes gridMove {
-
-      0% {
-        transform:
-          perspective(700px)
-          rotateX(58deg)
-          translateY(0);
-      }
-
-      100% {
-        transform:
-          perspective(700px)
-          rotateX(58deg)
-          translateY(60px);
-      }
-
-    }
-
-
-    /* =====================================================
-       ORBES
-    ===================================================== */
 
     .orb {
       position: absolute;
-
+      width: 280px;
+      height: 280px;
       border-radius: 50%;
-
-      filter: blur(85px);
-
-      opacity: 0.13;
-
-      will-change: transform;
-
-      mix-blend-mode: screen;
+      filter: blur(60px);
+      opacity: 0.25;
+      animation: floatOrb 18s ease-in-out infinite alternate;
     }
 
-
-    .orb-one {
-      width: 360px;
-      height: 360px;
-
-      background: var(--cyan);
-
-      top: -170px;
-      left: -130px;
-
-      animation:
-        orbOne 17s ease-in-out infinite;
+    .orb.one {
+      top: -100px;
+      left: -100px;
+      background: #008cff;
     }
 
-
-    .orb-two {
-      width: 400px;
-      height: 400px;
-
-      background: var(--purple);
-
-      top: 30%;
-      right: -220px;
-
-      animation:
-        orbTwo 21s ease-in-out infinite;
-    }
-
-
-    .orb-three {
-      width: 340px;
-      height: 340px;
-
-      background: var(--blue);
-
-      bottom: -200px;
-      left: 30%;
-
-      animation:
-        orbThree 19s ease-in-out infinite;
-    }
-
-
-    @keyframes orbOne {
-
-      0%, 100% {
-        transform:
-          translate3d(0,0,0)
-          scale(1);
-      }
-
-      50% {
-        transform:
-          translate3d(120px,90px,0)
-          scale(1.12);
-      }
-
-    }
-
-
-    @keyframes orbTwo {
-
-      0%, 100% {
-        transform:
-          translate3d(0,0,0)
-          scale(1);
-      }
-
-      50% {
-        transform:
-          translate3d(-100px,80px,0)
-          scale(1.1);
-      }
-
-    }
-
-
-    @keyframes orbThree {
-
-      0%, 100% {
-        transform:
-          translate3d(0,0,0)
-          scale(1);
-      }
-
-      50% {
-        transform:
-          translate3d(80px,-80px,0)
-          scale(1.1);
-      }
-
-    }
-
-
-    /* =====================================================
-       LINHAS DE LUZ
-    ===================================================== */
-
-    .light-line {
-      position: absolute;
-
-      height: 1px;
-      width: 260px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(0,229,255,0.45),
-          transparent
-        );
-
-      opacity: 0.35;
-
-      transform: rotate(-25deg);
-
-      animation:
-        lightMove 12s linear infinite;
-    }
-
-
-    .line-one {
-      top: 18%;
-      left: -300px;
-      animation-delay: -2s;
-    }
-
-
-    .line-two {
-      top: 57%;
-      left: -300px;
-      animation-delay: -7s;
-      opacity: 0.22;
-    }
-
-
-    .line-three {
-      top: 78%;
-      left: -300px;
-      animation-delay: -11s;
-      opacity: 0.18;
-    }
-
-
-    @keyframes lightMove {
-
-      0% {
-        transform:
-          translateX(0)
-          rotate(-25deg);
-      }
-
-      100% {
-        transform:
-          translateX(calc(100vw + 600px))
-          rotate(-25deg);
-      }
-
-    }
-
-
-    /* =====================================================
-       PARTÍCULAS
-    ===================================================== */
-
-    .particles {
-      position: absolute;
-
-      inset: 0;
-
-      width: 100%;
-      height: 100%;
-
-      opacity: 0.65;
-    }
-
-
-    .particles span {
-      position: absolute;
-
-      width: 2px;
-      height: 2px;
-
-      border-radius: 50%;
-
-      background: rgba(0,229,255,0.65);
-
-      box-shadow:
-        0 0 8px rgba(0,229,255,0.4);
-
-      animation:
-        particleFloat 10s ease-in-out infinite;
-    }
-
-
-    .particles span:nth-child(1) {
-      left: 8%;
-      top: 20%;
-      animation-delay: -2s;
-    }
-
-    .particles span:nth-child(2) {
-      left: 18%;
-      top: 72%;
+    .orb.two {
+      right: -100px;
+      bottom: -100px;
+      background: #703cff;
       animation-delay: -6s;
     }
 
-    .particles span:nth-child(3) {
-      left: 32%;
-      top: 38%;
-      animation-delay: -4s;
+    .orb.three {
+      top: 45%;
+      left: 45%;
+      width: 180px;
+      height: 180px;
+      background: #00d9ff;
+      opacity: 0.12;
+      animation-delay: -10s;
     }
 
-    .particles span:nth-child(4) {
-      left: 48%;
-      top: 15%;
-      animation-delay: -8s;
-    }
-
-    .particles span:nth-child(5) {
-      left: 62%;
-      top: 67%;
-      animation-delay: -3s;
-    }
-
-    .particles span:nth-child(6) {
-      left: 73%;
-      top: 29%;
-      animation-delay: -7s;
-    }
-
-    .particles span:nth-child(7) {
-      left: 84%;
-      top: 52%;
-      animation-delay: -1s;
-    }
-
-    .particles span:nth-child(8) {
-      left: 92%;
-      top: 82%;
-      animation-delay: -5s;
-    }
-
-
-    @keyframes particleFloat {
-
-      0%, 100% {
-        transform:
-          translate3d(0,0,0);
-
-        opacity: 0.2;
+    @keyframes floatOrb {
+      from {
+        transform: translate3d(0, 0, 0);
       }
 
-      50% {
-        transform:
-          translate3d(18px,-30px,0);
-
-        opacity: 0.8;
+      to {
+        transform: translate3d(80px, -50px, 0);
       }
-
     }
 
+    .stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.6) 1px, transparent 1px),
+        radial-gradient(circle, rgba(0,200,255,.4) 1px, transparent 1px);
+      background-size: 90px 90px, 140px 140px;
+      background-position: 0 0, 40px 60px;
+      opacity: 0.15;
+      animation: starsMove 30s linear infinite;
+    }
 
-    /* =====================================================
+    @keyframes starsMove {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-90px);
+      }
+    }
+
+    /* =========================
        NAVBAR
-    ===================================================== */
+    ========================= */
 
     nav {
       position: sticky;
-
       top: 0;
-
-      z-index: 100;
+      z-index: 50;
 
       width: 100%;
-
-      background:
-        rgba(2,5,10,0.68);
-
-      backdrop-filter:
-        blur(18px);
-
-      border-bottom:
-        1px solid var(--border);
-    }
-
-
-    .nav-container {
-      width: 100%;
-      max-width: 1050px;
-
-      margin: auto;
-
-      padding:
-        16px 25px;
+      padding: 18px 7%;
 
       display: flex;
-
+      align-items: center;
       justify-content: space-between;
 
-      align-items: center;
+      background: rgba(5, 7, 13, 0.72);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-
 
     .logo {
-      color: var(--text);
-
-      text-decoration: none;
-
       font-size: 25px;
-
       font-weight: 900;
+      letter-spacing: -1px;
     }
-
 
     .logo span {
-      color: var(--cyan);
+      color: #00c8ff;
     }
 
-
-    .nav-links {
+    nav ul {
       display: flex;
-
-      gap: 25px;
+      gap: 28px;
+      list-style: none;
     }
 
-
-    .nav-links a {
-      color: var(--muted);
-
-      text-decoration: none;
-
-      font-size: 13px;
-
-      transition: 0.3s ease;
+    nav a {
+      color: #9ba4b7;
+      font-size: 14px;
+      transition: .3s;
     }
 
-
-    .nav-links a:hover {
-      color: var(--cyan);
+    nav a:hover {
+      color: #fff;
     }
 
-
-    /* =====================================================
-       CONTAINER
-    ===================================================== */
-
-    .container {
-      width: 100%;
-      max-width: 850px;
-
-      margin: auto;
-
-      padding:
-        0 20px;
-    }
-
-
-    section {
-      padding:
-        55px 0;
-    }
-
-
-    /* =====================================================
+    /* =========================
        HERO
-    ===================================================== */
+    ========================= */
 
     .hero {
       min-height: 430px;
-
-      padding:
-        35px 20px 12px;
+      padding: 65px 20px 35px;
 
       display: flex;
-
       flex-direction: column;
-
       align-items: center;
-
       justify-content: center;
 
       text-align: center;
     }
 
-
     .avatar-wrapper {
-      width: 145px;
-      height: 145px;
-
-      padding: 4px;
-
+      width: 126px;
+      height: 126px;
+      padding: 3px;
       border-radius: 50%;
 
-      background:
-        linear-gradient(
-          130deg,
-          var(--cyan),
-          var(--blue),
-          var(--purple),
-          var(--cyan)
-        );
+      background: linear-gradient(
+        135deg,
+        #00c8ff,
+        #6f4cff,
+        #00c8ff
+      );
 
-      background-size:
-        300% 300%;
+      background-size: 250% 250%;
+      animation: avatarBorder 5s ease infinite;
 
-      animation:
-        borderColor 8s ease infinite,
-        avatarGlow 4s ease-in-out infinite;
-
-      position: relative;
+      box-shadow:
+        0 0 25px rgba(0, 200, 255, .18),
+        0 0 60px rgba(111, 76, 255, .12);
     }
 
-
-    .avatar-wrapper::before {
-      content: "";
-
-      position: absolute;
-
-      inset: -12px;
-
-      border-radius: 50%;
-
-      background:
-        linear-gradient(
-          130deg,
-          var(--cyan),
-          var(--purple)
-        );
-
-      filter: blur(25px);
-
-      opacity: 0.25;
-
-      z-index: -1;
-    }
-
-
-    .avatar {
-      width: 100%;
-      height: 100%;
-
-      border-radius: 50%;
-
-      object-fit: cover;
-
-      display: block;
-
-      border:
-        3px solid #02050a;
-
-      filter:
-        none !important;
-    }
-
-
-    @keyframes borderColor {
-
+    @keyframes avatarBorder {
       0% {
         background-position: 0% 50%;
       }
@@ -627,1636 +217,838 @@
       100% {
         background-position: 0% 50%;
       }
-
     }
 
+    .avatar {
+      width: 100%;
+      height: 100%;
+      display: block;
 
-    @keyframes avatarGlow {
+      border-radius: 50%;
+      object-fit: cover;
 
-      0%, 100% {
-        box-shadow:
-          0 0 18px
-          rgba(0,229,255,0.10);
-      }
-
-      50% {
-        box-shadow:
-          0 0 30px
-          rgba(112,71,255,0.16);
-      }
-
+      filter: none !important;
     }
-
 
     .hero h1 {
       margin-top: 20px;
-
-      font-size:
-        clamp(36px,7vw,58px);
-
-      font-weight: 900;
-
-      letter-spacing:
-        -2px;
+      font-size: clamp(32px, 6vw, 50px);
+      letter-spacing: -1.8px;
     }
-
 
     .hero-description {
-      max-width: 630px;
-
-      margin-top: 10px;
-
-      color: var(--muted);
-
-      font-size: 14px;
-
-      line-height: 1.6;
-    }
-
-
-    .tech {
+      max-width: 650px;
       margin-top: 12px;
 
-      padding:
-        7px 13px;
-
-      border:
-        1px solid
-        rgba(0,229,255,0.18);
-
-      border-radius: 30px;
-
-      background:
-        rgba(0,229,255,0.035);
-
-      color:
-        var(--cyan);
-
-      font-size: 10px;
-
-      font-weight: 700;
-
-      letter-spacing:
-        1px;
+      color: #9da7ba;
+      font-size: 16px;
     }
 
+    .tech {
+      margin-top: 14px;
+
+      color: #00c8ff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
 
     .availability {
-      margin-top: 6px;
+      margin-top: 13px;
 
-      display: flex;
-
+      display: inline-flex;
       align-items: center;
+      gap: 8px;
 
-      justify-content: center;
-
-      gap: 5px;
-
-      color:
-        #667487;
-
-      font-size: 9px;
+      color: #b8c2d3;
+      font-size: 12px;
     }
 
-
-    .status-dot {
-      width: 5px;
-      height: 5px;
-
+    .availability::before {
+      content: "";
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-
-      background:
-        #40e38a;
-
-      box-shadow:
-        0 0 8px
-        rgba(64,227,138,0.55);
+      background: #45e89a;
+      box-shadow: 0 0 12px rgba(69, 232, 154, .7);
     }
 
+    /* =========================
+       CONTAINER
+    ========================= */
 
-    /* =====================================================
-       CABEÇALHOS
-    ===================================================== */
+    section {
+      width: min(850px, 90%);
+      margin: 0 auto;
+    }
 
-    .section-header {
+    .section-heading {
       margin-bottom: 20px;
     }
 
-
-    .section-label {
-      color:
-        var(--cyan);
-
-      font-size: 9px;
-
+    .eyebrow {
+      color: #00c8ff;
+      font-size: 11px;
       font-weight: 800;
-
-      letter-spacing:
-        2px;
-
-      margin-bottom: 7px;
+      letter-spacing: 2.5px;
+      margin-bottom: 5px;
     }
 
-
-    .section-title {
-      font-size: 29px;
-
-      font-weight: 900;
-
-      margin-bottom: 6px;
+    .section-heading h2 {
+      font-size: 28px;
+      letter-spacing: -0.8px;
     }
 
-
-    .section-description {
-      color:
-        var(--muted);
-
-      font-size: 12px;
-
-      line-height: 1.6;
+    .section-heading p {
+      color: #788296;
+      font-size: 14px;
+      margin-top: 5px;
     }
 
-
-    /* =====================================================
+    /* =========================
        LINKS
-    ===================================================== */
+    ========================= */
 
     #links {
       padding-top: 8px;
+      padding-bottom: 55px;
     }
-
 
     .links-list {
       display: flex;
-
       flex-direction: column;
-
-      gap: 6px;
+      gap: 9px;
     }
-
 
     .link-item {
       position: relative;
 
       display: flex;
-
       align-items: center;
+      gap: 15px;
 
-      width: 100%;
+      min-height: 78px;
+      padding: 12px 17px;
 
-      min-width: 0;
-
-      padding:
-        11px 13px;
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        12px;
-
-      background:
-        var(--card);
-
-      backdrop-filter:
-        blur(14px);
-
-      text-decoration: none;
-
-      color:
-        var(--text);
-
-      overflow: hidden;
-
-      transition:
-        0.3s ease;
-    }
-
-
-    .link-item::before {
-      content: "";
-
-      position: absolute;
-
-      left: 0;
-      top: 0;
-
-      width: 2px;
-      height: 100%;
-
-      background:
-        linear-gradient(
-          to bottom,
-          var(--cyan),
-          var(--purple)
-        );
-
-      transform:
-        scaleY(0);
-
-      transition:
-        0.3s ease;
-    }
-
-
-    .link-item:hover {
-      transform:
-        translateX(4px);
-
-      background:
-        var(--card-hover);
-
-      border-color:
-        rgba(0,229,255,0.16);
-    }
-
-
-    .link-item:hover::before {
-      transform:
-        scaleY(1);
-    }
-
-
-    .link-image {
-      width: 40px;
-      height: 40px;
-
-      flex-shrink: 0;
-
-      border-radius:
-        9px;
-
-      object-fit:
-        cover;
-
-      margin-right:
-        13px;
-
-      border:
-        1px solid
-        var(--border);
-    }
-
-
-    .link-info {
-      flex: 1;
-
-      min-width: 0;
-    }
-
-
-    .link-name {
-      font-size: 13px;
-
-      font-weight: 800;
-
-      margin-bottom: 2px;
-    }
-
-
-    .link-description {
-      color:
-        var(--muted);
-
-      font-size: 10px;
-    }
-
-
-    .link-arrow {
-      color:
-        #68778a;
-
-      font-size: 17px;
-
-      margin-left: 10px;
-
-      transition:
-        0.3s ease;
-    }
-
-
-    .link-item:hover .link-arrow {
-      color:
-        var(--cyan);
-
-      transform:
-        translateX(3px);
-    }
-
-
-    /* =====================================================
-       DESTAQUE
-    ===================================================== */
-
-    .highlight {
-      position: relative;
-
-      padding:
-        27px;
-
-      border-radius:
-        19px;
-
-      border:
-        1px solid
-        rgba(0,229,255,0.10);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 17px;
 
       background:
         linear-gradient(
           135deg,
-          rgba(0,229,255,0.05),
-          rgba(112,71,255,0.05)
+          rgba(255,255,255,.045),
+          rgba(255,255,255,.018)
         );
 
-      overflow: hidden;
+      transition:
+        transform .3s ease,
+        border-color .3s ease,
+        background .3s ease;
     }
 
-
-    .highlight::before {
-      content: "";
-
-      position: absolute;
-
-      width: 230px;
-      height: 230px;
-
-      right: -100px;
-      top: -120px;
+    .link-item:hover {
+      transform: translateX(5px);
+      border-color: rgba(0, 200, 255, .28);
 
       background:
-        var(--cyan);
-
-      filter:
-        blur(100px);
-
-      opacity:
-        0.08;
+        linear-gradient(
+          135deg,
+          rgba(0,200,255,.07),
+          rgba(255,255,255,.025)
+        );
     }
 
+    .link-icon {
+      width: 48px;
+      height: 48px;
 
-    .highlight h3 {
-      font-size: 26px;
+      flex-shrink: 0;
 
-      margin-bottom:
-        9px;
+      border-radius: 13px;
+      object-fit: cover;
+
+      border: 1px solid rgba(255,255,255,.08);
     }
 
+    .link-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f2f5fb;
+    }
+
+    .link-description {
+      margin-top: 2px;
+      color: #7e899d;
+      font-size: 12px;
+    }
+
+    .link-arrow {
+      color: #596579;
+      font-size: 20px;
+      transition: .3s;
+    }
+
+    .link-item:hover .link-arrow {
+      color: #00c8ff;
+      transform: translateX(3px);
+    }
+
+    /* =========================
+       DESTAQUE
+    ========================= */
+
+    .highlight {
+      margin-bottom: 70px;
+      padding: 30px;
+
+      border: 1px solid rgba(0, 200, 255, .14);
+      border-radius: 22px;
+
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(0,200,255,.09),
+          transparent 40%
+        ),
+        rgba(255,255,255,.025);
+    }
+
+    .highlight h2 {
+      margin-top: 4px;
+      font-size: 25px;
+    }
 
     .highlight p {
-      max-width: 600px;
+      margin-top: 8px;
+      max-width: 650px;
 
-      color:
-        var(--muted);
-
-      line-height:
-        1.6;
-
-      font-size:
-        12px;
-
-      margin-bottom:
-        19px;
+      color: #8993a6;
+      font-size: 14px;
     }
 
+    .highlight-button {
+      display: inline-flex;
+      margin-top: 20px;
+      padding: 11px 17px;
 
-    .button {
-      display:
-        inline-flex;
+      border-radius: 11px;
+      background: #00bff2;
+      color: #031018;
 
-      align-items:
-        center;
+      font-size: 13px;
+      font-weight: 800;
 
-      gap:
-        7px;
-
-      padding:
-        10px 16px;
-
-      border-radius:
-        9px;
-
-      text-decoration:
-        none;
-
-      background:
-        var(--text);
-
-      color:
-        #03060b;
-
-      font-size:
-        11px;
-
-      font-weight:
-        800;
-
-      transition:
-        0.3s ease;
+      transition: .3s;
     }
 
-
-    .button:hover {
-      transform:
-        translateY(-2px);
-
-      box-shadow:
-        0 8px 25px
-        rgba(0,229,255,0.12);
+    .highlight-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 191, 242, .18);
     }
 
-
-    /* =====================================================
+    /* =========================
        SOBRE
-    ===================================================== */
+    ========================= */
 
-    .about-grid {
-      display:
-        grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap:
-        14px;
+    .about {
+      padding-bottom: 70px;
     }
 
+    .about-box {
+      padding: 25px;
 
-    .about-card {
-      padding:
-        21px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 19px;
 
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        15px;
-
-      background:
-        var(--card);
-
-      backdrop-filter:
-        blur(12px);
+      background: rgba(255,255,255,.02);
     }
 
-
-    .about-card h3 {
-      font-size:
-        15px;
-
-      margin-bottom:
-        8px;
+    .about-box h3 {
+      font-size: 17px;
+      margin-bottom: 7px;
     }
 
-
-    .about-card p {
-      color:
-        var(--muted);
-
-      font-size:
-        11px;
-
-      line-height:
-        1.7;
+    .about-box p {
+      color: #8993a6;
+      font-size: 14px;
+      margin-bottom: 22px;
     }
 
+    .about-box p:last-child {
+      margin-bottom: 0;
+    }
 
-    /* =====================================================
+    /* =========================
        SERVIÇOS
-    ===================================================== */
+    ========================= */
+
+    .services {
+      padding-bottom: 70px;
+    }
 
     .services-list {
-      display:
-        flex;
-
-      flex-direction:
-        column;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
     }
-
 
     .service {
-      display:
-        flex;
+      padding: 19px;
 
-      align-items:
-        center;
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 15px;
 
-      gap:
-        17px;
-
-      padding:
-        18px 5px;
-
-      border-bottom:
-        1px solid
-        var(--border);
+      background: rgba(255,255,255,.02);
     }
-
 
     .service-number {
-      min-width:
-        30px;
-
-      color:
-        var(--cyan);
-
-      font-size:
-        10px;
-
-      font-weight:
-        900;
+      color: #00c8ff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
-
-
-    .service-content {
-      flex: 1;
-    }
-
 
     .service h3 {
-      font-size:
-        14px;
-
-      margin-bottom:
-        4px;
+      margin-top: 4px;
+      font-size: 16px;
     }
-
 
     .service p {
-      color:
-        var(--muted);
-
-      font-size:
-        10px;
-
-      line-height:
-        1.55;
+      margin-top: 3px;
+      color: #7f899c;
+      font-size: 13px;
     }
 
-
-    /* =====================================================
+    /* =========================
        REDES
-    ===================================================== */
+    ========================= */
 
     .socials {
-      display:
-        flex;
-
-      flex-wrap:
-        wrap;
-
-      gap:
-        7px;
+      padding-bottom: 70px;
     }
 
-
-    .social {
-      flex: 1;
-
-      min-width:
-        140px;
-
-      padding:
-        12px;
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        10px;
-
-      background:
-        var(--card);
-
-      text-decoration:
-        none;
-
-      color:
-        var(--text);
-
-      text-align:
-        center;
-
-      font-size:
-        11px;
-
-      transition:
-        0.3s ease;
+    .social-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
     }
 
+    .social-link {
+      padding: 13px 15px;
 
-    .social:hover {
-      border-color:
-        rgba(0,229,255,0.2);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 12px;
 
-      color:
-        var(--cyan);
+      color: #b5becd;
+      font-size: 13px;
 
-      transform:
-        translateY(-2px);
+      transition: .3s;
     }
 
+    .social-link:hover {
+      color: #fff;
+      border-color: rgba(0,200,255,.2);
+      padding-left: 19px;
+    }
 
-    /* =====================================================
-       PLAYER DE MÚSICA
-    ===================================================== */
+    /* =========================
+       MÚSICA
+    ========================= */
 
     .music-player {
-      position:
-        fixed;
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
 
-      right:
-        18px;
+      z-index: 100;
 
-      bottom:
-        18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
 
-      z-index:
-        200;
+      padding: 8px 12px 8px 8px;
 
-      display:
-        flex;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 50px;
 
-      align-items:
-        center;
+      background: rgba(7, 10, 17, .85);
+      backdrop-filter: blur(14px);
 
-      gap:
-        8px;
-
-      padding:
-        8px 11px;
-
-      border:
-        1px solid
-        rgba(0,229,255,0.16);
-
-      border-radius:
-        30px;
-
-      background:
-        rgba(5,10,17,0.78);
-
-      backdrop-filter:
-        blur(16px);
-
-      box-shadow:
-        0 8px 30px
-        rgba(0,0,0,0.25);
+      box-shadow: 0 8px 30px rgba(0,0,0,.3);
     }
 
+    #musicButton {
+      width: 34px;
+      height: 34px;
 
-    .music-button {
-      width:
-        31px;
+      border: 0;
+      border-radius: 50%;
 
-      height:
-        31px;
+      background: #00c8ff;
+      color: #031018;
 
-      border:
-        none;
-
-      border-radius:
-        50%;
-
-      background:
-        rgba(0,229,255,0.08);
-
-      color:
-        var(--cyan);
-
-      cursor:
-        pointer;
-
-      font-size:
-        13px;
-
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      justify-content:
-        center;
-
-      transition:
-        0.3s ease;
+      font-weight: 900;
+      cursor: pointer;
     }
 
-
-    .music-button:hover {
-      background:
-        rgba(0,229,255,0.15);
-
-      transform:
-        scale(1.05);
+    #musicText {
+      color: #9aa5b7;
+      font-size: 11px;
     }
 
-
-    .music-text {
-      color:
-        #7d8b9e;
-
-      font-size:
-        9px;
-
-      letter-spacing:
-        0.5px;
-    }
-
-
-    /* =====================================================
+    /* =========================
        FOOTER
-    ===================================================== */
+    ========================= */
 
     footer {
-      padding:
-        28px 20px;
+      width: 100%;
+      padding: 30px 20px;
 
-      text-align:
-        center;
+      border-top: 1px solid rgba(255,255,255,.05);
 
-      border-top:
-        1px solid
-        var(--border);
+      text-align: center;
 
-      color:
-        #596677;
-
-      font-size:
-        9px;
-
-      letter-spacing:
-        1px;
+      color: #4f596b;
+      font-size: 10px;
+      letter-spacing: 1.5px;
     }
 
+    /* =========================
+       MOBILE
+    ========================= */
 
-    /* =====================================================
-       RESPONSIVO
-    ===================================================== */
+    @media (max-width: 650px) {
 
-    @media (max-width: 850px) {
-
-      .nav-links {
-        display:
-          none;
+      nav {
+        padding: 15px 5%;
       }
 
-      .about-grid {
-        grid-template-columns:
-          1fr;
+      nav ul {
+        gap: 13px;
       }
 
-    }
-
-
-    @media (max-width: 600px) {
-
-      .container {
-        padding:
-          0 14px;
+      nav a {
+        font-size: 11px;
       }
-
 
       .hero {
-        min-height:
-          390px;
-
-        padding:
-          25px 15px 8px;
+        min-height: 390px;
+        padding: 45px 18px 25px;
       }
-
 
       .avatar-wrapper {
-        width:
-          130px;
-
-        height:
-          130px;
+        width: 112px;
+        height: 112px;
       }
-
 
       .hero h1 {
-        font-size:
-          38px;
-
-        margin-top:
-          18px;
+        margin-top: 17px;
       }
-
 
       .hero-description {
-        max-width:
-          340px;
-
-        font-size:
-          12px;
-
-        line-height:
-          1.55;
+        font-size: 14px;
       }
-
 
       .tech {
-        margin-top:
-          10px;
-
-        font-size:
-          9px;
+        font-size: 10px;
       }
-
-
-      .availability {
-        margin-top:
-          5px;
-      }
-
-
-      #links {
-        padding-top:
-          5px;
-      }
-
 
       section {
-        padding:
-          48px 0;
+        width: 90%;
       }
 
-
-      .section-title {
-        font-size:
-          26px;
+      #links {
+        padding-top: 5px;
       }
-
 
       .link-item {
-        padding:
-          10px 11px;
+        min-height: 72px;
+        padding: 10px 13px;
       }
 
-
-      .link-image {
-        width:
-          38px;
-
-        height:
-          38px;
-
-        margin-right:
-          11px;
+      .link-icon {
+        width: 43px;
+        height: 43px;
       }
-
-
-      .link-name {
-        font-size:
-          12px;
-      }
-
-
-      .link-description {
-        font-size:
-          9px;
-      }
-
 
       .highlight {
-        padding:
-          23px;
+        padding: 23px;
       }
-
-
-      .social {
-        min-width:
-          100%;
-      }
-
 
       .music-player {
-        right:
-          12px;
-
-        bottom:
-          12px;
+        right: 12px;
+        bottom: 12px;
       }
-
     }
-
-
-    /* =====================================================
-       MENOS MOVIMENTO
-    ===================================================== */
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-        animation:
-          none !important;
-
-        transition:
-          none !important;
-
-        scroll-behavior:
-          auto !important;
-      }
-
-    }
-
   </style>
 </head>
 
-
 <body>
 
-
-  <!-- =====================================================
-       FUNDO
-  ===================================================== -->
-
+  <!-- FUNDO -->
   <div class="background">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+    <div class="stars"></div>
+  </div>
 
-    <div class="grid"></div>
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#" class="logo">R<span>.</span></a>
 
-    <div class="orb orb-one"></div>
-    <div class="orb orb-two"></div>
-    <div class="orb orb-three"></div>
+    <ul>
+      <li><a href="#links">Links</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+
+    <div class="avatar-wrapper">
+      <img
+        src="img/WA_1784422331777.jpeg"
+        alt="Foto de perfil de Rarison Keven"
+        class="avatar"
+      >
+    </div>
+
+    <h1>Rarison Keven</h1>
+
+    <p class="hero-description">
+      Desenvolvimento web & tecnologia.<br>
+      Criando projetos, experiências e soluções digitais. Reparos de sites.
+    </p>
+
+    <div class="tech">
+      HTML • CSS • JAVASCRIPT
+    </div>
+
+    <div class="availability">
+      Disponível para projetos
+    </div>
+
+  </header>
+
+  <!-- LINKS -->
+  <section id="links">
+
+    <div class="section-heading">
+      <div class="eyebrow">ONDE ESTOU</div>
+      <h2>Me encontre por aqui</h2>
+      <p>
+        Meus principais canais para contato, projetos e comunidade.
+      </p>
+    </div>
+
+    <div class="links-list">
+
+      <a
+        href="https://wa.me/5595991501077"
+        target="_blank"
+        class="link-item"
+      >
+        <img
+          src="img/ef55acaed134cf97d2a5f9f1e4815295.jpg"
+          alt="WhatsApp"
+          class="link-icon"
+        >
+
+        <div class="link-content">
+          <div class="link-title">WhatsApp</div>
+          <div class="link-description">
+            Vamos conversar sobre uma ideia ou projeto.
+          </div>
+        </div>
+
+        <div class="link-arrow">→</div>
+      </a>
 
 
-    <div class="light-line line-one"></div>
-    <div class="light-line line-two"></div>
-    <div class="light-line line-three"></div>
+      <a
+        href="https://github.com/callebydev"
+        target="_blank"
+        class="link-item"
+      >
+        <img
+          src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+          alt="GitHub"
+          class="link-icon"
+        >
+
+        <div class="link-content">
+          <div class="link-title">GitHub</div>
+          <div class="link-description">
+            Código, estudos e projetos que estou desenvolvendo.
+          </div>
+        </div>
+
+        <div class="link-arrow">→</div>
+      </a>
 
 
-    <div class="particles">
+      <a
+        href="https://www.instagram.com/rk.dacruz"
+        target="_blank"
+        class="link-item"
+      >
+        <img
+          src="img/ae599d8043cac580437e26da1f8c8aeb.jpg"
+          alt="Instagram"
+          class="link-icon"
+        >
 
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+        <div class="link-content">
+          <div class="link-title">Instagram</div>
+          <div class="link-description">
+            Meu perfil e um pouco do que faço fora do código.
+          </div>
+        </div>
+
+        <div class="link-arrow">→</div>
+      </a>
+
+
+      <a
+        href="https://discord.gg/H3mnq7Nfp"
+        target="_blank"
+        class="link-item"
+      >
+        <img
+          src="img/b5d4ce10a744861ffd3314d20d116976.jpg"
+          alt="Discord"
+          class="link-icon"
+        >
+
+        <div class="link-content">
+          <div class="link-title">Discord</div>
+          <div class="link-description">
+            Minha comunidade para trocar ideias e acompanhar projetos.
+          </div>
+        </div>
+
+        <div class="link-arrow">→</div>
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- DESTAQUE -->
+  <section class="highlight">
+
+    <div class="eyebrow">DESTAQUE</div>
+
+    <h2>Meu portfólio</h2>
+
+    <p>
+      Veja meus projetos, experiências e trabalhos desenvolvidos
+      durante minha jornada na programação.
+    </p>
+
+    <a
+      href="https://paleascendancy.github.io/index.html"
+      target="_blank"
+      class="highlight-button"
+    >
+      Visitar portfólio →
+    </a>
+
+  </section>
+
+
+  <!-- SOBRE -->
+  <section id="sobre" class="about">
+
+    <div class="section-heading">
+      <div class="eyebrow">SOBRE MIM</div>
+      <h2>Um pouco sobre mim</h2>
+    </div>
+
+    <div class="about-box">
+
+      <h3>Quem sou</h3>
+
+      <p>
+        Olá, sou Rarison Keven. Tenho 22 anos e estou estudando
+        programação. Atualmente trabalho com HTML, CSS e JavaScript
+        e uso meus próprios projetos para praticar.
+      </p>
+
+      <h3>O que gosto de criar</h3>
+
+      <p>
+        Gosto de criar páginas organizadas, responsivas e com um
+        visual moderno, funcionando bem no celular e no computador.
+      </p>
 
     </div>
 
-  </div>
+  </section>
 
 
-  <!-- =====================================================
-       MÚSICA
-  ===================================================== -->
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="services">
 
-  <audio id="backgroundMusic" loop preload="auto">
-    <source src="audio/musica.mp3" type="audio/mpeg">
-  </audio>
+    <div class="section-heading">
+      <div class="eyebrow">SERVIÇOS</div>
+      <h2>O que posso fazer</h2>
+      <p>
+        Soluções simples e personalizadas para diferentes necessidades.
+      </p>
+    </div>
+
+    <div class="services-list">
+
+      <div class="service">
+        <div class="service-number">01</div>
+        <h3>Página de Links</h3>
+        <p>
+          Uma página para reunir suas redes sociais, contatos
+          e outros links em um só lugar.
+        </p>
+      </div>
+
+      <div class="service">
+        <div class="service-number">02</div>
+        <h3>Landing Page</h3>
+        <p>
+          Página para apresentar uma pessoa, projeto, serviço
+          ou negócio.
+        </p>
+      </div>
+
+      <div class="service">
+        <div class="service-number">03</div>
+        <h3>Portfólio</h3>
+        <p>
+          Página para mostrar seus trabalhos, projetos,
+          habilidades e contatos.
+        </p>
+      </div>
+
+      <div class="service">
+        <div class="service-number">04</div>
+        <h3>Página Personalizada</h3>
+        <p>
+          Criação de uma página de acordo com o estilo,
+          informações e objetivo que você quiser.
+        </p>
+      </div>
+
+      <div class="service">
+        <div class="service-number">05</div>
+        <h3>Reparos em Sites</h3>
+        <p>
+          Correções de problemas, textos, imagens, cores,
+          layout e outros detalhes.
+        </p>
+      </div>
+
+      <div class="service">
+        <div class="service-number">06</div>
+        <h3>Interface Web</h3>
+        <p>
+          Criação de páginas responsivas para diferentes
+          tipos de projetos.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
 
 
+  <!-- REDES -->
+  <section class="socials">
+
+    <div class="section-heading">
+      <div class="eyebrow">REDES</div>
+      <h2>Vamos conversar</h2>
+    </div>
+
+    <div class="social-list">
+
+      <a
+        href="https://wa.me/5595991501077"
+        target="_blank"
+        class="social-link"
+      >
+        WhatsApp
+      </a>
+
+      <a
+        href="https://www.instagram.com/rk.dacruz"
+        target="_blank"
+        class="social-link"
+      >
+        Instagram
+      </a>
+
+      <a
+        href="https://github.com/callebydev"
+        target="_blank"
+        class="social-link"
+      >
+        GitHub
+      </a>
+
+      <a
+        href="https://discord.gg/H3mnq7Nfp"
+        target="_blank"
+        class="social-link"
+      >
+        Discord
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- PLAYER -->
   <div class="music-player">
 
-    <button
-      class="music-button"
-      id="musicButton"
-      aria-label="Ativar música"
-    >
+    <button id="musicButton" type="button">
       ▶
     </button>
 
-    <span class="music-text" id="musicText">
+    <span id="musicText">
       Música
     </span>
 
   </div>
 
 
-  <!-- =====================================================
-       NAVBAR
-  ===================================================== -->
-
-  <nav>
-
-    <div class="nav-container">
-
-      <a href="#" class="logo">
-        R<span>.</span>
-      </a>
-
-
-      <div class="nav-links">
-
-        <a href="#links">
-          Links
-        </a>
-
-        <a href="#sobre">
-          Sobre
-        </a>
-
-        <a href="#servicos">
-          Serviços
-        </a>
-
-      </div>
-
-    </div>
-
-  </nav>
-
-
-  <main>
-
-
-    <!-- =====================================================
-         PERFIL
-    ===================================================== -->
-
-    <section class="hero">
-
-      <div class="avatar-wrapper">
-
-        <img
-          src="img/WA_1784422331777.jpeg"
-          alt="Foto de perfil de Rarison Keven"
-          class="avatar"
-        >
-
-      </div>
-
-
-      <h1>
-        Rarison Keven
-      </h1>
-
-
-      <p class="hero-description">
-        Desenvolvimento web & tecnologia.
-        Criando projetos, experiências e soluções digitais.
-        Reparos de sites.
-      </p>
-
-
-      <div class="tech">
-        HTML • CSS • JAVASCRIPT
-      </div>
-
-
-      <div class="availability">
-
-        <span class="status-dot"></span>
-
-        Disponível para projetos
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         LINKS
-    ===================================================== -->
-
-    <section id="links">
-
-      <div class="container">
-
-
-        <div class="section-header">
-
-          <div class="section-label">
-            MEUS LINKS
-          </div>
-
-          <h2 class="section-title">
-            Onde me encontrar
-          </h2>
-
-          <p class="section-description">
-            Alguns dos meus principais links e redes.
-          </p>
-
-        </div>
-
-
-        <div class="links-list">
-
-
-          <!-- WhatsApp -->
-
-          <a
-            href="https://wa.me/5595991501077"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="link-item"
-          >
-
-            <img
-              src="img/ef55acaed134cf97d2a5f9f1e4815295.jpg"
-              class="link-image"
-              alt="WhatsApp"
-            >
-
-            <div class="link-info">
-
-              <div class="link-name">
-                WhatsApp
-              </div>
-
-              <div class="link-description">
-                Fale comigo
-              </div>
-
-            </div>
-
-            <div class="link-arrow">
-              →
-            </div>
-
-          </a>
-
-
-          <!-- GitHub -->
-
-          <a
-            href="https://github.com/callebydev"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="link-item"
-          >
-
-            <img
-              src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
-              class="link-image"
-              alt="GitHub"
-            >
-
-            <div class="link-info">
-
-              <div class="link-name">
-                GitHub
-              </div>
-
-              <div class="link-description">
-                Meus códigos
-              </div>
-
-            </div>
-
-            <div class="link-arrow">
-              →
-            </div>
-
-          </a>
-
-
-          <!-- Instagram -->
-
-          <a
-            href="https://www.instagram.com/rk.dacruz"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="link-item"
-          >
-
-            <img
-              src="img/ae599d8043cac580437e26da1f8c8aeb.jpg"
-              class="link-image"
-              alt="Instagram"
-            >
-
-            <div class="link-info">
-
-              <div class="link-name">
-                Instagram
-              </div>
-
-              <div class="link-description">
-                Meu perfil
-              </div>
-
-            </div>
-
-            <div class="link-arrow">
-              →
-            </div>
-
-          </a>
-
-
-          <!-- Discord -->
-
-          <a
-            href="https://discord.gg/H3mnq7Nfp"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="link-item"
-          >
-
-            <img
-              src="img/b5d4ce10a744861ffd3314d20d116976.jpg"
-              class="link-image"
-              alt="Discord"
-            >
-
-            <div class="link-info">
-
-              <div class="link-name">
-                Discord
-              </div>
-
-              <div class="link-description">
-                Meu servidor
-              </div>
-
-            </div>
-
-            <div class="link-arrow">
-              →
-            </div>
-
-          </a>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         DESTAQUE
-    ===================================================== -->
-
-    <section>
-
-      <div class="container">
-
-        <div class="highlight">
-
-          <div class="section-label">
-            DESTAQUE
-          </div>
-
-          <h3>
-            Meu portfólio
-          </h3>
-
-          <p>
-            Veja meus projetos, experiências e trabalhos
-            desenvolvidos durante minha jornada na programação.
-          </p>
-
-          <a
-            href="https://paleascendancy.github.io/index.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button"
-          >
-            Visitar portfólio →
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         SOBRE
-    ===================================================== -->
-
-    <section id="sobre">
-
-      <div class="container">
-
-
-        <div class="section-header">
-
-          <div class="section-label">
-            SOBRE MIM
-          </div>
-
-          <h2 class="section-title">
-            Um pouco sobre mim
-          </h2>
-
-          <p class="section-description">
-            Conheça um pouco do que faço e das tecnologias
-            que estou usando nos meus projetos.
-          </p>
-
-        </div>
-
-
-        <div class="about-grid">
-
-
-          <div class="about-card">
-
-            <h3>
-              Quem sou
-            </h3>
-
-            <p>
-              Olá, sou Rarison Keven. Tenho 22 anos e estou
-              estudando programação. Atualmente trabalho com
-              HTML, CSS e JavaScript e uso meus próprios
-              projetos para praticar.
-            </p>
-
-          </div>
-
-
-          <div class="about-card">
-
-            <h3>
-              O que gosto de criar
-            </h3>
-
-            <p>
-              Gosto de criar páginas organizadas, responsivas
-              e com um visual moderno, funcionando bem no
-              celular e no computador.
-            </p>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         SERVIÇOS
-    ===================================================== -->
-
-    <section id="servicos">
-
-      <div class="container">
-
-
-        <div class="section-header">
-
-          <div class="section-label">
-            SERVIÇOS
-          </div>
-
-          <h2 class="section-title">
-            O que posso fazer
-          </h2>
-
-          <p class="section-description">
-            Alguns tipos de páginas que consigo criar usando
-            HTML, CSS e JavaScript.
-          </p>
-
-        </div>
-
-
-        <div class="services-list">
-
-
-          <div class="service">
-
-            <div class="service-number">
-              01
-            </div>
-
-            <div class="service-content">
-
-              <h3>
-                Página de Links
-              </h3>
-
-              <p>
-                Uma página para reunir suas redes sociais,
-                contatos e outros links em um só lugar.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="service">
-
-            <div class="service-number">
-              02
-            </div>
-
-            <div class="service-content">
-
-              <h3>
-                Landing Page
-              </h3>
-
-              <p>
-                Página para apresentar uma pessoa,
-                projeto, serviço ou negócio.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="service">
-
-            <div class="service-number">
-              03
-            </div>
-
-            <div class="service-content">
-
-              <h3>
-                Portfólio
-              </h3>
-
-              <p>
-                Página para mostrar seus trabalhos,
-                projetos, habilidades e contatos.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="service">
-
-            <div class="service-number">
-              04
-            </div>
-
-            <div class="service-content">
-
-              <h3>
-                Página Personalizada
-              </h3>
-
-              <p>
-                Crio a página de acordo com o estilo,
-                informações e objetivo que você quiser.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="service">
-
-            <div class="service-number">
-              05
-            </div>
-
-            <div class="service-content">
-
-              <h3>
-                Reparos em Sites
-              </h3>
-
-              <p>
-                Correções de problemas, textos, imagens,
-                cores, layout e outros detalhes.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="service">
-
-            <div class="service-number">
-              06
-            </div>
-
-            <div class="service-content">
-
-              <h3>
-                Interface Web
-              </h3>
-
-              <p>
-                Criação de páginas responsivas para
-                diferentes tipos de projetos.
-              </p>
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         REDES
-    ===================================================== -->
-
-    <section>
-
-      <div class="container">
-
-
-        <div class="section-header">
-
-          <div class="section-label">
-            REDES
-          </div>
-
-          <h2 class="section-title">
-            Vamos conversar
-          </h2>
-
-        </div>
-
-
-        <div class="socials">
-
-
-          <a
-            href="https://wa.me/5595991501077"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social"
-          >
-            WhatsApp
-          </a>
-
-
-          <a
-            href="https://www.instagram.com/rk.dacruz"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social"
-          >
-            Instagram
-          </a>
-
-
-          <a
-            href="https://github.com/callebydev"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social"
-          >
-            GitHub
-          </a>
-
-
-          <a
-            href="https://discord.gg/H3mnq7Nfp"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social"
-          >
-            Discord
-          </a>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-  </main>
-
-
+  <!-- ÁUDIO -->
+  <audio id="backgroundMusic" loop preload="auto">
+    <source
+      src="audio/LAKEY INSPIRED - Better Days(MP3_160K).mp3"
+      type="audio/mpeg"
+    >
+  </audio>
+
+
+  <!-- FOOTER -->
   <footer>
     © 2026 RARISON KEVEN — DESENVOLVIMENTO WEB
   </footer>
 
 
-  <!-- =====================================================
-       JAVASCRIPT — MÚSICA
-  ===================================================== -->
-
   <script>
 
-    const music =
-      document.getElementById("backgroundMusic");
+    const music = document.getElementById("backgroundMusic");
+    const musicButton = document.getElementById("musicButton");
+    const musicText = document.getElementById("musicText");
 
-    const musicButton =
-      document.getElementById("musicButton");
-
-    const musicText =
-      document.getElementById("musicText");
+    let playing = false;
 
 
     async function startMusic() {
@@ -2265,8 +1057,9 @@
 
         await music.play();
 
-        musicButton.textContent = "❚❚";
+        playing = true;
 
+        musicButton.textContent = "❚❚";
         musicText.textContent = "Tocando";
 
       } catch (error) {
@@ -2278,11 +1071,11 @@
     }
 
 
-    musicButton.addEventListener("click", async (event) => {
+    musicButton.addEventListener("click", async function(event) {
 
       event.stopPropagation();
 
-      if (music.paused) {
+      if (!playing) {
 
         await startMusic();
 
@@ -2290,8 +1083,9 @@
 
         music.pause();
 
-        musicButton.textContent = "▶";
+        playing = false;
 
+        musicButton.textContent = "▶";
         musicText.textContent = "Música";
 
       }
@@ -2300,46 +1094,38 @@
 
 
     /*
-      O navegador pode bloquear o autoplay
-      com som.
-
-      Quando isso acontecer, a música começa
-      no primeiro toque em qualquer lugar da página.
+      O navegador pode bloquear o autoplay.
+      Por isso tentamos iniciar automaticamente
+      e também tentamos novamente no primeiro toque.
     */
 
-    document.addEventListener("click", async (event) => {
+    window.addEventListener("load", function() {
+      startMusic();
+    });
+
+
+    document.addEventListener("click", function firstInteraction(event) {
 
       if (event.target.closest("#musicButton")) {
         return;
       }
 
-      if (music.paused) {
-        await startMusic();
+      if (!playing) {
+        startMusic();
       }
 
-    }, { once: true });
-
-
-    /*
-      Tenta tocar automaticamente quando
-      a página termina de carregar.
-    */
-
-    window.addEventListener("load", () => {
-
-      startMusic();
+      document.removeEventListener("click", firstInteraction);
 
     }, { once: true });
 
 
-    /*
-      Volume inicial.
-    */
+    music.addEventListener("error", function() {
 
-    music.volume = 0.35;
+      musicText.textContent = "Áudio indisponível";
+
+    });
 
   </script>
-
 
 </body>
 </html>
