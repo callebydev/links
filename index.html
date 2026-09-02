@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Rarison | Desenvolvedor Web</title>
+    <title>Rarison Keven | Desenvolvedor Web</title>
 
     <meta
         name="description"
-        content="Página pessoal de Rarison. Desenvolvimento de páginas para portfólio, links, projetos e páginas personalizadas."
+        content="Rarison Keven — Desenvolvimento web, tecnologia, projetos digitais e reparos de sites."
     >
 
     <style>
@@ -130,32 +130,59 @@
         /* HERO */
 
         .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 85px 0 55px;
             text-align: center;
-            padding: 80px 0;
         }
 
         .profile {
-            max-width: 700px;
+            max-width: 760px;
             margin: auto;
         }
+
+        /*
+        IMPORTANTE:
+        A animação fica somente na BORDA.
+        A imagem não recebe hue-rotate nem filter.
+        */
 
         .avatar-wrapper {
             width: 150px;
             height: 150px;
-            margin: 0 auto 25px;
+            margin: 0 auto 22px;
             padding: 4px;
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                var(--cyan),
+                var(--blue),
+                var(--purple),
+                var(--cyan)
+            );
+
+            background-size: 300% 300%;
+            animation: borderColor 5s ease infinite;
+
+            position: relative;
+        }
+
+        .avatar-wrapper::before {
+            content: "";
+            position: absolute;
+            inset: -5px;
             border-radius: 50%;
             background: linear-gradient(
                 135deg,
                 var(--cyan),
                 var(--blue),
-                var(--purple)
+                var(--purple),
+                var(--cyan)
             );
-            animation: rotateBorder 5s linear infinite;
+            background-size: 300% 300%;
+            animation: borderColor 5s ease infinite;
+            filter: blur(8px);
+            opacity: 0.45;
+            z-index: -1;
         }
 
         .avatar {
@@ -165,47 +192,33 @@
             border-radius: 50%;
             border: 4px solid var(--bg);
             display: block;
+
+            /* Impede qualquer alteração de cor na foto */
+            filter: none !important;
         }
 
-        @keyframes rotateBorder {
+        @keyframes borderColor {
             0% {
-                filter: hue-rotate(0deg);
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
             }
 
             100% {
-                filter: hue-rotate(360deg);
+                background-position: 0% 50%;
             }
         }
 
-        .status {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0, 229, 255, 0.08);
-            border: 1px solid rgba(0, 229, 255, 0.15);
-            padding: 7px 13px;
-            border-radius: 30px;
-            color: var(--cyan);
-            font-size: 13px;
-            margin-bottom: 20px;
-        }
-
-        .status-dot {
-            width: 7px;
-            height: 7px;
-            background: #20e060;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #20e060;
-        }
-
-        h1 {
-            font-size: clamp(42px, 8vw, 75px);
+        .profile h1 {
+            font-size: clamp(42px, 8vw, 70px);
             line-height: 1;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             letter-spacing: -2px;
         }
 
-        h1 span {
+        .profile h1 span {
             background: linear-gradient(
                 90deg,
                 var(--cyan),
@@ -217,39 +230,178 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
+        .hero-description {
             color: var(--muted);
-            font-size: 18px;
+            font-size: 17px;
             line-height: 1.7;
-            max-width: 600px;
+            max-width: 680px;
             margin: auto;
         }
 
+        /* TECNOLOGIAS */
+
         .tech {
-            margin-top: 25px;
+            display: inline-block;
+            margin-top: 18px;
+
             color: var(--cyan);
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 2px;
+            font-weight: bold;
+
+            padding: 7px 12px;
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            border-radius: 8px;
+            background: rgba(0, 229, 255, 0.04);
+        }
+
+        /* STATUS MENOR */
+
+        .availability {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 7px;
+
+            margin-top: 18px;
+
+            color: #778596;
+            font-size: 11px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+
+            background: #20e060;
+            border-radius: 50%;
+
+            box-shadow: 0 0 8px #20e060;
+        }
+
+        /* LINKS */
+
+        .links-section {
+            padding-top: 35px;
+        }
+
+        .section-title {
+            margin-bottom: 30px;
+        }
+
+        .section-title small {
+            color: var(--cyan);
+            letter-spacing: 2px;
+            font-size: 11px;
             font-weight: bold;
         }
 
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 30px;
-            flex-wrap: wrap;
+        .section-title h2 {
+            font-size: 32px;
+            margin-top: 7px;
         }
 
-        .btn {
-            padding: 13px 22px;
-            border-radius: 10px;
+        .section-title p {
+            color: var(--muted);
+            margin-top: 9px;
+            line-height: 1.6;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .link-card {
+            background: var(--bg-card);
             border: 1px solid var(--border);
-            font-size: 14px;
+            border-radius: 15px;
+            padding: 20px;
+
+            text-align: center;
+
             transition: 0.3s;
         }
 
-        .btn-primary {
+        .link-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 229, 255, 0.3);
+            background: var(--bg-card-hover);
+        }
+
+        .link-card img {
+            width: 55px;
+            height: 55px;
+
+            object-fit: cover;
+            border-radius: 14px;
+
+            margin-bottom: 12px;
+        }
+
+        .link-card strong {
+            display: block;
+            font-size: 15px;
+        }
+
+        .link-card span {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* DESTAQUE */
+
+        .highlight {
+            padding: 80px 0;
+        }
+
+        .highlight-box {
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0, 229, 255, 0.08),
+                    rgba(112, 71, 255, 0.08)
+                );
+
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            border-radius: 25px;
+
+            padding: 45px;
+        }
+
+        .highlight-label {
+            color: var(--cyan);
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .highlight-box h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .highlight-box p {
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 650px;
+            margin-bottom: 25px;
+        }
+
+        .portfolio-button {
+            display: inline-block;
+
+            padding: 13px 22px;
+
+            border-radius: 10px;
+
             background: linear-gradient(
                 90deg,
                 var(--cyan),
@@ -257,44 +409,20 @@
             );
 
             color: #001018;
+            font-size: 14px;
             font-weight: bold;
+
+            transition: 0.3s;
         }
 
-        .btn-secondary {
-            background: var(--bg-card);
-            color: var(--text);
-        }
-
-        .btn:hover {
+        .portfolio-button:hover {
             transform: translateY(-3px);
         }
 
-        /* SECTIONS */
+        /* SEÇÕES */
 
         section {
-            padding: 90px 0;
-        }
-
-        .section-title {
-            margin-bottom: 45px;
-        }
-
-        .section-title small {
-            color: var(--cyan);
-            letter-spacing: 2px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .section-title h2 {
-            font-size: 35px;
-            margin-top: 8px;
-        }
-
-        .section-title p {
-            color: var(--muted);
-            margin-top: 10px;
-            line-height: 1.6;
+            padding: 80px 0;
         }
 
         /* SOBRE */
@@ -302,7 +430,7 @@
         .about {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            gap: 20px;
         }
 
         .card {
@@ -310,6 +438,7 @@
             border: 1px solid var(--border);
             border-radius: 18px;
             padding: 28px;
+
             transition: 0.3s;
         }
 
@@ -328,48 +457,6 @@
             line-height: 1.7;
         }
 
-        /* LINKS */
-
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-        }
-
-        .link-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .link-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 229, 255, 0.3);
-        }
-
-        .link-card img {
-            width: 55px;
-            height: 55px;
-            object-fit: cover;
-            border-radius: 14px;
-            margin-bottom: 12px;
-        }
-
-        .link-card strong {
-            display: block;
-            font-size: 15px;
-        }
-
-        .link-card span {
-            display: block;
-            color: var(--muted);
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
         /* SERVIÇOS */
 
         .services {
@@ -381,8 +468,10 @@
         .service {
             background: var(--bg-card);
             border: 1px solid var(--border);
+
             padding: 25px;
             border-radius: 16px;
+
             transition: 0.3s;
         }
 
@@ -407,49 +496,6 @@
             font-size: 14px;
         }
 
-        /* PÁGINA PERSONALIZADA */
-
-        .custom {
-            position: relative;
-            overflow: hidden;
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(0, 229, 255, 0.08),
-                    rgba(112, 71, 255, 0.08)
-                );
-
-            border: 1px solid rgba(0, 229, 255, 0.15);
-            border-radius: 25px;
-            padding: 50px;
-        }
-
-        .custom h2 {
-            font-size: 35px;
-            margin-bottom: 15px;
-        }
-
-        .custom p {
-            color: var(--muted);
-            max-width: 650px;
-            line-height: 1.7;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 25px 0;
-        }
-
-        .tag {
-            padding: 8px 12px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.05);
-            color: var(--muted);
-            font-size: 12px;
-        }
-
         /* PROJETOS */
 
         .projects {
@@ -463,6 +509,7 @@
             border: 1px solid var(--border);
             border-radius: 16px;
             overflow: hidden;
+
             transition: 0.3s;
         }
 
@@ -480,6 +527,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+
             transition: 0.4s;
         }
 
@@ -521,10 +569,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
+
             background: var(--bg-card);
             border: 1px solid var(--border);
+
             border-radius: 12px;
             padding: 12px 17px;
+
             transition: 0.3s;
         }
 
@@ -536,6 +587,7 @@
         .social img {
             width: 32px;
             height: 32px;
+
             border-radius: 8px;
             object-fit: cover;
         }
@@ -590,20 +642,28 @@
             }
 
             .hero {
-                min-height: 85vh;
-                padding: 60px 0;
+                padding: 65px 0 35px;
             }
 
-            h1 {
-                font-size: 48px;
+            .avatar-wrapper {
+                width: 125px;
+                height: 125px;
             }
 
-            .hero p {
-                font-size: 16px;
+            .profile h1 {
+                font-size: 46px;
+            }
+
+            .hero-description {
+                font-size: 15px;
             }
 
             section {
-                padding: 65px 0;
+                padding: 60px 0;
+            }
+
+            .links-section {
+                padding-top: 30px;
             }
 
             .section-title h2 {
@@ -618,17 +678,16 @@
                 grid-template-columns: 1fr;
             }
 
-            .custom {
+            .highlight {
+                padding: 60px 0;
+            }
+
+            .highlight-box {
                 padding: 30px 22px;
             }
 
-            .custom h2 {
-                font-size: 28px;
-            }
-
-            .avatar-wrapper {
-                width: 125px;
-                height: 125px;
+            .highlight-box h2 {
+                font-size: 29px;
             }
         }
     </style>
@@ -640,25 +699,29 @@
 
     <header>
         <div class="container">
+
             <nav>
+
                 <a href="#" class="logo">
                     R<span>.</span>
                 </a>
 
                 <ul class="nav-links">
-                    <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#links">Links</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#servicos">Serviços</a></li>
                     <li><a href="#projetos">Projetos</a></li>
                 </ul>
+
             </nav>
+
         </div>
     </header>
 
 
-    <!-- PERFIL -->
-
     <main>
+
+        <!-- PERFIL -->
 
         <section class="hero">
 
@@ -671,44 +734,34 @@
                         <img
                             class="avatar"
                             src="img/WA_1784422331777.jpeg"
-                            alt="Foto de perfil de Rarison"
+                            alt="Foto de perfil de Rarison Keven"
                         >
 
                     </div>
 
-                    <div class="status">
-                        <span class="status-dot"></span>
-                        Disponível para projetos
-                    </div>
 
                     <h1>
-                        Olá, eu sou <span>Rarison</span>.
+                        <span>Rarison Keven</span>
                     </h1>
 
-                    <p>
-                        Crio páginas para portfólio, links,
-                        apresentação e projetos pessoais.
+
+                    <p class="hero-description">
+                        Desenvolvimento web & tecnologia.
+                        Criando projetos, experiências e soluções digitais.
+                        Reparos de sites.
                     </p>
+
 
                     <div class="tech">
                         HTML • CSS • JAVASCRIPT
                     </div>
 
-                    <div class="buttons">
 
-                        <a
-                            href="#servicos"
-                            class="btn btn-primary"
-                        >
-                            O que posso fazer
-                        </a>
+                    <div class="availability">
 
-                        <a
-                            href="#projetos"
-                            class="btn btn-secondary"
-                        >
-                            Ver meus projetos
-                        </a>
+                        <span class="status-dot"></span>
+
+                        Disponível para projetos
 
                     </div>
 
@@ -719,65 +772,17 @@
         </section>
 
 
-        <!-- SOBRE -->
+        <!-- MEUS LINKS -->
 
-        <section id="sobre">
-
-            <div class="container">
-
-                <div class="section-title">
-                    <small>SOBRE MIM</small>
-
-                    <h2>Um pouco sobre mim</h2>
-
-                    <p>
-                        Conheça um pouco do que faço e das tecnologias
-                        que estou usando nos meus projetos.
-                    </p>
-                </div>
-
-                <div class="about">
-
-                    <div class="card">
-
-                        <h3>Quem sou</h3>
-
-                        <p>
-                            Olá, sou Rarison. Tenho 22 anos e estou
-                            estudando programação. Atualmente trabalho
-                            com HTML, CSS e JavaScript e uso meus próprios
-                            projetos para praticar.
-                        </p>
-
-                    </div>
-
-                    <div class="card">
-
-                        <h3>O que gosto de criar</h3>
-
-                        <p>
-                            Gosto de criar páginas organizadas,
-                            responsivas e com um visual moderno,
-                            funcionando bem tanto no celular quanto
-                            no computador.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- LINKS -->
-
-        <section id="links">
+        <section
+            id="links"
+            class="links-section"
+        >
 
             <div class="container">
 
                 <div class="section-title">
+
                     <small>MEUS LINKS</small>
 
                     <h2>Onde me encontrar</h2>
@@ -785,21 +790,24 @@
                     <p>
                         Alguns dos meus principais links e redes.
                     </p>
+
                 </div>
 
 
                 <div class="links-grid">
+
 
                     <!-- WHATSAPP -->
 
                     <a
                         href="https://wa.me/5595991501077"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="link-card"
                     >
 
                         <img
-                            src="img/ef55acaed134cf97d2a5f9f1e4815295.jp"
+                            src="img/ef55acaed134cf97d2a5f9f1e4815295.jpg"
                             alt="WhatsApp"
                         >
 
@@ -815,6 +823,7 @@
                     <a
                         href="https://github.com/callebydev"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="link-card"
                     >
 
@@ -835,6 +844,7 @@
                     <a
                         href="https://www.instagram.com/rk.dacruz"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="link-card"
                     >
 
@@ -855,6 +865,7 @@
                     <a
                         href="https://discord.gg/H3mnq7Nfp"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="link-card"
                     >
 
@@ -875,6 +886,7 @@
                     <a
                         href="https://paleascendancy.github.io/index.html"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="link-card"
                     >
 
@@ -888,6 +900,98 @@
                         <span>Ver página</span>
 
                     </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DESTAQUE -->
+
+        <section class="highlight">
+
+            <div class="container">
+
+                <div class="highlight-box">
+
+                    <div class="highlight-label">
+                        DESTAQUE
+                    </div>
+
+                    <h2>
+                        Meu portfólio
+                    </h2>
+
+                    <p>
+                        Veja meus projetos, experiências e trabalhos
+                        desenvolvidos durante minha jornada na programação.
+                    </p>
+
+                    <a
+                        href="https://paleascendancy.github.io/index.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="portfolio-button"
+                    >
+                        Visitar portfólio →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SOBRE -->
+
+        <section id="sobre">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <small>SOBRE MIM</small>
+
+                    <h2>Um pouco sobre mim</h2>
+
+                    <p>
+                        Conheça um pouco do que faço e das tecnologias
+                        que estou usando nos meus projetos.
+                    </p>
+
+                </div>
+
+
+                <div class="about">
+
+                    <div class="card">
+
+                        <h3>Quem sou</h3>
+
+                        <p>
+                            Olá, sou Rarison Keven. Tenho 22 anos e estou
+                            estudando programação. Atualmente trabalho
+                            com HTML, CSS e JavaScript e uso meus próprios
+                            projetos para praticar.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h3>O que gosto de criar</h3>
+
+                        <p>
+                            Gosto de criar páginas organizadas,
+                            responsivas e com um visual moderno,
+                            funcionando bem no celular e no computador.
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -917,6 +1021,7 @@
 
 
                 <div class="services">
+
 
                     <div class="service">
 
@@ -978,11 +1083,11 @@
 
                         <span class="service-number">05</span>
 
-                        <h3>Ajustes em Sites</h3>
+                        <h3>Reparos em Sites</h3>
 
                         <p>
-                            Alterações de textos, imagens, cores,
-                            layout e outros detalhes.
+                            Correções de problemas, textos,
+                            imagens, cores, layout e outros detalhes.
                         </p>
 
                     </div>
@@ -1000,50 +1105,6 @@
                         </p>
 
                     </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- PÁGINA PERSONALIZADA -->
-
-        <section>
-
-            <div class="container">
-
-                <div class="custom">
-
-                    <h2>Quer uma página própria?</h2>
-
-                    <p>
-                        Posso criar uma página para você colocar
-                        seu portfólio, redes sociais, contatos,
-                        serviços ou outras informações.
-                    </p>
-
-
-                    <div class="tags">
-
-                        <span class="tag">Portfólio</span>
-                        <span class="tag">Instagram</span>
-                        <span class="tag">WhatsApp</span>
-                        <span class="tag">Discord</span>
-                        <span class="tag">Links</span>
-                        <span class="tag">Design personalizado</span>
-
-                    </div>
-
-
-                    <a
-                        href="https://wa.me/5595991501077?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20uma%20página%20personalizada."
-                        target="_blank"
-                        class="btn btn-primary"
-                    >
-                        Quero uma página →
-                    </a>
 
                 </div>
 
@@ -1075,15 +1136,13 @@
                 <div class="projects">
 
 
-                    <!-- PROJETO 1 -->
-
                     <div class="project">
 
                         <div class="project-image">
 
                             <img
                                 src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
-                                alt="Projeto GitHub"
+                                alt="Projetos no GitHub"
                             >
 
                         </div>
@@ -1100,6 +1159,7 @@
                             <a
                                 href="https://github.com/callebydev"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 class="project-link"
                             >
                                 Ver no GitHub →
@@ -1110,15 +1170,13 @@
                     </div>
 
 
-                    <!-- PROJETO 2 -->
-
                     <div class="project">
 
                         <div class="project-image">
 
                             <img
                                 src="img/ae599d8043cac580437e26da1f8c8aeb.jpg"
-                                alt="Projeto de portfólio"
+                                alt="Portfólio"
                             >
 
                         </div>
@@ -1135,6 +1193,7 @@
                             <a
                                 href="https://paleascendancy.github.io/index.html"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 class="project-link"
                             >
                                 Ver projeto →
@@ -1144,8 +1203,6 @@
 
                     </div>
 
-
-                    <!-- PROJETO 3 -->
 
                     <div class="project">
 
@@ -1178,7 +1235,6 @@
 
                     </div>
 
-
                 </div>
 
             </div>
@@ -1192,7 +1248,10 @@
 
             <div class="container">
 
-                <div class="section-title" style="text-align:center;">
+                <div
+                    class="section-title"
+                    style="text-align: center;"
+                >
 
                     <small>REDES</small>
 
@@ -1211,11 +1270,12 @@
                     <a
                         href="https://wa.me/5595991501077"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="social"
                     >
 
                         <img
-                            src="img/ef55acaed134cf97d2a5f9f1e4815295.jp"
+                            src="img/ef55acaed134cf97d2a5f9f1e4815295.jpg"
                             alt="WhatsApp"
                         >
 
@@ -1227,6 +1287,7 @@
                     <a
                         href="https://www.instagram.com/rk.dacruz"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="social"
                     >
 
@@ -1243,6 +1304,7 @@
                     <a
                         href="https://github.com/callebydev"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="social"
                     >
 
@@ -1259,6 +1321,7 @@
                     <a
                         href="https://discord.gg/H3mnq7Nfp"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="social"
                     >
 
@@ -1287,7 +1350,7 @@
         <div class="container">
 
             <p>
-                © 2026 RARISON — DESENVOLVIMENTO WEB
+                © 2026 RARISON KEVEN — DESENVOLVIMENTO WEB
             </p>
 
         </div>
