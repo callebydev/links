@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Rarison — Desenvolvedor Web</title>
+    <title>Rarison — Desenvolvimento Web</title>
 
     <meta
         name="description"
-        content="Rarison — Desenvolvedor Web. Criação de páginas, landing pages, portfólios e interfaces personalizadas."
+        content="Rarison — Criação de páginas, portfólios e sites personalizados."
     >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,13 +20,13 @@
     >
 
     <style>
+
         :root {
             --bg: #070b12;
-            --bg-2: #0b111b;
-            --card: rgba(15, 24, 37, 0.72);
+            --bg-card: #0c1420;
 
-            --text: #f4f8ff;
-            --muted: #8493a7;
+            --text: #f5f7fb;
+            --muted: #8b98a9;
 
             --cyan: #00e5ff;
             --blue: #168cff;
@@ -52,72 +52,100 @@
             background:
                 radial-gradient(
                     circle at 50% 0%,
-                    rgba(0, 229, 255, .13),
+                    rgba(0,229,255,.12),
                     transparent 35%
                 ),
                 radial-gradient(
-                    circle at 100% 40%,
-                    rgba(112, 71, 255, .12),
+                    circle at 100% 50%,
+                    rgba(112,71,255,.10),
                     transparent 35%
                 ),
                 var(--bg);
 
             color: var(--text);
+
             font-family: "Inter", sans-serif;
         }
 
+        /* =========================
+           FUNDO
+        ========================= */
+
         body::before {
             content: "";
+
             position: fixed;
             inset: 0;
 
             pointer-events: none;
 
             background-image:
-                linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+                linear-gradient(
+                    rgba(255,255,255,.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.025) 1px,
+                    transparent 1px
+                );
 
             background-size: 55px 55px;
 
-            mask-image: linear-gradient(
-                to bottom,
-                black,
-                transparent 75%
-            );
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent 80%
+                );
         }
 
         .glow {
             position: fixed;
-            width: 350px;
-            height: 350px;
+
+            width: 320px;
+            height: 320px;
 
             border-radius: 50%;
-            filter: blur(100px);
-            opacity: .18;
+
+            filter: blur(110px);
+
+            opacity: .15;
 
             pointer-events: none;
         }
 
-        .glow.one {
+        .glow-one {
             top: 5%;
-            left: -150px;
+            left: -160px;
+
             background: var(--cyan);
         }
 
-        .glow.two {
+        .glow-two {
             top: 45%;
-            right: -150px;
+            right: -160px;
+
             background: var(--purple);
         }
 
+        /* =========================
+           CONTAINER
+        ========================= */
+
         .container {
             position: relative;
+
             z-index: 2;
 
-            width: min(100% - 32px, 680px);
+            width: min(
+                calc(100% - 30px),
+                680px
+            );
 
             margin: auto;
-            padding: 60px 0 40px;
+
+            padding: 55px 0 40px;
         }
 
         /* =========================
@@ -126,9 +154,9 @@
 
         .profile {
             text-align: center;
-            margin-bottom: 42px;
 
-            animation: fadeUp .8s ease both;
+            animation:
+                fadeUp .7s ease both;
         }
 
         .avatar-wrapper {
@@ -144,7 +172,8 @@
             content: "";
 
             position: absolute;
-            inset: -5px;
+
+            inset: -4px;
 
             border-radius: 50%;
 
@@ -156,9 +185,8 @@
                     var(--purple)
                 );
 
-            filter: blur(1px);
-
-            animation: rotate 5s linear infinite;
+            animation:
+                rotate 5s linear infinite;
         }
 
         .avatar {
@@ -167,46 +195,56 @@
             width: 120px;
             height: 120px;
 
+            display: block;
+
             object-fit: cover;
 
             border-radius: 50%;
 
             border: 4px solid #080d15;
 
-            display: block;
+            background: #111a27;
         }
 
         .status {
             position: absolute;
 
-            right: 4px;
-            bottom: 8px;
+            right: 3px;
+            bottom: 7px;
 
-            width: 22px;
-            height: 22px;
+            width: 21px;
+            height: 21px;
 
             border-radius: 50%;
 
-            background: #22d36b;
+            background: #20d36b;
 
             border: 4px solid #080d15;
 
-            box-shadow: 0 0 15px rgba(34,211,107,.8);
+            box-shadow:
+                0 0 15px rgba(32,211,107,.7);
         }
 
         h1 {
-            font-size: clamp(32px, 8vw, 46px);
+            margin-bottom: 8px;
+
+            font-size:
+                clamp(
+                    38px,
+                    9vw,
+                    52px
+                );
+
             font-weight: 900;
 
-            letter-spacing: -2px;
-            margin-bottom: 8px;
+            letter-spacing: -2.5px;
         }
 
-        .gradient-text {
+        .gradient {
             background:
                 linear-gradient(
                     90deg,
-                    #ffffff,
+                    #fff,
                     #8cefff,
                     #a68aff
                 );
@@ -218,88 +256,50 @@
         }
 
         .role {
-            color: #a8b6c8;
+            margin-bottom: 12px;
+
+            color: #b9c5d4;
 
             font-size: 14px;
-            font-weight: 700;
 
-            margin-bottom: 12px;
+            font-weight: 600;
         }
 
-        .description {
-            max-width: 500px;
+        .profile-text {
+            max-width: 490px;
 
             margin: auto;
 
             color: var(--muted);
 
-            font-size: 14px;
+            font-size: 13px;
+
             line-height: 1.7;
         }
 
         .tag {
-            display: inline-flex;
+            display: inline-block;
 
-            margin-top: 18px;
+            margin-top: 17px;
 
             padding: 8px 14px;
 
             border-radius: 100px;
 
-            border: 1px solid rgba(0,229,255,.2);
+            border:
+                1px solid
+                rgba(0,229,255,.2);
 
-            background: rgba(0,229,255,.05);
+            background:
+                rgba(0,229,255,.05);
 
             color: #9defff;
 
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 10px;
 
-            letter-spacing: .5px;
-        }
-
-        /* =========================
-           BOTÃO DE CONTATO
-        ========================= */
-
-        .contact-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-
-            width: 100%;
-
-            margin-top: 25px;
-            padding: 15px;
-
-            border-radius: 15px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    var(--blue),
-                    var(--purple)
-                );
-
-            color: white;
-
-            text-decoration: none;
-
-            font-size: 13px;
             font-weight: 800;
 
-            box-shadow:
-                0 10px 30px rgba(22,140,255,.15);
-
-            transition: .25s;
-        }
-
-        .contact-button:hover {
-            transform: translateY(-3px);
-
-            box-shadow:
-                0 15px 40px rgba(112,71,255,.25);
+            letter-spacing: 1px;
         }
 
         /* =========================
@@ -308,32 +308,38 @@
 
         .section-title {
             display: flex;
+
             align-items: center;
-            gap: 15px;
 
-            margin: 42px 0 16px;
+            gap: 14px;
 
-            color: #dbe5f1;
+            margin:
+                42px 0 16px;
 
-            font-size: 11px;
+            color: #dce5ef;
+
+            font-size: 10px;
+
             font-weight: 800;
 
-            text-transform: uppercase;
             letter-spacing: 2px;
+
+            text-transform: uppercase;
         }
 
         .section-title::before,
         .section-title::after {
             content: "";
 
-            height: 1px;
             flex: 1;
+
+            height: 1px;
 
             background:
                 linear-gradient(
                     90deg,
                     transparent,
-                    rgba(255,255,255,.18)
+                    rgba(255,255,255,.16)
                 );
         }
 
@@ -341,7 +347,7 @@
             background:
                 linear-gradient(
                     90deg,
-                    rgba(255,255,255,.18),
+                    rgba(255,255,255,.16),
                     transparent
                 );
         }
@@ -353,24 +359,26 @@
         .about {
             padding: 22px;
 
-            border: 1px solid var(--border);
-            border-radius: 20px;
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 18px;
 
             background:
-                linear-gradient(
-                    135deg,
-                    rgba(17,29,44,.75),
-                    rgba(10,17,28,.65)
-                );
+                rgba(12,20,32,.75);
 
-            color: #aab7c7;
+            color: #9ba9ba;
 
-            font-size: 13px;
+            font-size: 12px;
+
             line-height: 1.8;
         }
 
         .about strong {
             color: white;
+
+            font-size: 14px;
         }
 
         /* =========================
@@ -379,40 +387,44 @@
 
         .links {
             display: flex;
+
             flex-direction: column;
-            gap: 13px;
+
+            gap: 12px;
         }
 
         .link {
             position: relative;
 
             display: flex;
+
             align-items: center;
 
             min-height: 70px;
 
-            padding: 14px 20px;
+            padding: 13px 18px;
 
-            border: 1px solid var(--border);
-            border-radius: 18px;
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 17px;
 
             background:
                 linear-gradient(
                     110deg,
-                    rgba(17,29,44,.85),
-                    rgba(10,17,28,.7)
+                    rgba(17,29,44,.88),
+                    rgba(10,17,28,.72)
                 );
 
-            color: var(--text);
+            color: white;
 
             text-decoration: none;
 
             overflow: hidden;
 
             transition:
-                transform .25s ease,
-                border-color .25s ease,
-                box-shadow .25s ease;
+                .25s ease;
         }
 
         .link::before {
@@ -430,7 +442,7 @@
                 linear-gradient(
                     90deg,
                     transparent,
-                    rgba(255,255,255,.07),
+                    rgba(255,255,255,.06),
                     transparent
                 );
 
@@ -442,36 +454,39 @@
         }
 
         .link:hover {
-            transform: translateY(-4px);
+            transform:
+                translateY(-3px);
 
-            border-color: rgba(0,229,255,.3);
+            border-color:
+                rgba(0,229,255,.3);
 
             box-shadow:
-                0 15px 35px rgba(0,0,0,.35),
-                0 0 25px rgba(0,229,255,.06);
+                0 15px 35px
+                rgba(0,0,0,.3);
         }
 
         .icon {
             width: 44px;
             height: 44px;
 
+            flex-shrink: 0;
+
+            margin-right: 14px;
+
             display: grid;
+
             place-items: center;
 
-            margin-right: 15px;
+            overflow: hidden;
 
-            border-radius: 13px;
+            border-radius: 12px;
 
             background:
-                linear-gradient(
-                    135deg,
-                    rgba(0,229,255,.14),
-                    rgba(112,71,255,.14)
-                );
+                rgba(255,255,255,.04);
 
-            border: 1px solid rgba(255,255,255,.08);
-
-            overflow: hidden;
+            border:
+                1px solid
+                rgba(255,255,255,.08);
         }
 
         .icon img {
@@ -482,21 +497,21 @@
 
             padding: 7px;
 
-            border-radius: 13px;
+            border-radius: 12px;
         }
 
         .link-content {
             flex: 1;
-            text-align: left;
         }
 
         .link-title {
             display: block;
 
-            font-size: 14px;
-            font-weight: 800;
-
             margin-bottom: 4px;
+
+            font-size: 13px;
+
+            font-weight: 800;
         }
 
         .link-description {
@@ -504,7 +519,7 @@
 
             color: var(--muted);
 
-            font-size: 11px;
+            font-size: 10px;
         }
 
         .arrow {
@@ -517,7 +532,9 @@
 
         .link:hover .arrow {
             color: var(--cyan);
-            transform: translateX(4px);
+
+            transform:
+                translateX(4px);
         }
 
         /* =========================
@@ -526,51 +543,58 @@
 
         .services {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
             gap: 12px;
         }
 
         .service {
             padding: 20px;
 
-            border: 1px solid var(--border);
-            border-radius: 18px;
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 17px;
 
             background:
-                linear-gradient(
-                    145deg,
-                    rgba(17,29,44,.8),
-                    rgba(10,17,28,.65)
-                );
+                rgba(12,20,32,.72);
 
             transition: .25s;
         }
 
         .service:hover {
-            transform: translateY(-4px);
+            transform:
+                translateY(-3px);
 
-            border-color: rgba(0,229,255,.25);
+            border-color:
+                rgba(0,229,255,.25);
         }
 
         .service-number {
             color: var(--cyan);
 
-            font-size: 10px;
+            font-size: 9px;
+
             font-weight: 800;
 
             letter-spacing: 1px;
         }
 
         .service h3 {
-            margin: 10px 0 8px;
+            margin:
+                9px 0 7px;
 
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .service p {
             color: var(--muted);
 
-            font-size: 11px;
+            font-size: 10px;
+
             line-height: 1.6;
         }
 
@@ -578,59 +602,63 @@
            PORTFÓLIO
         ========================= */
 
-        .portfolio-intro {
+        .portfolio-text {
+            margin-bottom: 14px;
+
             color: var(--muted);
 
-            font-size: 12px;
-            line-height: 1.7;
+            font-size: 11px;
 
-            margin-bottom: 14px;
+            line-height: 1.7;
         }
 
         .projects {
             display: flex;
+
             flex-direction: column;
-            gap: 14px;
+
+            gap: 13px;
         }
 
         .project {
             position: relative;
 
-            min-height: 180px;
+            min-height: 190px;
 
-            padding: 24px;
+            padding: 23px;
 
-            border-radius: 22px;
+            display: flex;
 
-            border: 1px solid rgba(0,229,255,.16);
+            align-items: flex-end;
+
+            border:
+                1px solid
+                rgba(0,229,255,.16);
+
+            border-radius: 20px;
 
             background:
-                radial-gradient(
-                    circle at 100% 0%,
-                    rgba(112,71,255,.22),
-                    transparent 40%
-                ),
                 #0c1521;
 
             overflow: hidden;
 
-            text-decoration: none;
             color: white;
 
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            text-decoration: none;
 
             transition: .3s;
         }
 
         .project:hover {
-            transform: translateY(-5px);
+            transform:
+                translateY(-4px);
 
-            border-color: rgba(0,229,255,.4);
+            border-color:
+                rgba(0,229,255,.4);
 
             box-shadow:
-                0 20px 50px rgba(0,0,0,.4);
+                0 20px 45px
+                rgba(0,0,0,.35);
         }
 
         .project-image {
@@ -643,57 +671,62 @@
 
             object-fit: cover;
 
-            opacity: .18;
+            opacity: .15;
 
             transition: .4s;
         }
 
         .project:hover .project-image {
-            opacity: .27;
-            transform: scale(1.04);
+            opacity: .23;
+
+            transform:
+                scale(1.04);
         }
 
         .project-content {
             position: relative;
+
             z-index: 2;
         }
 
         .project-label {
+            display: block;
+
+            margin-bottom: 8px;
+
             color: var(--cyan);
 
-            font-size: 10px;
+            font-size: 9px;
+
             font-weight: 800;
 
             letter-spacing: 2px;
-            text-transform: uppercase;
-
-            margin-bottom: 8px;
         }
 
         .project h3 {
-            font-size: 22px;
-            margin-bottom: 7px;
+            margin-bottom: 6px;
+
+            font-size: 21px;
         }
 
         .project p {
-            max-width: 450px;
+            max-width: 470px;
 
-            color: #8e9bad;
+            color: #8d9aaa;
 
-            font-size: 12px;
+            font-size: 11px;
+
             line-height: 1.6;
         }
 
         .project-button {
             display: inline-block;
 
-            width: fit-content;
+            margin-top: 14px;
 
-            margin-top: 15px;
+            padding: 9px 13px;
 
-            padding: 9px 14px;
-
-            border-radius: 9px;
+            border-radius: 8px;
 
             background:
                 linear-gradient(
@@ -702,7 +735,8 @@
                     var(--purple)
                 );
 
-            font-size: 10px;
+            font-size: 9px;
+
             font-weight: 800;
         }
 
@@ -710,57 +744,109 @@
            PERSONALIZAÇÃO
         ========================= */
 
-        .custom-box {
-            padding: 24px;
+        .custom {
+            padding: 23px;
 
-            border-radius: 20px;
+            border:
+                1px solid
+                rgba(112,71,255,.2);
 
-            border: 1px solid rgba(112,71,255,.2);
+            border-radius: 19px;
 
             background:
                 radial-gradient(
                     circle at 100% 0%,
-                    rgba(112,71,255,.18),
+                    rgba(112,71,255,.16),
                     transparent 45%
                 ),
-                rgba(12,21,33,.8);
+                rgba(12,20,32,.8);
         }
 
-        .custom-box h2 {
+        .custom h2 {
+            margin-bottom: 9px;
+
             font-size: 20px;
 
-            margin-bottom: 10px;
+            letter-spacing: -.5px;
         }
 
-        .custom-box p {
+        .custom p {
             color: var(--muted);
 
-            font-size: 12px;
+            font-size: 11px;
+
             line-height: 1.7;
         }
 
-        .custom-list {
+        .custom-tags {
             display: flex;
+
             flex-wrap: wrap;
 
-            gap: 8px;
+            gap: 7px;
 
-            margin-top: 16px;
+            margin-top: 15px;
         }
 
-        .custom-list span {
-            padding: 8px 11px;
+        .custom-tags span {
+            padding: 7px 9px;
 
-            border-radius: 8px;
+            border:
+                1px solid
+                rgba(255,255,255,.07);
 
-            background: rgba(255,255,255,.04);
+            border-radius: 7px;
 
-            border: 1px solid rgba(255,255,255,.07);
+            background:
+                rgba(255,255,255,.03);
 
-            color: #aebdce;
+            color: #aeb9c8;
 
-            font-size: 10px;
-            font-weight: 600;
+            font-size: 9px;
+        }
+
+        /* =========================
+           BOTÃO WHATSAPP
+        ========================= */
+
+        .contact {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            margin-top: 18px;
+
+            padding: 14px;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--blue),
+                    var(--purple)
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            transition: .25s;
+        }
+
+        .contact:hover {
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(112,71,255,.22);
         }
 
         /* =========================
@@ -769,47 +855,51 @@
 
         .social {
             display: flex;
-            justify-content: center;
-            gap: 12px;
 
-            margin-top: 25px;
+            justify-content: center;
+
+            gap: 11px;
         }
 
         .social a {
-            width: 46px;
-            height: 46px;
+            width: 44px;
+            height: 44px;
 
             display: grid;
+
             place-items: center;
 
-            border-radius: 13px;
-
-            border: 1px solid var(--border);
-
-            background: rgba(255,255,255,.03);
-
             overflow: hidden;
+
+            border-radius: 12px;
+
+            border:
+                1px solid
+                var(--border);
+
+            background:
+                rgba(255,255,255,.03);
 
             transition: .25s;
         }
 
-        .social a img {
+        .social img {
             width: 100%;
             height: 100%;
 
             object-fit: cover;
 
-            padding: 9px;
+            padding: 8px;
 
-            border-radius: 13px;
+            border-radius: 12px;
         }
 
         .social a:hover {
-            border-color: rgba(0,229,255,.3);
+            transform:
+                translateY(-3px);
 
-            background: rgba(0,229,255,.08);
-
-            transform: translateY(-3px);
+            border-color:
+                rgba(0,229,255,.3);
         }
 
         /* =========================
@@ -817,17 +907,19 @@
         ========================= */
 
         footer {
-            text-align: center;
-
             margin-top: 35px;
 
             padding-top: 22px;
 
-            border-top: 1px solid rgba(255,255,255,.06);
+            border-top:
+                1px solid
+                rgba(255,255,255,.06);
+
+            text-align: center;
 
             color: #536274;
 
-            font-size: 10px;
+            font-size: 9px;
 
             letter-spacing: .5px;
         }
@@ -837,44 +929,68 @@
         ========================= */
 
         @keyframes fadeUp {
+
             from {
                 opacity: 0;
-                transform: translateY(25px);
+
+                transform:
+                    translateY(20px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
+
         }
 
         @keyframes rotate {
+
             from {
-                transform: rotate(0deg);
+                transform:
+                    rotate(0deg);
             }
 
             to {
-                transform: rotate(360deg);
+                transform:
+                    rotate(360deg);
             }
+
         }
 
         .link {
-            animation: fadeUp .5s both;
+            animation:
+                fadeUp .5s both;
         }
 
-        .link:nth-child(1) { animation-delay: .1s; }
-        .link:nth-child(2) { animation-delay: .2s; }
-        .link:nth-child(3) { animation-delay: .3s; }
-        .link:nth-child(4) { animation-delay: .4s; }
+        .link:nth-child(1) {
+            animation-delay: .1s;
+        }
+
+        .link:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        .link:nth-child(3) {
+            animation-delay: .3s;
+        }
+
+        .link:nth-child(4) {
+            animation-delay: .4s;
+        }
 
         /* =========================
-           MOBILE
+           CELULAR
         ========================= */
 
         @media (max-width: 500px) {
 
             .container {
-                width: min(100% - 24px, 680px);
+                width:
+                    calc(100% - 24px);
+
                 padding-top: 35px;
             }
 
@@ -885,7 +1001,7 @@
             }
 
             h1 {
-                font-size: 35px;
+                font-size: 38px;
             }
 
             .services {
@@ -893,31 +1009,38 @@
             }
 
             .link {
-                min-height: 65px;
-                padding: 11px 14px;
-                border-radius: 15px;
+                min-height: 64px;
+
+                padding:
+                    10px 13px;
             }
 
             .icon {
-                width: 38px;
-                height: 38px;
-                margin-right: 12px;
+                width: 39px;
+                height: 39px;
+
+                margin-right: 11px;
             }
 
             .project {
                 min-height: 210px;
-                padding: 21px;
+
+                padding: 20px;
             }
+
         }
+
     </style>
 </head>
 
 <body>
 
-    <div class="glow one"></div>
-    <div class="glow two"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
 
     <main class="container">
+
 
         <!-- =========================
              PERFIL
@@ -929,80 +1052,80 @@
 
                 <img
                     class="avatar"
-                    src="https://raw.githubusercontent.com/callebydev/link/main/img/WA_1784422331777.jpeg"
-                    alt="Foto de perfil de Rarison"
+                    src="https://callebydev.github.io/link/img/WA_1784422331777.jpeg"
+                    alt="Rarison"
                 >
 
                 <span class="status"></span>
 
             </div>
 
+
             <h1>
-                <span class="gradient-text">Rarison</span>
+                <span class="gradient">
+                    Rarison
+                </span>
             </h1>
 
+
             <p class="role">
-                Desenvolvedor Web em início de carreira
+                Desenvolvedor Web
             </p>
 
-            <p class="description">
-                Criando páginas simples, modernas e funcionais,
-                enquanto evoluo constantemente minhas habilidades
-                em desenvolvimento web.
+
+            <p class="profile-text">
+                Crio páginas para portfólio, links,
+                apresentação e projetos pessoais.
             </p>
+
 
             <span class="tag">
                 HTML • CSS • JAVASCRIPT
             </span>
 
-            <a
-                class="contact-button"
-                href="https://wa.me/5595991501077"
-                target="_blank"
-                rel="noopener"
-            >
-                Fale comigo pelo WhatsApp →
-            </a>
-
         </section>
 
 
         <!-- =========================
-             SOBRE MIM
+             SOBRE
         ========================= -->
 
         <div class="section-title">
             Sobre mim
         </div>
 
+
         <section class="about">
 
-            <strong>Olá, sou Rarison.</strong>
+            <strong>
+                Olá, sou Rarison.
+            </strong>
 
             <br><br>
 
-            Estou iniciando minha carreira na programação e atualmente
-            estudo e desenvolvo projetos utilizando HTML, CSS, JavaScript
-            e outras tecnologias.
+            Tenho 22 anos e estou estudando programação.
+            Atualmente trabalho com HTML, CSS e JavaScript
+            e uso meus próprios projetos para praticar.
 
             <br><br>
 
-            Meu objetivo é transformar ideias em experiências digitais
-            simples, funcionais e bem apresentadas, enquanto continuo
-            aprendendo e aprimorando cada projeto.
+            Gosto de criar páginas com um visual organizado,
+            responsivo e que funcione bem no celular e no computador.
 
         </section>
 
 
         <!-- =========================
-             CONECTE-SE
+             LINKS
         ========================= -->
 
         <div class="section-title">
-            Conecte-se comigo
+            Meus links
         </div>
 
+
         <nav class="links">
+
 
             <!-- WHATSAPP -->
 
@@ -1016,11 +1139,12 @@
                 <div class="icon">
 
                     <img
-                        src="https://raw.githubusercontent.com/callebydev/link/main/img/ef55acaed134cf97d2a5f9f1e4815295.jp"
+                        src="https://callebydev.github.io/link/img/ef55acaed134cf97d2a5f9f1e4815295.jp"
                         alt="WhatsApp"
                     >
 
                 </div>
+
 
                 <div class="link-content">
 
@@ -1029,12 +1153,15 @@
                     </span>
 
                     <span class="link-description">
-                        Fale comigo diretamente
+                        Entre em contato comigo
                     </span>
 
                 </div>
 
-                <span class="arrow">→</span>
+
+                <span class="arrow">
+                    →
+                </span>
 
             </a>
 
@@ -1051,11 +1178,12 @@
                 <div class="icon">
 
                     <img
-                        src="https://raw.githubusercontent.com/callebydev/link/main/img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+                        src="https://callebydev.github.io/link/img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
                         alt="GitHub"
                     >
 
                 </div>
+
 
                 <div class="link-content">
 
@@ -1069,7 +1197,10 @@
 
                 </div>
 
-                <span class="arrow">→</span>
+
+                <span class="arrow">
+                    →
+                </span>
 
             </a>
 
@@ -1078,7 +1209,7 @@
 
             <a
                 class="link"
-                href="https://www.instagram.com/rk.dacruz?igsi=a3lnbWQwOTQ4b3Vo"
+                href="https://www.instagram.com/rk.dacruz"
                 target="_blank"
                 rel="noopener"
             >
@@ -1086,11 +1217,12 @@
                 <div class="icon">
 
                     <img
-                        src="https://raw.githubusercontent.com/callebydev/link/main/img/ae599d8043cac580437e26da1f8c8aeb.jpg"
+                        src="https://callebydev.github.io/link/img/ae599d8043cac580437e26da1f8c8aeb.jpg"
                         alt="Instagram"
                     >
 
                 </div>
+
 
                 <div class="link-content">
 
@@ -1099,12 +1231,15 @@
                     </span>
 
                     <span class="link-description">
-                        Acompanhe meu conteúdo
+                        Meu Instagram
                     </span>
 
                 </div>
 
-                <span class="arrow">→</span>
+
+                <span class="arrow">
+                    →
+                </span>
 
             </a>
 
@@ -1121,11 +1256,12 @@
                 <div class="icon">
 
                     <img
-                        src="https://raw.githubusercontent.com/callebydev/link/main/img/b5d4ce10a744861ffd3314d20d116976.jpg"
+                        src="https://callebydev.github.io/link/img/b5d4ce10a744861ffd3314d20d116976.jpg"
                         alt="Discord"
                     >
 
                 </div>
+
 
                 <div class="link-content">
 
@@ -1134,12 +1270,15 @@
                     </span>
 
                     <span class="link-description">
-                        Entre na minha comunidade
+                        Meu servidor no Discord
                     </span>
 
                 </div>
 
-                <span class="arrow">→</span>
+
+                <span class="arrow">
+                    →
+                </span>
 
             </a>
 
@@ -1151,21 +1290,26 @@
         ========================= -->
 
         <div class="section-title">
-            Serviços
+            O que posso fazer
         </div>
+
 
         <section class="services">
 
+
             <article class="service">
 
-                <span class="service-number">01</span>
+                <span class="service-number">
+                    01
+                </span>
 
-                <h3>Páginas de Links</h3>
+                <h3>
+                    Página de Links
+                </h3>
 
                 <p>
-                    Páginas personalizadas para reunir
-                    WhatsApp, Instagram, Discord, portfólio
-                    e outros contatos.
+                    Uma página para reunir suas redes sociais,
+                    contatos e outros links.
                 </p>
 
             </article>
@@ -1173,13 +1317,17 @@
 
             <article class="service">
 
-                <span class="service-number">02</span>
+                <span class="service-number">
+                    02
+                </span>
 
-                <h3>Landing Pages</h3>
+                <h3>
+                    Landing Page
+                </h3>
 
                 <p>
-                    Páginas de apresentação para pessoas,
-                    projetos, serviços e pequenos negócios.
+                    Página para apresentar uma pessoa,
+                    projeto, serviço ou negócio.
                 </p>
 
             </article>
@@ -1187,13 +1335,17 @@
 
             <article class="service">
 
-                <span class="service-number">03</span>
+                <span class="service-number">
+                    03
+                </span>
 
-                <h3>Sites Básicos</h3>
+                <h3>
+                    Portfólio
+                </h3>
 
                 <p>
-                    Sites institucionais simples para
-                    apresentar informações, serviços e contatos.
+                    Página para mostrar seus trabalhos,
+                    projetos, habilidades e contatos.
                 </p>
 
             </article>
@@ -1201,13 +1353,17 @@
 
             <article class="service">
 
-                <span class="service-number">04</span>
+                <span class="service-number">
+                    04
+                </span>
 
-                <h3>Páginas Personalizadas</h3>
+                <h3>
+                    Página Personalizada
+                </h3>
 
                 <p>
-                    Desenvolvimento de páginas de acordo
-                    com a identidade e necessidade do projeto.
+                    Crio a página de acordo com o estilo
+                    e as informações que você quiser.
                 </p>
 
             </article>
@@ -1215,13 +1371,17 @@
 
             <article class="service">
 
-                <span class="service-number">05</span>
+                <span class="service-number">
+                    05
+                </span>
 
-                <h3>Manutenção e Ajustes</h3>
+                <h3>
+                    Ajustes em Sites
+                </h3>
 
                 <p>
-                    Correções, alterações e melhorias
-                    em projetos HTML, CSS e JavaScript.
+                    Alterações de textos, imagens, cores,
+                    layout e outros detalhes.
                 </p>
 
             </article>
@@ -1229,13 +1389,17 @@
 
             <article class="service">
 
-                <span class="service-number">06</span>
+                <span class="service-number">
+                    06
+                </span>
 
-                <h3>Interfaces Web</h3>
+                <h3>
+                    Interface Web
+                </h3>
 
                 <p>
-                    Criação de interfaces responsivas
-                    para ideias e projetos digitais.
+                    Criação de páginas responsivas para
+                    diferentes tipos de projetos.
                 </p>
 
             </article>
@@ -1251,47 +1415,80 @@
             Página personalizada
         </div>
 
-        <section class="custom-box">
+
+        <section class="custom">
 
             <h2>
-                Crio sua página do seu jeito.
+                Quer uma página própria?
             </h2>
 
             <p>
-                Posso criar uma página para você apresentar
-                seu portfólio, redes sociais, serviços,
-                contatos ou qualquer outra informação importante.
+                Posso criar uma página para você colocar
+                seu portfólio, redes sociais, contatos,
+                serviços ou outras informações.
             </p>
 
-            <div class="custom-list">
 
-                <span>Portfólio</span>
-                <span>Links</span>
-                <span>Redes sociais</span>
-                <span>WhatsApp</span>
-                <span>Landing Page</span>
-                <span>Design personalizado</span>
+            <div class="custom-tags">
+
+                <span>
+                    Portfólio
+                </span>
+
+                <span>
+                    Instagram
+                </span>
+
+                <span>
+                    WhatsApp
+                </span>
+
+                <span>
+                    Discord
+                </span>
+
+                <span>
+                    Links
+                </span>
+
+                <span>
+                    Design personalizado
+                </span>
 
             </div>
+
+
+            <a
+                class="contact"
+                href="https://wa.me/5595991501077"
+                target="_blank"
+                rel="noopener"
+            >
+                Quero uma página →
+            </a>
 
         </section>
 
 
         <!-- =========================
-             MEUS TRABALHOS
+             TRABALHOS
         ========================= -->
 
         <div class="section-title">
             Meus trabalhos
         </div>
 
-        <p class="portfolio-intro">
-            Alguns dos projetos que desenvolvi durante minha jornada
-            na programação. Atualmente foco em interfaces web e
-            projetos básicos, buscando melhorar cada trabalho.
+
+        <p class="portfolio-text">
+            Alguns projetos que fiz para estudar,
+            testar ideias e montar meu portfólio.
         </p>
 
+
         <section class="projects">
+
+
+            <!-- GITHUB -->
 
             <a
                 class="project"
@@ -1302,33 +1499,36 @@
 
                 <img
                     class="project-image"
-                    src="https://raw.githubusercontent.com/callebydev/link/main/img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+                    src="https://callebydev.github.io/link/img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
                     alt=""
                 >
+
 
                 <div class="project-content">
 
                     <span class="project-label">
-                        PROJETO
+                        GITHUB
                     </span>
 
                     <h3>
-                        Projetos no GitHub
+                        Meus projetos
                     </h3>
 
                     <p>
-                        Confira meus códigos, experimentos e
-                        projetos desenvolvidos durante meus estudos.
+                        Veja meus códigos e projetos
+                        diretamente no GitHub.
                     </p>
 
                     <span class="project-button">
-                        VER PROJETOS →
+                        VER GITHUB →
                     </span>
 
                 </div>
 
             </a>
 
+
+            <!-- PORTFÓLIO -->
 
             <a
                 class="project"
@@ -1339,27 +1539,28 @@
 
                 <img
                     class="project-image"
-                    src="https://raw.githubusercontent.com/callebydev/link/main/img/WA_1784422331777.jpeg"
+                    src="https://callebydev.github.io/link/img/WA_1784422331777.jpeg"
                     alt=""
                 >
+
 
                 <div class="project-content">
 
                     <span class="project-label">
-                        PROJETO EM DESTAQUE
+                        PORTFÓLIO
                     </span>
 
                     <h3>
-                        Meu Portfólio
+                        Meu portfólio
                     </h3>
 
                     <p>
-                        Uma página para apresentar meus trabalhos,
-                        projetos e minha evolução como desenvolvedor.
+                        Página onde posso apresentar
+                        meus projetos e trabalhos.
                     </p>
 
                     <span class="project-button">
-                        VISITAR PORTFÓLIO →
+                        VISITAR →
                     </span>
 
                 </div>
@@ -1367,22 +1568,23 @@
             </a>
 
 
+            <!-- ESTE SITE -->
+
             <article class="project">
 
                 <div class="project-content">
 
                     <span class="project-label">
-                        PROJETO PESSOAL
+                        PROJETO
                     </span>
 
                     <h3>
-                        Este site
+                        Esta página
                     </h3>
 
                     <p>
-                        Este próprio site é um dos projetos que
-                        desenvolvi para praticar e demonstrar
-                        minhas habilidades em desenvolvimento web.
+                        Esta página também faz parte dos
+                        meus projetos de desenvolvimento web.
                     </p>
 
                 </div>
@@ -1397,10 +1599,12 @@
         ========================= -->
 
         <div class="section-title">
-            Redes sociais
+            Redes
         </div>
 
+
         <div class="social">
+
 
             <a
                 href="https://github.com/callebydev"
@@ -1410,7 +1614,7 @@
             >
 
                 <img
-                    src="https://raw.githubusercontent.com/callebydev/link/main/img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+                    src="https://callebydev.github.io/link/img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
                     alt="GitHub"
                 >
 
@@ -1418,14 +1622,14 @@
 
 
             <a
-                href="https://www.instagram.com/rk.dacruz?igsi=a3lnbWQwOTQ4b3Vo"
+                href="https://www.instagram.com/rk.dacruz"
                 target="_blank"
                 rel="noopener"
                 aria-label="Instagram"
             >
 
                 <img
-                    src="https://raw.githubusercontent.com/callebydev/link/main/img/ae599d8043cac580437e26da1f8c8aeb.jpg"
+                    src="https://callebydev.github.io/link/img/ae599d8043cac580437e26da1f8c8aeb.jpg"
                     alt="Instagram"
                 >
 
@@ -1440,7 +1644,7 @@
             >
 
                 <img
-                    src="https://raw.githubusercontent.com/callebydev/link/main/img/b5d4ce10a744861ffd3314d20d116976.jpg"
+                    src="https://callebydev.github.io/link/img/b5d4ce10a744861ffd3314d20d116976.jpg"
                     alt="Discord"
                 >
 
@@ -1450,7 +1654,9 @@
 
 
         <footer>
+
             © 2026 RARISON — DESENVOLVIMENTO WEB
+
         </footer>
 
     </main>
