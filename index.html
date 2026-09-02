@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Calleby | Links</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: #011e31;
+            color: #d7e0eb;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .profile {
+            margin-bottom: 28px;
+        }
+
+        .avatar {
+            width: 95px;
+            height: 95px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            border: 2px solid #0c4160;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 6px;
+        }
+
+        .description {
+            color: #68869a;
+            font-size: 14px;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link {
+            display: block;
+            padding: 15px;
+            border: 1px solid #0c4160;
+            border-radius: 12px;
+            background: #062b40;
+            color: #d7e0eb;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .link:hover {
+            transform: translateY(-2px);
+            background: #0c4160;
+        }
+
+        footer {
+            margin-top: 28px;
+            color: #68869a;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="profile">
+
+            <img
+                class="avatar"
+                src="https://cdn.discordapp.com/attachments/1513764148553584680/1544596757852454953/WA_1784422331777.jpg?ex=6a991554&is=6a97c3d4&hm=ec5ef2f76ed31f854046296b05ff20f0fda987c93fe9f1daa41a158eb241d9a4&"
+                alt="Foto de perfil"
+            >
+
+            <h1>Calleby</h1>
+
+            <p class="description">
+                Desenvolvimento Web & Tecnologia
+            </p>
+
+        </section>
+
+        <nav class="links">
+
+            <a class="link"
+               href="https://github.com/callebydev"
+               target="_blank">
+                GitHub
+            </a>
+
+            <a class="link"
+               href="https://discord.gg/H3mnq7Nfp"
+               target="_blank">
+                Discord
+            </a>
+
+            <a class="link"
+               href="https://wa.me/5595991501077"
+               target="_blank">
+                WhatsApp
+            </a>
+
+            <a class="link"
+               href="https://www.instagram.com/rk.dacruz?igsi=a3lnbWQwOTQ4b3Vo"
+               target="_blank">
+                Instagram
+            </a>
+
+            <a class="link"
+               href="https://paleascendancy.github.io/index.html"
+               target="_blank">
+                Portfólio
+            </a>
+
+        </nav>
+
+        <footer>
+            © 2026 Calleby
+        </footer>
+
+    </main>
+
+</body>
+</html>
