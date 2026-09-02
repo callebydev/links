@@ -1,1361 +1,1645 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Rarison Keven | Desenvolvedor Web</title>
-
-    <meta
-        name="description"
-        content="Rarison Keven — Desenvolvimento web, tecnologia, projetos digitais e reparos de sites."
-    >
-
-    <style>
-        :root {
-            --bg: #070b12;
-            --bg-card: #0c1420;
-            --bg-card-hover: #101b2a;
-
-            --text: #f5f7fb;
-            --muted: #8b98a9;
-
-            --cyan: #00e5ff;
-            --blue: #168cff;
-            --purple: #7047ff;
-
-            --border: rgba(255, 255, 255, 0.08);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            top: -200px;
-            left: -150px;
-            background: var(--cyan);
-            opacity: 0.08;
-            filter: blur(130px);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            right: -200px;
-            bottom: -200px;
-            background: var(--purple);
-            opacity: 0.09;
-            filter: blur(130px);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .container {
-            width: min(1100px, 92%);
-            margin: auto;
-        }
-
-        /* NAVBAR */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(7, 11, 18, 0.85);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: var(--cyan);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--muted);
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--cyan);
-        }
-
-        /* HERO */
-
-        .hero {
-            padding: 85px 0 55px;
-            text-align: center;
-        }
-
-        .profile {
-            max-width: 760px;
-            margin: auto;
-        }
-
-        /*
-        IMPORTANTE:
-        A animação fica somente na BORDA.
-        A imagem não recebe hue-rotate nem filter.
-        */
-
-        .avatar-wrapper {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 22px;
-            padding: 4px;
-            border-radius: 50%;
-
-            background: linear-gradient(
-                135deg,
-                var(--cyan),
-                var(--blue),
-                var(--purple),
-                var(--cyan)
-            );
-
-            background-size: 300% 300%;
-            animation: borderColor 5s ease infinite;
-
-            position: relative;
-        }
-
-        .avatar-wrapper::before {
-            content: "";
-            position: absolute;
-            inset: -5px;
-            border-radius: 50%;
-            background: linear-gradient(
-                135deg,
-                var(--cyan),
-                var(--blue),
-                var(--purple),
-                var(--cyan)
-            );
-            background-size: 300% 300%;
-            animation: borderColor 5s ease infinite;
-            filter: blur(8px);
-            opacity: 0.45;
-            z-index: -1;
-        }
-
-        .avatar {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid var(--bg);
-            display: block;
-
-            /* Impede qualquer alteração de cor na foto */
-            filter: none !important;
-        }
-
-        @keyframes borderColor {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .profile h1 {
-            font-size: clamp(42px, 8vw, 70px);
-            line-height: 1;
-            margin-bottom: 18px;
-            letter-spacing: -2px;
-        }
-
-        .profile h1 span {
-            background: linear-gradient(
-                90deg,
-                var(--cyan),
-                var(--blue),
-                var(--purple)
-            );
-
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-description {
-            color: var(--muted);
-            font-size: 17px;
-            line-height: 1.7;
-            max-width: 680px;
-            margin: auto;
-        }
-
-        /* TECNOLOGIAS */
-
-        .tech {
-            display: inline-block;
-            margin-top: 18px;
-
-            color: var(--cyan);
-            font-size: 12px;
-            letter-spacing: 2px;
-            font-weight: bold;
-
-            padding: 7px 12px;
-            border: 1px solid rgba(0, 229, 255, 0.15);
-            border-radius: 8px;
-            background: rgba(0, 229, 255, 0.04);
-        }
-
-        /* STATUS MENOR */
-
-        .availability {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 7px;
-
-            margin-top: 18px;
-
-            color: #778596;
-            font-size: 11px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-
-            background: #20e060;
-            border-radius: 50%;
-
-            box-shadow: 0 0 8px #20e060;
-        }
-
-        /* LINKS */
-
-        .links-section {
-            padding-top: 35px;
-        }
-
-        .section-title {
-            margin-bottom: 30px;
-        }
-
-        .section-title small {
-            color: var(--cyan);
-            letter-spacing: 2px;
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        .section-title h2 {
-            font-size: 32px;
-            margin-top: 7px;
-        }
-
-        .section-title p {
-            color: var(--muted);
-            margin-top: 9px;
-            line-height: 1.6;
-        }
-
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-        }
-
-        .link-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 20px;
-
-            text-align: center;
-
-            transition: 0.3s;
-        }
-
-        .link-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 229, 255, 0.3);
-            background: var(--bg-card-hover);
-        }
-
-        .link-card img {
-            width: 55px;
-            height: 55px;
-
-            object-fit: cover;
-            border-radius: 14px;
-
-            margin-bottom: 12px;
-        }
-
-        .link-card strong {
-            display: block;
-            font-size: 15px;
-        }
-
-        .link-card span {
-            display: block;
-            color: var(--muted);
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        /* DESTAQUE */
-
-        .highlight {
-            padding: 80px 0;
-        }
-
-        .highlight-box {
-            position: relative;
-            overflow: hidden;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(0, 229, 255, 0.08),
-                    rgba(112, 71, 255, 0.08)
-                );
-
-            border: 1px solid rgba(0, 229, 255, 0.15);
-            border-radius: 25px;
-
-            padding: 45px;
-        }
-
-        .highlight-label {
-            color: var(--cyan);
-            font-size: 11px;
-            letter-spacing: 2px;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-        .highlight-box h2 {
-            font-size: 36px;
-            margin-bottom: 12px;
-        }
-
-        .highlight-box p {
-            color: var(--muted);
-            line-height: 1.7;
-            max-width: 650px;
-            margin-bottom: 25px;
-        }
-
-        .portfolio-button {
-            display: inline-block;
-
-            padding: 13px 22px;
-
-            border-radius: 10px;
-
-            background: linear-gradient(
-                90deg,
-                var(--cyan),
-                var(--blue)
-            );
-
-            color: #001018;
-            font-size: 14px;
-            font-weight: bold;
-
-            transition: 0.3s;
-        }
-
-        .portfolio-button:hover {
-            transform: translateY(-3px);
-        }
-
-        /* SEÇÕES */
-
-        section {
-            padding: 80px 0;
-        }
-
-        /* SOBRE */
-
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 28px;
-
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            background: var(--bg-card-hover);
-            border-color: rgba(0, 229, 255, 0.2);
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            color: var(--muted);
-            line-height: 1.7;
-        }
-
-        /* SERVIÇOS */
-
-        .services {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .service {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-
-            padding: 25px;
-            border-radius: 16px;
-
-            transition: 0.3s;
-        }
-
-        .service:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 229, 255, 0.25);
-        }
-
-        .service-number {
-            color: var(--cyan);
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        .service h3 {
-            margin: 12px 0;
-        }
-
-        .service p {
-            color: var(--muted);
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        /* PROJETOS */
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .project {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-
-            transition: 0.3s;
-        }
-
-        .project:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-image {
-            height: 180px;
-            background: #111;
-            overflow: hidden;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-
-            transition: 0.4s;
-        }
-
-        .project:hover .project-image img {
-            transform: scale(1.05);
-        }
-
-        .project-content {
-            padding: 20px;
-        }
-
-        .project-content h3 {
-            margin-bottom: 8px;
-        }
-
-        .project-content p {
-            color: var(--muted);
-            font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .project-link {
-            color: var(--cyan);
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        /* REDES */
-
-        .socials {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .social {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-
-            border-radius: 12px;
-            padding: 12px 17px;
-
-            transition: 0.3s;
-        }
-
-        .social:hover {
-            transform: translateY(-3px);
-            border-color: rgba(0, 229, 255, 0.25);
-        }
-
-        .social img {
-            width: 32px;
-            height: 32px;
-
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .social span {
-            font-size: 13px;
-        }
-
-        /* FOOTER */
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 30px 0;
-            text-align: center;
-        }
-
-        footer p {
-            color: var(--muted);
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
-
-        /* RESPONSIVO */
-
-        @media (max-width: 850px) {
-
-            .links-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .services {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .projects {
-                grid-template-columns: 1fr;
-            }
-
-            .about {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 600px) {
-
-            nav {
-                height: 60px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 65px 0 35px;
-            }
-
-            .avatar-wrapper {
-                width: 125px;
-                height: 125px;
-            }
-
-            .profile h1 {
-                font-size: 46px;
-            }
-
-            .hero-description {
-                font-size: 15px;
-            }
-
-            section {
-                padding: 60px 0;
-            }
-
-            .links-section {
-                padding-top: 30px;
-            }
-
-            .section-title h2 {
-                font-size: 28px;
-            }
-
-            .links-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .services {
-                grid-template-columns: 1fr;
-            }
-
-            .highlight {
-                padding: 60px 0;
-            }
-
-            .highlight-box {
-                padding: 30px 22px;
-            }
-
-            .highlight-box h2 {
-                font-size: 29px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Rarison Keven | Desenvolvimento Web</title>
+
+  <style>
+    :root {
+      --bg: #03060b;
+      --card: rgba(10, 16, 27, 0.72);
+      --card-hover: rgba(15, 25, 40, 0.9);
+      --text: #f5f7fb;
+      --muted: #8b98a9;
+      --cyan: #00e5ff;
+      --blue: #168cff;
+      --purple: #7047ff;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* =========================
+       FUNDO FUTURISTA
+    ========================= */
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(0, 229, 255, 0.12),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 10% 35%,
+          rgba(112, 71, 255, 0.12),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 90% 70%,
+          rgba(22, 140, 255, 0.1),
+          transparent 30%
+        ),
+        #03060b;
+    }
+
+    /* Grade */
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -4;
+      pointer-events: none;
+
+      background-image:
+        linear-gradient(
+          rgba(0, 229, 255, 0.035) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(0, 229, 255, 0.035) 1px,
+          transparent 1px
+        );
+
+      background-size: 55px 55px;
+
+      mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+      );
+    }
+
+    /* Luzes */
+
+    .background-light {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: -3;
+    }
+
+    .light-one {
+      background: var(--cyan);
+      top: -180px;
+      left: -160px;
+      animation: floatLight 10s ease-in-out infinite;
+    }
+
+    .light-two {
+      background: var(--purple);
+      right: -180px;
+      top: 35%;
+      animation: floatLight 13s ease-in-out infinite reverse;
+    }
+
+    .light-three {
+      background: var(--blue);
+      left: 30%;
+      bottom: -250px;
+      animation: floatLight 15s ease-in-out infinite;
+    }
+
+    @keyframes floatLight {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(50px, -30px) scale(1.15);
+      }
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      width: 100%;
+
+      background: rgba(3, 6, 11, 0.72);
+      backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1050px;
+      margin: auto;
+
+      padding: 18px 25px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+
+      color: var(--text);
+
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    /* =========================
+       CONTAINER
+    ========================= */
+
+    .container {
+      max-width: 850px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 650px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+
+      width: 500px;
+      height: 500px;
+
+      background: radial-gradient(
+        circle,
+        rgba(0, 229, 255, 0.12),
+        transparent 65%
+      );
+
+      filter: blur(20px);
+      z-index: -1;
+    }
+
+    /* =========================
+       FOTO
+    ========================= */
+
+    .avatar-wrapper {
+      width: 155px;
+      height: 155px;
+
+      padding: 4px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          130deg,
+          var(--cyan),
+          var(--blue),
+          var(--purple),
+          var(--cyan)
+        );
+
+      background-size: 300% 300%;
+
+      animation:
+        borderColor 7s ease infinite,
+        avatarGlow 3s ease-in-out infinite;
+
+      position: relative;
+    }
+
+    .avatar-wrapper::before {
+      content: "";
+
+      position: absolute;
+      inset: -12px;
+
+      border-radius: 50%;
+
+      background: linear-gradient(
+        130deg,
+        var(--cyan),
+        var(--purple)
+      );
+
+      filter: blur(25px);
+      opacity: 0.35;
+
+      z-index: -1;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+
+      border-radius: 50%;
+
+      object-fit: cover;
+
+      display: block;
+
+      border: 3px solid #03060b;
+
+      /* IMPORTANTE:
+         não altera a cor da foto */
+      filter: none !important;
+    }
+
+    @keyframes borderColor {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes avatarGlow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+      }
+
+      50% {
+        box-shadow: 0 0 40px rgba(112, 71, 255, 0.25);
+      }
+    }
+
+    .hero h1 {
+      margin-top: 28px;
+
+      font-size: clamp(38px, 7vw, 62px);
+      font-weight: 900;
+
+      letter-spacing: -2px;
+    }
+
+    .hero-description {
+      max-width: 650px;
+
+      margin-top: 18px;
+
+      color: var(--muted);
+
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .tech {
+      margin-top: 22px;
+
+      display: inline-block;
+
+      padding: 9px 16px;
+
+      border: 1px solid rgba(0, 229, 255, 0.2);
+
+      border-radius: 30px;
+
+      background: rgba(0, 229, 255, 0.04);
+
+      color: var(--cyan);
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 1px;
+    }
+
+    .availability {
+      margin-top: 14px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+
+      color: #6f7d8e;
+
+      font-size: 11px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: #40e38a;
+
+      box-shadow: 0 0 10px rgba(64, 227, 138, 0.7);
+    }
+
+    /* =========================
+       TITULOS
+    ========================= */
+
+    .section-header {
+      margin-bottom: 35px;
+    }
+
+    .section-label {
+      color: var(--cyan);
+
+      font-size: 11px;
+      font-weight: 800;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 900;
+
+      margin-bottom: 10px;
+    }
+
+    .section-description {
+      color: var(--muted);
+
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       LINKS VERTICAIS
+    ========================= */
+
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link-item {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      width: 100%;
+
+      padding: 18px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      background: var(--card);
+
+      backdrop-filter: blur(14px);
+
+      text-decoration: none;
+      color: var(--text);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.3s,
+        border-color 0.3s,
+        background 0.3s,
+        box-shadow 0.3s;
+    }
+
+    .link-item::before {
+      content: "";
+
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      width: 2px;
+      height: 100%;
+
+      background: linear-gradient(
+        to bottom,
+        var(--cyan),
+        var(--purple)
+      );
+
+      transform: scaleY(0);
+
+      transition: 0.3s;
+    }
+
+    .link-item:hover {
+      transform: translateX(6px);
+
+      background: var(--card-hover);
+
+      border-color: rgba(0, 229, 255, 0.2);
+
+      box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.25),
+        0 0 25px rgba(0, 229, 255, 0.04);
+    }
+
+    .link-item:hover::before {
+      transform: scaleY(1);
+    }
+
+    .link-image {
+      width: 48px;
+      height: 48px;
+
+      border-radius: 12px;
+
+      object-fit: cover;
+
+      margin-right: 16px;
+
+      border: 1px solid var(--border);
+    }
+
+    .link-info {
+      flex: 1;
+    }
+
+    .link-name {
+      font-size: 15px;
+      font-weight: 800;
+
+      margin-bottom: 4px;
+    }
+
+    .link-description {
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    .link-arrow {
+      color: #68778a;
+
+      font-size: 20px;
+
+      transition: 0.3s;
+    }
+
+    .link-item:hover .link-arrow {
+      color: var(--cyan);
+      transform: translateX(4px);
+    }
+
+    /* =========================
+       DESTAQUE
+    ========================= */
+
+    .highlight {
+      position: relative;
+
+      padding: 35px;
+
+      border-radius: 22px;
+
+      border: 1px solid rgba(0, 229, 255, 0.12);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0, 229, 255, 0.07),
+          rgba(112, 71, 255, 0.07)
+        );
+
+      overflow: hidden;
+    }
+
+    .highlight::before {
+      content: "";
+
+      position: absolute;
+
+      width: 250px;
+      height: 250px;
+
+      right: -100px;
+      top: -120px;
+
+      background: var(--cyan);
+
+      filter: blur(100px);
+
+      opacity: 0.12;
+    }
+
+    .highlight h3 {
+      font-size: 28px;
+
+      margin-bottom: 12px;
+    }
+
+    .highlight p {
+      max-width: 600px;
+
+      color: var(--muted);
+
+      line-height: 1.7;
+
+      font-size: 14px;
+
+      margin-bottom: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+
+      align-items: center;
+      gap: 8px;
+
+      padding: 12px 18px;
+
+      border-radius: 10px;
+
+      text-decoration: none;
+
+      background: var(--text);
+
+      color: #03060b;
+
+      font-size: 13px;
+      font-weight: 800;
+
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 10px 30px rgba(0, 229, 255, 0.15);
+    }
+
+    /* =========================
+       SOBRE
+    ========================= */
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 18px;
+    }
+
+    .about-card {
+      padding: 25px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 18px;
+
+      background: var(--card);
+
+      backdrop-filter: blur(12px);
+    }
+
+    .about-card h3 {
+      font-size: 17px;
+
+      margin-bottom: 12px;
+    }
+
+    .about-card p {
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.8;
+    }
+
+    /* =========================
+       SERVIÇOS
+    ========================= */
+
+    .services-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service {
+      display: flex;
+
+      align-items: center;
+
+      gap: 20px;
+
+      padding: 23px 5px;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .service-number {
+      min-width: 35px;
+
+      color: var(--cyan);
+
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .service-content {
+      flex: 1;
+    }
+
+    .service h3 {
+      font-size: 16px;
+
+      margin-bottom: 6px;
+    }
+
+    .service p {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.6;
+    }
+
+    /* =========================
+       PROJETOS
+    ========================= */
+
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+
+      gap: 12px;
+    }
+
+    .project {
+      display: flex;
+
+      align-items: center;
+
+      gap: 16px;
+
+      padding: 17px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 15px;
+
+      background: var(--card);
+
+      text-decoration: none;
+
+      color: var(--text);
+
+      transition: 0.3s;
+    }
+
+    .project:hover {
+      transform: translateX(5px);
+
+      background: var(--card-hover);
+
+      border-color: rgba(0, 229, 255, 0.18);
+    }
+
+    .project-image {
+      width: 55px;
+      height: 55px;
+
+      object-fit: cover;
+
+      border-radius: 12px;
+    }
+
+    .project-info {
+      flex: 1;
+    }
+
+    .project-info h3 {
+      font-size: 15px;
+
+      margin-bottom: 5px;
+    }
+
+    .project-info p {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.5;
+    }
+
+    /* =========================
+       REDES
+    ========================= */
+
+    .socials {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+    }
+
+    .social {
+      flex: 1;
+
+      min-width: 150px;
+
+      padding: 15px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      background: var(--card);
+
+      text-decoration: none;
+
+      color: var(--text);
+
+      text-align: center;
+
+      font-size: 13px;
+
+      transition: 0.3s;
+    }
+
+    .social:hover {
+      border-color: rgba(0, 229, 255, 0.25);
+
+      color: var(--cyan);
+
+      transform: translateY(-3px);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 35px 20px;
+
+      text-align: center;
+
+      border-top: 1px solid var(--border);
+
+      color: #596677;
+
+      font-size: 10px;
+
+      letter-spacing: 1px;
+    }
+
+    /* =========================
+       RESPONSIVO
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero {
+        min-height: 590px;
+      }
+
+      .avatar-wrapper {
+        width: 135px;
+        height: 135px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .section-title {
+        font-size: 27px;
+      }
+
+      .highlight {
+        padding: 25px;
+      }
+
+      .highlight h3 {
+        font-size: 24px;
+      }
+
+      .social {
+        min-width: 100%;
+      }
+
+      .link-item {
+        padding: 15px;
+      }
+
+      .link-image {
+        width: 43px;
+        height: 43px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
+  <!-- Luzes do fundo -->
+  <div class="background-light light-one"></div>
+  <div class="background-light light-two"></div>
+  <div class="background-light light-three"></div>
 
-    <header>
-        <div class="container">
 
-            <nav>
+  <!-- =========================
+       NAVBAR
+  ========================= -->
 
-                <a href="#" class="logo">
-                    R<span>.</span>
-                </a>
+  <nav>
+    <div class="nav-container">
 
-                <ul class="nav-links">
-                    <li><a href="#links">Links</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                </ul>
+      <a href="#" class="logo">
+        R<span>.</span>
+      </a>
 
-            </nav>
+      <div class="nav-links">
+        <a href="#links">Links</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#projetos">Projetos</a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <main>
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero">
+
+      <div class="avatar-wrapper">
+        <img
+          src="img/WA_1784422331777.jpeg"
+          alt="Foto de perfil de Rarison Keven"
+          class="avatar"
+        >
+      </div>
+
+      <h1>Rarison Keven</h1>
+
+      <p class="hero-description">
+        Desenvolvimento web & tecnologia.
+        Criando projetos, experiências e soluções digitais.
+        Reparos de sites.
+      </p>
+
+      <div class="tech">
+        HTML • CSS • JAVASCRIPT
+      </div>
+
+      <div class="availability">
+        <span class="status-dot"></span>
+        Disponível para projetos
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         LINKS
+    ========================= -->
+
+    <section id="links">
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-label">
+            MEUS LINKS
+          </div>
+
+          <h2 class="section-title">
+            Onde me encontrar
+          </h2>
+
+          <p class="section-description">
+            Alguns dos meus principais links e redes.
+          </p>
 
         </div>
-    </header>
 
 
-    <main>
+        <div class="links-list">
 
-        <!-- PERFIL -->
+          <a
+            href="https://wa.me/5595991501077"
+            target="_blank"
+            class="link-item"
+          >
 
-        <section class="hero">
+            <img
+              src="img/ef55acaed134cf97d2a5f9f1e4815295.jpg"
+              class="link-image"
+              alt="WhatsApp"
+            >
 
-            <div class="container">
+            <div class="link-info">
+              <div class="link-name">
+                WhatsApp
+              </div>
 
-                <div class="profile">
-
-                    <div class="avatar-wrapper">
-
-                        <img
-                            class="avatar"
-                            src="img/WA_1784422331777.jpeg"
-                            alt="Foto de perfil de Rarison Keven"
-                        >
-
-                    </div>
-
-
-                    <h1>
-                        <span>Rarison Keven</span>
-                    </h1>
-
-
-                    <p class="hero-description">
-                        Desenvolvimento web & tecnologia.
-                        Criando projetos, experiências e soluções digitais.
-                        Reparos de sites.
-                    </p>
-
-
-                    <div class="tech">
-                        HTML • CSS • JAVASCRIPT
-                    </div>
-
-
-                    <div class="availability">
-
-                        <span class="status-dot"></span>
-
-                        Disponível para projetos
-
-                    </div>
-
-                </div>
-
+              <div class="link-description">
+                Fale comigo
+              </div>
             </div>
 
-        </section>
-
-
-        <!-- MEUS LINKS -->
-
-        <section
-            id="links"
-            class="links-section"
-        >
-
-            <div class="container">
-
-                <div class="section-title">
-
-                    <small>MEUS LINKS</small>
-
-                    <h2>Onde me encontrar</h2>
-
-                    <p>
-                        Alguns dos meus principais links e redes.
-                    </p>
-
-                </div>
-
-
-                <div class="links-grid">
-
-
-                    <!-- WHATSAPP -->
-
-                    <a
-                        href="https://wa.me/5595991501077"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="link-card"
-                    >
-
-                        <img
-                            src="img/ef55acaed134cf97d2a5f9f1e4815295.jpg"
-                            alt="WhatsApp"
-                        >
-
-                        <strong>WhatsApp</strong>
-
-                        <span>Fale comigo</span>
-
-                    </a>
-
-
-                    <!-- GITHUB -->
-
-                    <a
-                        href="https://github.com/callebydev"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="link-card"
-                    >
-
-                        <img
-                            src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
-                            alt="GitHub"
-                        >
-
-                        <strong>GitHub</strong>
-
-                        <span>Meus códigos</span>
-
-                    </a>
-
-
-                    <!-- INSTAGRAM -->
-
-                    <a
-                        href="https://www.instagram.com/rk.dacruz"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="link-card"
-                    >
-
-                        <img
-                            src="img/ae599d8043cac580437e26da1f8c8aeb.jpg"
-                            alt="Instagram"
-                        >
-
-                        <strong>Instagram</strong>
-
-                        <span>Meu perfil</span>
-
-                    </a>
-
-
-                    <!-- DISCORD -->
-
-                    <a
-                        href="https://discord.gg/H3mnq7Nfp"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="link-card"
-                    >
-
-                        <img
-                            src="img/b5d4ce10a744861ffd3314d20d116976.jpg"
-                            alt="Discord"
-                        >
-
-                        <strong>Discord</strong>
-
-                        <span>Meu servidor</span>
-
-                    </a>
-
-
-                    <!-- PORTFÓLIO -->
-
-                    <a
-                        href="https://paleascendancy.github.io/index.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="link-card"
-                    >
-
-                        <img
-                            src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
-                            alt="Portfólio"
-                        >
-
-                        <strong>Portfólio</strong>
-
-                        <span>Ver página</span>
-
-                    </a>
-
-                </div>
-
+            <div class="link-arrow">
+              →
             </div>
 
-        </section>
+          </a>
 
 
-        <!-- DESTAQUE -->
+          <a
+            href="https://github.com/callebydev"
+            target="_blank"
+            class="link-item"
+          >
 
-        <section class="highlight">
+            <img
+              src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+              class="link-image"
+              alt="GitHub"
+            >
 
-            <div class="container">
+            <div class="link-info">
+              <div class="link-name">
+                GitHub
+              </div>
 
-                <div class="highlight-box">
-
-                    <div class="highlight-label">
-                        DESTAQUE
-                    </div>
-
-                    <h2>
-                        Meu portfólio
-                    </h2>
-
-                    <p>
-                        Veja meus projetos, experiências e trabalhos
-                        desenvolvidos durante minha jornada na programação.
-                    </p>
-
-                    <a
-                        href="https://paleascendancy.github.io/index.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="portfolio-button"
-                    >
-                        Visitar portfólio →
-                    </a>
-
-                </div>
-
+              <div class="link-description">
+                Meus códigos
+              </div>
             </div>
 
-        </section>
-
-
-        <!-- SOBRE -->
-
-        <section id="sobre">
-
-            <div class="container">
-
-                <div class="section-title">
-
-                    <small>SOBRE MIM</small>
-
-                    <h2>Um pouco sobre mim</h2>
-
-                    <p>
-                        Conheça um pouco do que faço e das tecnologias
-                        que estou usando nos meus projetos.
-                    </p>
-
-                </div>
-
-
-                <div class="about">
-
-                    <div class="card">
-
-                        <h3>Quem sou</h3>
-
-                        <p>
-                            Olá, sou Rarison Keven. Tenho 22 anos e estou
-                            estudando programação. Atualmente trabalho
-                            com HTML, CSS e JavaScript e uso meus próprios
-                            projetos para praticar.
-                        </p>
-
-                    </div>
-
-
-                    <div class="card">
-
-                        <h3>O que gosto de criar</h3>
-
-                        <p>
-                            Gosto de criar páginas organizadas,
-                            responsivas e com um visual moderno,
-                            funcionando bem no celular e no computador.
-                        </p>
-
-                    </div>
-
-                </div>
-
+            <div class="link-arrow">
+              →
             </div>
 
-        </section>
+          </a>
 
 
-        <!-- SERVIÇOS -->
+          <a
+            href="https://www.instagram.com/rk.dacruz"
+            target="_blank"
+            class="link-item"
+          >
 
-        <section id="servicos">
+            <img
+              src="img/ae599d8043cac580437e26da1f8c8aeb.jpg"
+              class="link-image"
+              alt="Instagram"
+            >
 
-            <div class="container">
+            <div class="link-info">
+              <div class="link-name">
+                Instagram
+              </div>
 
-                <div class="section-title">
-
-                    <small>SERVIÇOS</small>
-
-                    <h2>O que posso fazer</h2>
-
-                    <p>
-                        Alguns tipos de páginas que consigo criar
-                        usando HTML, CSS e JavaScript.
-                    </p>
-
-                </div>
-
-
-                <div class="services">
-
-
-                    <div class="service">
-
-                        <span class="service-number">01</span>
-
-                        <h3>Página de Links</h3>
-
-                        <p>
-                            Uma página para reunir suas redes sociais,
-                            contatos e outros links em um só lugar.
-                        </p>
-
-                    </div>
-
-
-                    <div class="service">
-
-                        <span class="service-number">02</span>
-
-                        <h3>Landing Page</h3>
-
-                        <p>
-                            Página para apresentar uma pessoa,
-                            projeto, serviço ou negócio.
-                        </p>
-
-                    </div>
-
-
-                    <div class="service">
-
-                        <span class="service-number">03</span>
-
-                        <h3>Portfólio</h3>
-
-                        <p>
-                            Página para mostrar seus trabalhos,
-                            projetos, habilidades e contatos.
-                        </p>
-
-                    </div>
-
-
-                    <div class="service">
-
-                        <span class="service-number">04</span>
-
-                        <h3>Página Personalizada</h3>
-
-                        <p>
-                            Crio a página de acordo com o estilo,
-                            informações e objetivo que você quiser.
-                        </p>
-
-                    </div>
-
-
-                    <div class="service">
-
-                        <span class="service-number">05</span>
-
-                        <h3>Reparos em Sites</h3>
-
-                        <p>
-                            Correções de problemas, textos,
-                            imagens, cores, layout e outros detalhes.
-                        </p>
-
-                    </div>
-
-
-                    <div class="service">
-
-                        <span class="service-number">06</span>
-
-                        <h3>Interface Web</h3>
-
-                        <p>
-                            Criação de páginas responsivas para
-                            diferentes tipos de projetos.
-                        </p>
-
-                    </div>
-
-                </div>
-
+              <div class="link-description">
+                Meu perfil
+              </div>
             </div>
 
-        </section>
-
-
-        <!-- PROJETOS -->
-
-        <section id="projetos">
-
-            <div class="container">
-
-                <div class="section-title">
-
-                    <small>MEUS TRABALHOS</small>
-
-                    <h2>Projetos</h2>
-
-                    <p>
-                        Alguns projetos que fiz para estudar,
-                        testar ideias e montar meu portfólio.
-                    </p>
-
-                </div>
-
-
-                <div class="projects">
-
-
-                    <div class="project">
-
-                        <div class="project-image">
-
-                            <img
-                                src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
-                                alt="Projetos no GitHub"
-                            >
-
-                        </div>
-
-                        <div class="project-content">
-
-                            <h3>Projetos no GitHub</h3>
-
-                            <p>
-                                Meus códigos e projetos desenvolvidos
-                                durante meus estudos.
-                            </p>
-
-                            <a
-                                href="https://github.com/callebydev"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="project-link"
-                            >
-                                Ver no GitHub →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="project">
-
-                        <div class="project-image">
-
-                            <img
-                                src="img/ae599d8043cac580437e26da1f8c8aeb.jpg"
-                                alt="Portfólio"
-                            >
-
-                        </div>
-
-                        <div class="project-content">
-
-                            <h3>Portfólio</h3>
-
-                            <p>
-                                Uma página para apresentar projetos,
-                                informações e links.
-                            </p>
-
-                            <a
-                                href="https://paleascendancy.github.io/index.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="project-link"
-                            >
-                                Ver projeto →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="project">
-
-                        <div class="project-image">
-
-                            <img
-                                src="img/WA_1784422331777.jpeg"
-                                alt="Página pessoal"
-                            >
-
-                        </div>
-
-                        <div class="project-content">
-
-                            <h3>Esta página</h3>
-
-                            <p>
-                                Página pessoal criada com HTML e CSS
-                                para reunir meus links e apresentar meu trabalho.
-                            </p>
-
-                            <a
-                                href="#"
-                                class="project-link"
-                            >
-                                Você está aqui →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
+            <div class="link-arrow">
+              →
             </div>
 
-        </section>
+          </a>
 
 
-        <!-- REDES -->
+          <a
+            href="https://discord.gg/H3mnq7Nfp"
+            target="_blank"
+            class="link-item"
+          >
 
-        <section>
+            <img
+              src="img/b5d4ce10a744861ffd3314d20d116976.jpg"
+              class="link-image"
+              alt="Discord"
+            >
 
-            <div class="container">
+            <div class="link-info">
+              <div class="link-name">
+                Discord
+              </div>
 
-                <div
-                    class="section-title"
-                    style="text-align: center;"
-                >
-
-                    <small>REDES</small>
-
-                    <h2>Vamos conversar?</h2>
-
-                    <p>
-                        Você pode entrar em contato comigo pelas redes abaixo.
-                    </p>
-
-                </div>
-
-
-                <div class="socials">
-
-
-                    <a
-                        href="https://wa.me/5595991501077"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social"
-                    >
-
-                        <img
-                            src="img/ef55acaed134cf97d2a5f9f1e4815295.jpg"
-                            alt="WhatsApp"
-                        >
-
-                        <span>WhatsApp</span>
-
-                    </a>
-
-
-                    <a
-                        href="https://www.instagram.com/rk.dacruz"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social"
-                    >
-
-                        <img
-                            src="img/ae599d8043cac580437e26da1f8c8aeb.jpg"
-                            alt="Instagram"
-                        >
-
-                        <span>Instagram</span>
-
-                    </a>
-
-
-                    <a
-                        href="https://github.com/callebydev"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social"
-                    >
-
-                        <img
-                            src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
-                            alt="GitHub"
-                        >
-
-                        <span>GitHub</span>
-
-                    </a>
-
-
-                    <a
-                        href="https://discord.gg/H3mnq7Nfp"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social"
-                    >
-
-                        <img
-                            src="img/b5d4ce10a744861ffd3314d20d116976.jpg"
-                            alt="Discord"
-                        >
-
-                        <span>Discord</span>
-
-                    </a>
-
-                </div>
-
+              <div class="link-description">
+                Meu servidor
+              </div>
             </div>
 
-        </section>
+            <div class="link-arrow">
+              →
+            </div>
 
-    </main>
+          </a>
 
 
-    <!-- FOOTER -->
+          <a
+            href="https://paleascendancy.github.io/index.html"
+            target="_blank"
+            class="link-item"
+          >
 
-    <footer>
+            <img
+              src="img/WA_1784422331777.jpeg"
+              class="link-image"
+              alt="Portfólio"
+            >
 
-        <div class="container">
+            <div class="link-info">
+              <div class="link-name">
+                Portfólio
+              </div>
+
+              <div class="link-description">
+                Ver página
+              </div>
+            </div>
+
+            <div class="link-arrow">
+              →
+            </div>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         DESTAQUE
+    ========================= -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="highlight">
+
+          <div class="section-label">
+            DESTAQUE
+          </div>
+
+          <h3>
+            Meu portfólio
+          </h3>
+
+          <p>
+            Veja meus projetos, experiências e trabalhos
+            desenvolvidos durante minha jornada na programação.
+          </p>
+
+          <a
+            href="https://paleascendancy.github.io/index.html"
+            target="_blank"
+            class="button"
+          >
+            Visitar portfólio →
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SOBRE
+    ========================= -->
+
+    <section id="sobre">
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-label">
+            SOBRE MIM
+          </div>
+
+          <h2 class="section-title">
+            Um pouco sobre mim
+          </h2>
+
+          <p class="section-description">
+            Conheça um pouco do que faço e das tecnologias
+            que estou usando nos meus projetos.
+          </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+          <div class="about-card">
+
+            <h3>
+              Quem sou
+            </h3>
 
             <p>
-                © 2026 RARISON KEVEN — DESENVOLVIMENTO WEB
+              Olá, sou Rarison Keven. Tenho 22 anos e estou
+              estudando programação. Atualmente trabalho com
+              HTML, CSS e JavaScript e uso meus próprios
+              projetos para praticar.
             </p>
+
+          </div>
+
+
+          <div class="about-card">
+
+            <h3>
+              O que gosto de criar
+            </h3>
+
+            <p>
+              Gosto de criar páginas organizadas, responsivas
+              e com um visual moderno, funcionando bem no
+              celular e no computador.
+            </p>
+
+          </div>
 
         </div>
 
-    </footer>
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SERVIÇOS
+    ========================= -->
+
+    <section id="servicos">
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-label">
+            SERVIÇOS
+          </div>
+
+          <h2 class="section-title">
+            O que posso fazer
+          </h2>
+
+          <p class="section-description">
+            Alguns tipos de páginas que consigo criar usando
+            HTML, CSS e JavaScript.
+          </p>
+
+        </div>
+
+
+        <div class="services-list">
+
+          <div class="service">
+
+            <div class="service-number">
+              01
+            </div>
+
+            <div class="service-content">
+
+              <h3>
+                Página de Links
+              </h3>
+
+              <p>
+                Uma página para reunir suas redes sociais,
+                contatos e outros links em um só lugar.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="service">
+
+            <div class="service-number">
+              02
+            </div>
+
+            <div class="service-content">
+
+              <h3>
+                Landing Page
+              </h3>
+
+              <p>
+                Página para apresentar uma pessoa,
+                projeto, serviço ou negócio.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="service">
+
+            <div class="service-number">
+              03
+            </div>
+
+            <div class="service-content">
+
+              <h3>
+                Portfólio
+              </h3>
+
+              <p>
+                Página para mostrar seus trabalhos,
+                projetos, habilidades e contatos.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="service">
+
+            <div class="service-number">
+              04
+            </div>
+
+            <div class="service-content">
+
+              <h3>
+                Página Personalizada
+              </h3>
+
+              <p>
+                Crio a página de acordo com o estilo,
+                informações e objetivo que você quiser.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="service">
+
+            <div class="service-number">
+              05
+            </div>
+
+            <div class="service-content">
+
+              <h3>
+                Reparos em Sites
+              </h3>
+
+              <p>
+                Correções de problemas, textos, imagens,
+                cores, layout e outros detalhes.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="service">
+
+            <div class="service-number">
+              06
+            </div>
+
+            <div class="service-content">
+
+              <h3>
+                Interface Web
+              </h3>
+
+              <p>
+                Criação de páginas responsivas para
+                diferentes tipos de projetos.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROJETOS
+    ========================= -->
+
+    <section id="projetos">
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-label">
+            MEUS TRABALHOS
+          </div>
+
+          <h2 class="section-title">
+            Projetos
+          </h2>
+
+          <p class="section-description">
+            Alguns projetos que fiz para estudar,
+            testar ideias e montar meu portfólio.
+          </p>
+
+        </div>
+
+
+        <div class="projects-list">
+
+
+          <a
+            href="https://github.com/callebydev"
+            target="_blank"
+            class="project"
+          >
+
+            <img
+              src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+              class="project-image"
+              alt="Projetos no GitHub"
+            >
+
+            <div class="project-info">
+
+              <h3>
+                Projetos no GitHub
+              </h3>
+
+              <p>
+                Meus códigos e projetos desenvolvidos
+                durante meus estudos.
+              </p>
+
+            </div>
+
+            <span>
+              →
+            </span>
+
+          </a>
+
+
+          <a
+            href="https://paleascendancy.github.io/index.html"
+            target="_blank"
+            class="project"
+          >
+
+            <img
+              src="img/ae599d8043cac580437e26da1f8c8aeb.jpg"
+              class="project-image"
+              alt="Portfólio"
+            >
+
+            <div class="project-info">
+
+              <h3>
+                Portfólio
+              </h3>
+
+              <p>
+                Uma página para apresentar projetos,
+                informações e links.
+              </p>
+
+            </div>
+
+            <span>
+              →
+            </span>
+
+          </a>
+
+
+          <div class="project">
+
+            <img
+              src="img/WA_1784422331777.jpeg"
+              class="project-image"
+              alt="Página pessoal"
+            >
+
+            <div class="project-info">
+
+              <h3>
+                Esta página
+              </h3>
+
+              <p>
+                Página pessoal criada com HTML e CSS
+                para reunir meus links e apresentar
+                meu trabalho.
+              </p>
+
+            </div>
+
+            <span>
+              ✓
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         REDES
+    ========================= -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-label">
+            REDES
+          </div>
+
+          <h2 class="section-title">
+            Vamos conversar
+          </h2>
+
+        </div>
+
+
+        <div class="socials">
+
+          <a
+            href="https://wa.me/5595991501077"
+            target="_blank"
+            class="social"
+          >
+            WhatsApp
+          </a>
+
+          <a
+            href="https://www.instagram.com/rk.dacruz"
+            target="_blank"
+            class="social"
+          >
+            Instagram
+          </a>
+
+          <a
+            href="https://github.com/callebydev"
+            target="_blank"
+            class="social"
+          >
+            GitHub
+          </a>
+
+          <a
+            href="https://discord.gg/H3mnq7Nfp"
+            target="_blank"
+            class="social"
+          >
+            Discord
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+    © 2026 RARISON KEVEN — DESENVOLVIMENTO WEB
+  </footer>
 
 </body>
 </html>
