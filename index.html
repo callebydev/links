@@ -4,26 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Rarison — Desenvolvimento Web</title>
+    <title>Rarison | Desenvolvedor Web</title>
 
     <meta
         name="description"
-        content="Rarison — Criação de páginas, portfólios e sites personalizados."
-    >
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
+        content="Página pessoal de Rarison. Desenvolvimento de páginas para portfólio, links, projetos e páginas personalizadas."
     >
 
     <style>
-
         :root {
             --bg: #070b12;
             --bg-card: #0c1420;
+            --bg-card-hover: #101b2a;
 
             --text: #f5f7fb;
             --muted: #8b98a9;
@@ -32,7 +24,7 @@
             --blue: #168cff;
             --purple: #7047ff;
 
-            --border: rgba(255,255,255,.09);
+            --border: rgba(255, 255, 255, 0.08);
         }
 
         * {
@@ -46,1620 +38,1261 @@
         }
 
         body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
             overflow-x: hidden;
-
-            background:
-                radial-gradient(
-                    circle at 50% 0%,
-                    rgba(0,229,255,.12),
-                    transparent 35%
-                ),
-                radial-gradient(
-                    circle at 100% 50%,
-                    rgba(112,71,255,.10),
-                    transparent 35%
-                ),
-                var(--bg);
-
-            color: var(--text);
-
-            font-family: "Inter", sans-serif;
         }
-
-        /* =========================
-           FUNDO
-        ========================= */
 
         body::before {
             content: "";
-
             position: fixed;
-            inset: 0;
-
-            pointer-events: none;
-
-            background-image:
-                linear-gradient(
-                    rgba(255,255,255,.025) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(255,255,255,.025) 1px,
-                    transparent 1px
-                );
-
-            background-size: 55px 55px;
-
-            mask-image:
-                linear-gradient(
-                    to bottom,
-                    black,
-                    transparent 80%
-                );
-        }
-
-        .glow {
-            position: fixed;
-
-            width: 320px;
-            height: 320px;
-
-            border-radius: 50%;
-
-            filter: blur(110px);
-
-            opacity: .15;
-
-            pointer-events: none;
-        }
-
-        .glow-one {
-            top: 5%;
-            left: -160px;
-
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            left: -150px;
             background: var(--cyan);
+            opacity: 0.08;
+            filter: blur(130px);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
-        .glow-two {
-            top: 45%;
-            right: -160px;
-
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            right: -200px;
+            bottom: -200px;
             background: var(--purple);
+            opacity: 0.09;
+            filter: blur(130px);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
-        /* =========================
-           CONTAINER
-        ========================= */
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
         .container {
-            position: relative;
-
-            z-index: 2;
-
-            width: min(
-                calc(100% - 30px),
-                680px
-            );
-
+            width: min(1100px, 92%);
             margin: auto;
-
-            padding: 55px 0 40px;
         }
 
-        /* =========================
-           PERFIL
-        ========================= */
+        /* NAVBAR */
 
-        .profile {
-            text-align: center;
-
-            animation:
-                fadeUp .7s ease both;
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(7, 11, 18, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
         }
 
-        .avatar-wrapper {
-            position: relative;
-
-            width: 120px;
-            height: 120px;
-
-            margin: 0 auto 22px;
+        nav {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .avatar-wrapper::before {
-            content: "";
-
-            position: absolute;
-
-            inset: -4px;
-
-            border-radius: 50%;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--cyan),
-                    var(--blue),
-                    var(--purple)
-                );
-
-            animation:
-                rotate 5s linear infinite;
-        }
-
-        .avatar {
-            position: relative;
-
-            width: 120px;
-            height: 120px;
-
-            display: block;
-
-            object-fit: cover;
-
-            border-radius: 50%;
-
-            border: 4px solid #080d15;
-
-            background: #111a27;
-        }
-
-        .status {
-            position: absolute;
-
-            right: 3px;
-            bottom: 7px;
-
-            width: 21px;
-            height: 21px;
-
-            border-radius: 50%;
-
-            background: #20d36b;
-
-            border: 4px solid #080d15;
-
-            box-shadow:
-                0 0 15px rgba(32,211,107,.7);
-        }
-
-        h1 {
-            margin-bottom: 8px;
-
-            font-size:
-                clamp(
-                    38px,
-                    9vw,
-                    52px
-                );
-
-            font-weight: 900;
-
-            letter-spacing: -2.5px;
-        }
-
-        .gradient {
-            background:
-                linear-gradient(
-                    90deg,
-                    #fff,
-                    #8cefff,
-                    #a68aff
-                );
-
-            -webkit-background-clip: text;
-            background-clip: text;
-
-            color: transparent;
-        }
-
-        .role {
-            margin-bottom: 12px;
-
-            color: #b9c5d4;
-
-            font-size: 14px;
-
-            font-weight: 600;
-        }
-
-        .profile-text {
-            max-width: 490px;
-
-            margin: auto;
-
-            color: var(--muted);
-
-            font-size: 13px;
-
-            line-height: 1.7;
-        }
-
-        .tag {
-            display: inline-block;
-
-            margin-top: 17px;
-
-            padding: 8px 14px;
-
-            border-radius: 100px;
-
-            border:
-                1px solid
-                rgba(0,229,255,.2);
-
-            background:
-                rgba(0,229,255,.05);
-
-            color: #9defff;
-
-            font-size: 10px;
-
+        .logo {
+            font-size: 22px;
             font-weight: 800;
-
             letter-spacing: 1px;
         }
 
-        /* =========================
-           TÍTULOS
-        ========================= */
+        .logo span {
+            color: var(--cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .profile {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .avatar-wrapper {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 25px;
+            padding: 4px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                var(--cyan),
+                var(--blue),
+                var(--purple)
+            );
+            animation: rotateBorder 5s linear infinite;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--bg);
+            display: block;
+        }
+
+        @keyframes rotateBorder {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 229, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            padding: 7px 13px;
+            border-radius: 30px;
+            color: var(--cyan);
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background: #20e060;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #20e060;
+        }
+
+        h1 {
+            font-size: clamp(42px, 8vw, 75px);
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        h1 span {
+            background: linear-gradient(
+                90deg,
+                var(--cyan),
+                var(--blue),
+                var(--purple)
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .tech {
+            margin-top: 25px;
+            color: var(--cyan);
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 22px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(
+                90deg,
+                var(--cyan),
+                var(--blue)
+            );
+
+            color: #001018;
+            font-weight: bold;
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 90px 0;
+        }
 
         .section-title {
-            display: flex;
+            margin-bottom: 45px;
+        }
 
-            align-items: center;
-
-            gap: 14px;
-
-            margin:
-                42px 0 16px;
-
-            color: #dce5ef;
-
-            font-size: 10px;
-
-            font-weight: 800;
-
+        .section-title small {
+            color: var(--cyan);
             letter-spacing: 2px;
-
-            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
         }
 
-        .section-title::before,
-        .section-title::after {
-            content: "";
-
-            flex: 1;
-
-            height: 1px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255,255,255,.16)
-                );
+        .section-title h2 {
+            font-size: 35px;
+            margin-top: 8px;
         }
 
-        .section-title::after {
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(255,255,255,.16),
-                    transparent
-                );
+        .section-title p {
+            color: var(--muted);
+            margin-top: 10px;
+            line-height: 1.6;
         }
 
-        /* =========================
-           SOBRE
-        ========================= */
+        /* SOBRE */
 
         .about {
-            padding: 22px;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius: 18px;
-
-            background:
-                rgba(12,20,32,.75);
-
-            color: #9ba9ba;
-
-            font-size: 12px;
-
-            line-height: 1.8;
-        }
-
-        .about strong {
-            color: white;
-
-            font-size: 14px;
-        }
-
-        /* =========================
-           LINKS
-        ========================= */
-
-        .links {
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 12px;
-        }
-
-        .link {
-            position: relative;
-
-            display: flex;
-
-            align-items: center;
-
-            min-height: 70px;
-
-            padding: 13px 18px;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius: 17px;
-
-            background:
-                linear-gradient(
-                    110deg,
-                    rgba(17,29,44,.88),
-                    rgba(10,17,28,.72)
-                );
-
-            color: white;
-
-            text-decoration: none;
-
-            overflow: hidden;
-
-            transition:
-                .25s ease;
-        }
-
-        .link::before {
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-            left: -100%;
-
-            width: 100%;
-            height: 100%;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255,255,255,.06),
-                    transparent
-                );
-
-            transition: .6s;
-        }
-
-        .link:hover::before {
-            left: 100%;
-        }
-
-        .link:hover {
-            transform:
-                translateY(-3px);
-
-            border-color:
-                rgba(0,229,255,.3);
-
-            box-shadow:
-                0 15px 35px
-                rgba(0,0,0,.3);
-        }
-
-        .icon {
-            width: 44px;
-            height: 44px;
-
-            flex-shrink: 0;
-
-            margin-right: 14px;
-
             display: grid;
-
-            place-items: center;
-
-            overflow: hidden;
-
-            border-radius: 12px;
-
-            background:
-                rgba(255,255,255,.04);
-
-            border:
-                1px solid
-                rgba(255,255,255,.08);
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
         }
 
-        .icon img {
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            padding: 7px;
-
-            border-radius: 12px;
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 28px;
+            transition: 0.3s;
         }
 
-        .link-content {
-            flex: 1;
+        .card:hover {
+            transform: translateY(-5px);
+            background: var(--bg-card-hover);
+            border-color: rgba(0, 229, 255, 0.2);
         }
 
-        .link-title {
-            display: block;
-
-            margin-bottom: 4px;
-
-            font-size: 13px;
-
-            font-weight: 800;
+        .card h3 {
+            margin-bottom: 15px;
         }
 
-        .link-description {
-            display: block;
-
+        .card p {
             color: var(--muted);
-
-            font-size: 10px;
+            line-height: 1.7;
         }
 
-        .arrow {
-            color: #63748a;
+        /* LINKS */
 
-            font-size: 18px;
-
-            transition: .25s;
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
         }
 
-        .link:hover .arrow {
-            color: var(--cyan);
-
-            transform:
-                translateX(4px);
+        .link-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
         }
 
-        /* =========================
-           SERVIÇOS
-        ========================= */
+        .link-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 229, 255, 0.3);
+        }
+
+        .link-card img {
+            width: 55px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 12px;
+        }
+
+        .link-card strong {
+            display: block;
+            font-size: 15px;
+        }
+
+        .link-card span {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* SERVIÇOS */
 
         .services {
             display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 12px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
         }
 
         .service {
-            padding: 20px;
-
-            border:
-                1px solid
-                var(--border);
-
-            border-radius: 17px;
-
-            background:
-                rgba(12,20,32,.72);
-
-            transition: .25s;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 16px;
+            transition: 0.3s;
         }
 
         .service:hover {
-            transform:
-                translateY(-3px);
-
-            border-color:
-                rgba(0,229,255,.25);
+            transform: translateY(-5px);
+            border-color: rgba(0, 229, 255, 0.25);
         }
 
         .service-number {
             color: var(--cyan);
-
-            font-size: 9px;
-
-            font-weight: 800;
-
-            letter-spacing: 1px;
+            font-size: 13px;
+            font-weight: bold;
         }
 
         .service h3 {
-            margin:
-                9px 0 7px;
-
-            font-size: 13px;
+            margin: 12px 0;
         }
 
         .service p {
             color: var(--muted);
-
-            font-size: 10px;
-
             line-height: 1.6;
+            font-size: 14px;
         }
 
-        /* =========================
-           PORTFÓLIO
-        ========================= */
-
-        .portfolio-text {
-            margin-bottom: 14px;
-
-            color: var(--muted);
-
-            font-size: 11px;
-
-            line-height: 1.7;
-        }
-
-        .projects {
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 13px;
-        }
-
-        .project {
-            position: relative;
-
-            min-height: 190px;
-
-            padding: 23px;
-
-            display: flex;
-
-            align-items: flex-end;
-
-            border:
-                1px solid
-                rgba(0,229,255,.16);
-
-            border-radius: 20px;
-
-            background:
-                #0c1521;
-
-            overflow: hidden;
-
-            color: white;
-
-            text-decoration: none;
-
-            transition: .3s;
-        }
-
-        .project:hover {
-            transform:
-                translateY(-4px);
-
-            border-color:
-                rgba(0,229,255,.4);
-
-            box-shadow:
-                0 20px 45px
-                rgba(0,0,0,.35);
-        }
-
-        .project-image {
-            position: absolute;
-
-            inset: 0;
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            opacity: .15;
-
-            transition: .4s;
-        }
-
-        .project:hover .project-image {
-            opacity: .23;
-
-            transform:
-                scale(1.04);
-        }
-
-        .project-content {
-            position: relative;
-
-            z-index: 2;
-        }
-
-        .project-label {
-            display: block;
-
-            margin-bottom: 8px;
-
-            color: var(--cyan);
-
-            font-size: 9px;
-
-            font-weight: 800;
-
-            letter-spacing: 2px;
-        }
-
-        .project h3 {
-            margin-bottom: 6px;
-
-            font-size: 21px;
-        }
-
-        .project p {
-            max-width: 470px;
-
-            color: #8d9aaa;
-
-            font-size: 11px;
-
-            line-height: 1.6;
-        }
-
-        .project-button {
-            display: inline-block;
-
-            margin-top: 14px;
-
-            padding: 9px 13px;
-
-            border-radius: 8px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    var(--blue),
-                    var(--purple)
-                );
-
-            font-size: 9px;
-
-            font-weight: 800;
-        }
-
-        /* =========================
-           PERSONALIZAÇÃO
-        ========================= */
+        /* PÁGINA PERSONALIZADA */
 
         .custom {
-            padding: 23px;
-
-            border:
-                1px solid
-                rgba(112,71,255,.2);
-
-            border-radius: 19px;
-
+            position: relative;
+            overflow: hidden;
             background:
-                radial-gradient(
-                    circle at 100% 0%,
-                    rgba(112,71,255,.16),
-                    transparent 45%
-                ),
-                rgba(12,20,32,.8);
+                linear-gradient(
+                    135deg,
+                    rgba(0, 229, 255, 0.08),
+                    rgba(112, 71, 255, 0.08)
+                );
+
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            border-radius: 25px;
+            padding: 50px;
         }
 
         .custom h2 {
-            margin-bottom: 9px;
-
-            font-size: 20px;
-
-            letter-spacing: -.5px;
+            font-size: 35px;
+            margin-bottom: 15px;
         }
 
         .custom p {
             color: var(--muted);
-
-            font-size: 11px;
-
+            max-width: 650px;
             line-height: 1.7;
         }
 
-        .custom-tags {
+        .tags {
             display: flex;
-
             flex-wrap: wrap;
-
-            gap: 7px;
-
-            margin-top: 15px;
+            gap: 8px;
+            margin: 25px 0;
         }
 
-        .custom-tags span {
-            padding: 7px 9px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.07);
-
-            border-radius: 7px;
-
-            background:
-                rgba(255,255,255,.03);
-
-            color: #aeb9c8;
-
-            font-size: 9px;
+        .tag {
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            color: var(--muted);
+            font-size: 12px;
         }
 
-        /* =========================
-           BOTÃO WHATSAPP
-        ========================= */
+        /* PROJETOS */
 
-        .contact {
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .project {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            height: 180px;
+            background: #111;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        .project:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 8px;
+        }
+
+        .project-content p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            color: var(--cyan);
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* REDES */
+
+        .socials {
             display: flex;
-
             justify-content: center;
-
-            align-items: center;
-
-            margin-top: 18px;
-
-            padding: 14px;
-
-            border-radius: 13px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    var(--blue),
-                    var(--purple)
-                );
-
-            color: white;
-
-            text-decoration: none;
-
-            font-size: 11px;
-
-            font-weight: 800;
-
-            transition: .25s;
+            flex-wrap: wrap;
+            gap: 15px;
         }
-
-        .contact:hover {
-            transform:
-                translateY(-3px);
-
-            box-shadow:
-                0 12px 30px
-                rgba(112,71,255,.22);
-        }
-
-        /* =========================
-           REDES
-        ========================= */
 
         .social {
             display: flex;
-
-            justify-content: center;
-
-            gap: 11px;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 17px;
+            transition: 0.3s;
         }
 
-        .social a {
-            width: 44px;
-            height: 44px;
-
-            display: grid;
-
-            place-items: center;
-
-            overflow: hidden;
-
-            border-radius: 12px;
-
-            border:
-                1px solid
-                var(--border);
-
-            background:
-                rgba(255,255,255,.03);
-
-            transition: .25s;
+        .social:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 229, 255, 0.25);
         }
 
         .social img {
-            width: 100%;
-            height: 100%;
-
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
             object-fit: cover;
-
-            padding: 8px;
-
-            border-radius: 12px;
         }
 
-        .social a:hover {
-            transform:
-                translateY(-3px);
-
-            border-color:
-                rgba(0,229,255,.3);
+        .social span {
+            font-size: 13px;
         }
 
-        /* =========================
-           FOOTER
-        ========================= */
+        /* FOOTER */
 
         footer {
-            margin-top: 35px;
-
-            padding-top: 22px;
-
-            border-top:
-                1px solid
-                rgba(255,255,255,.06);
-
+            border-top: 1px solid var(--border);
+            padding: 30px 0;
             text-align: center;
-
-            color: #536274;
-
-            font-size: 9px;
-
-            letter-spacing: .5px;
         }
 
-        /* =========================
-           ANIMAÇÕES
-        ========================= */
+        footer p {
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
 
-        @keyframes fadeUp {
+        /* RESPONSIVO */
 
-            from {
-                opacity: 0;
+        @media (max-width: 850px) {
 
-                transform:
-                    translateY(20px);
+            .links-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            to {
-                opacity: 1;
-
-                transform:
-                    translateY(0);
+            .services {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-        }
-
-        @keyframes rotate {
-
-            from {
-                transform:
-                    rotate(0deg);
+            .projects {
+                grid-template-columns: 1fr;
             }
 
-            to {
-                transform:
-                    rotate(360deg);
+            .about {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                height: 60px;
             }
 
-        }
-
-        .link {
-            animation:
-                fadeUp .5s both;
-        }
-
-        .link:nth-child(1) {
-            animation-delay: .1s;
-        }
-
-        .link:nth-child(2) {
-            animation-delay: .2s;
-        }
-
-        .link:nth-child(3) {
-            animation-delay: .3s;
-        }
-
-        .link:nth-child(4) {
-            animation-delay: .4s;
-        }
-
-        /* =========================
-           CELULAR
-        ========================= */
-
-        @media (max-width: 500px) {
-
-            .container {
-                width:
-                    calc(100% - 24px);
-
-                padding-top: 35px;
+            .nav-links {
+                display: none;
             }
 
-            .avatar-wrapper,
-            .avatar {
-                width: 105px;
-                height: 105px;
+            .hero {
+                min-height: 85vh;
+                padding: 60px 0;
             }
 
             h1 {
-                font-size: 38px;
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
             .services {
                 grid-template-columns: 1fr;
             }
 
-            .link {
-                min-height: 64px;
-
-                padding:
-                    10px 13px;
+            .custom {
+                padding: 30px 22px;
             }
 
-            .icon {
-                width: 39px;
-                height: 39px;
-
-                margin-right: 11px;
+            .custom h2 {
+                font-size: 28px;
             }
 
-            .project {
-                min-height: 210px;
-
-                padding: 20px;
+            .avatar-wrapper {
+                width: 125px;
+                height: 125px;
             }
-
         }
-
     </style>
 </head>
 
 <body>
 
-    <div class="glow glow-one"></div>
-    <div class="glow glow-two"></div>
+    <!-- NAVBAR -->
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    R<span>.</span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#links">Links</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
 
-    <main class="container">
+    <!-- PERFIL -->
 
+    <main>
 
-        <!-- =========================
-             PERFIL
-        ========================= -->
+        <section class="hero">
 
-        <section class="profile">
+            <div class="container">
 
-            <div class="avatar-wrapper">
+                <div class="profile">
 
-                <img
-                    class="avatar"
-                    src="https://callebydev.github.io/link/img/WA_1784422331777.jpeg"
-                    alt="Rarison"
-                >
+                    <div class="avatar-wrapper">
 
-                <span class="status"></span>
+                        <img
+                            class="avatar"
+                            src="img/WA_1784422331777.jpeg"
+                            alt="Foto de perfil de Rarison"
+                        >
+
+                    </div>
+
+                    <div class="status">
+                        <span class="status-dot"></span>
+                        Disponível para projetos
+                    </div>
+
+                    <h1>
+                        Olá, eu sou <span>Rarison</span>.
+                    </h1>
+
+                    <p>
+                        Crio páginas para portfólio, links,
+                        apresentação e projetos pessoais.
+                    </p>
+
+                    <div class="tech">
+                        HTML • CSS • JAVASCRIPT
+                    </div>
+
+                    <div class="buttons">
+
+                        <a
+                            href="#servicos"
+                            class="btn btn-primary"
+                        >
+                            O que posso fazer
+                        </a>
+
+                        <a
+                            href="#projetos"
+                            class="btn btn-secondary"
+                        >
+                            Ver meus projetos
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
 
-
-            <h1>
-                <span class="gradient">
-                    Rarison
-                </span>
-            </h1>
-
-
-            <p class="role">
-                Desenvolvedor Web
-            </p>
-
-
-            <p class="profile-text">
-                Crio páginas para portfólio, links,
-                apresentação e projetos pessoais.
-            </p>
-
-
-            <span class="tag">
-                HTML • CSS • JAVASCRIPT
-            </span>
-
         </section>
 
 
-        <!-- =========================
-             SOBRE
-        ========================= -->
+        <!-- SOBRE -->
 
-        <div class="section-title">
-            Sobre mim
-        </div>
+        <section id="sobre">
 
+            <div class="container">
 
-        <section class="about">
+                <div class="section-title">
+                    <small>SOBRE MIM</small>
 
-            <strong>
-                Olá, sou Rarison.
-            </strong>
+                    <h2>Um pouco sobre mim</h2>
 
-            <br><br>
-
-            Tenho 22 anos e estou estudando programação.
-            Atualmente trabalho com HTML, CSS e JavaScript
-            e uso meus próprios projetos para praticar.
-
-            <br><br>
-
-            Gosto de criar páginas com um visual organizado,
-            responsivo e que funcione bem no celular e no computador.
-
-        </section>
-
-
-        <!-- =========================
-             LINKS
-        ========================= -->
-
-        <div class="section-title">
-            Meus links
-        </div>
-
-
-        <nav class="links">
-
-
-            <!-- WHATSAPP -->
-
-            <a
-                class="link"
-                href="https://wa.me/5595991501077"
-                target="_blank"
-                rel="noopener"
-            >
-
-                <div class="icon">
-
-                    <img
-                        src="https://callebydev.github.io/link/img/ef55acaed134cf97d2a5f9f1e4815295.jp"
-                        alt="WhatsApp"
-                    >
-
+                    <p>
+                        Conheça um pouco do que faço e das tecnologias
+                        que estou usando nos meus projetos.
+                    </p>
                 </div>
 
+                <div class="about">
 
-                <div class="link-content">
+                    <div class="card">
 
-                    <span class="link-title">
-                        WhatsApp
-                    </span>
+                        <h3>Quem sou</h3>
 
-                    <span class="link-description">
-                        Entre em contato comigo
-                    </span>
+                        <p>
+                            Olá, sou Rarison. Tenho 22 anos e estou
+                            estudando programação. Atualmente trabalho
+                            com HTML, CSS e JavaScript e uso meus próprios
+                            projetos para praticar.
+                        </p>
 
-                </div>
+                    </div>
 
+                    <div class="card">
 
-                <span class="arrow">
-                    →
-                </span>
+                        <h3>O que gosto de criar</h3>
 
-            </a>
+                        <p>
+                            Gosto de criar páginas organizadas,
+                            responsivas e com um visual moderno,
+                            funcionando bem tanto no celular quanto
+                            no computador.
+                        </p>
 
-
-            <!-- GITHUB -->
-
-            <a
-                class="link"
-                href="https://github.com/callebydev"
-                target="_blank"
-                rel="noopener"
-            >
-
-                <div class="icon">
-
-                    <img
-                        src="https://callebydev.github.io/link/img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
-                        alt="GitHub"
-                    >
+                    </div>
 
                 </div>
-
-
-                <div class="link-content">
-
-                    <span class="link-title">
-                        GitHub
-                    </span>
-
-                    <span class="link-description">
-                        Meus projetos e códigos
-                    </span>
-
-                </div>
-
-
-                <span class="arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <!-- INSTAGRAM -->
-
-            <a
-                class="link"
-                href="https://www.instagram.com/rk.dacruz"
-                target="_blank"
-                rel="noopener"
-            >
-
-                <div class="icon">
-
-                    <img
-                        src="https://callebydev.github.io/link/img/ae599d8043cac580437e26da1f8c8aeb.jpg"
-                        alt="Instagram"
-                    >
-
-                </div>
-
-
-                <div class="link-content">
-
-                    <span class="link-title">
-                        Instagram
-                    </span>
-
-                    <span class="link-description">
-                        Meu Instagram
-                    </span>
-
-                </div>
-
-
-                <span class="arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <!-- DISCORD -->
-
-            <a
-                class="link"
-                href="https://discord.gg/H3mnq7Nfp"
-                target="_blank"
-                rel="noopener"
-            >
-
-                <div class="icon">
-
-                    <img
-                        src="https://callebydev.github.io/link/img/b5d4ce10a744861ffd3314d20d116976.jpg"
-                        alt="Discord"
-                    >
-
-                </div>
-
-
-                <div class="link-content">
-
-                    <span class="link-title">
-                        Discord
-                    </span>
-
-                    <span class="link-description">
-                        Meu servidor no Discord
-                    </span>
-
-                </div>
-
-
-                <span class="arrow">
-                    →
-                </span>
-
-            </a>
-
-        </nav>
-
-
-        <!-- =========================
-             SERVIÇOS
-        ========================= -->
-
-        <div class="section-title">
-            O que posso fazer
-        </div>
-
-
-        <section class="services">
-
-
-            <article class="service">
-
-                <span class="service-number">
-                    01
-                </span>
-
-                <h3>
-                    Página de Links
-                </h3>
-
-                <p>
-                    Uma página para reunir suas redes sociais,
-                    contatos e outros links.
-                </p>
-
-            </article>
-
-
-            <article class="service">
-
-                <span class="service-number">
-                    02
-                </span>
-
-                <h3>
-                    Landing Page
-                </h3>
-
-                <p>
-                    Página para apresentar uma pessoa,
-                    projeto, serviço ou negócio.
-                </p>
-
-            </article>
-
-
-            <article class="service">
-
-                <span class="service-number">
-                    03
-                </span>
-
-                <h3>
-                    Portfólio
-                </h3>
-
-                <p>
-                    Página para mostrar seus trabalhos,
-                    projetos, habilidades e contatos.
-                </p>
-
-            </article>
-
-
-            <article class="service">
-
-                <span class="service-number">
-                    04
-                </span>
-
-                <h3>
-                    Página Personalizada
-                </h3>
-
-                <p>
-                    Crio a página de acordo com o estilo
-                    e as informações que você quiser.
-                </p>
-
-            </article>
-
-
-            <article class="service">
-
-                <span class="service-number">
-                    05
-                </span>
-
-                <h3>
-                    Ajustes em Sites
-                </h3>
-
-                <p>
-                    Alterações de textos, imagens, cores,
-                    layout e outros detalhes.
-                </p>
-
-            </article>
-
-
-            <article class="service">
-
-                <span class="service-number">
-                    06
-                </span>
-
-                <h3>
-                    Interface Web
-                </h3>
-
-                <p>
-                    Criação de páginas responsivas para
-                    diferentes tipos de projetos.
-                </p>
-
-            </article>
-
-        </section>
-
-
-        <!-- =========================
-             PERSONALIZAÇÃO
-        ========================= -->
-
-        <div class="section-title">
-            Página personalizada
-        </div>
-
-
-        <section class="custom">
-
-            <h2>
-                Quer uma página própria?
-            </h2>
-
-            <p>
-                Posso criar uma página para você colocar
-                seu portfólio, redes sociais, contatos,
-                serviços ou outras informações.
-            </p>
-
-
-            <div class="custom-tags">
-
-                <span>
-                    Portfólio
-                </span>
-
-                <span>
-                    Instagram
-                </span>
-
-                <span>
-                    WhatsApp
-                </span>
-
-                <span>
-                    Discord
-                </span>
-
-                <span>
-                    Links
-                </span>
-
-                <span>
-                    Design personalizado
-                </span>
 
             </div>
 
+        </section>
 
-            <a
-                class="contact"
-                href="https://wa.me/5595991501077"
-                target="_blank"
-                rel="noopener"
-            >
-                Quero uma página →
-            </a>
+
+        <!-- LINKS -->
+
+        <section id="links">
+
+            <div class="container">
+
+                <div class="section-title">
+                    <small>MEUS LINKS</small>
+
+                    <h2>Onde me encontrar</h2>
+
+                    <p>
+                        Alguns dos meus principais links e redes.
+                    </p>
+                </div>
+
+
+                <div class="links-grid">
+
+                    <!-- WHATSAPP -->
+
+                    <a
+                        href="https://wa.me/5595991501077"
+                        target="_blank"
+                        class="link-card"
+                    >
+
+                        <img
+                            src="img/ef55acaed134cf97d2a5f9f1e4815295.jp"
+                            alt="WhatsApp"
+                        >
+
+                        <strong>WhatsApp</strong>
+
+                        <span>Fale comigo</span>
+
+                    </a>
+
+
+                    <!-- GITHUB -->
+
+                    <a
+                        href="https://github.com/callebydev"
+                        target="_blank"
+                        class="link-card"
+                    >
+
+                        <img
+                            src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+                            alt="GitHub"
+                        >
+
+                        <strong>GitHub</strong>
+
+                        <span>Meus códigos</span>
+
+                    </a>
+
+
+                    <!-- INSTAGRAM -->
+
+                    <a
+                        href="https://www.instagram.com/rk.dacruz"
+                        target="_blank"
+                        class="link-card"
+                    >
+
+                        <img
+                            src="img/ae599d8043cac580437e26da1f8c8aeb.jpg"
+                            alt="Instagram"
+                        >
+
+                        <strong>Instagram</strong>
+
+                        <span>Meu perfil</span>
+
+                    </a>
+
+
+                    <!-- DISCORD -->
+
+                    <a
+                        href="https://discord.gg/H3mnq7Nfp"
+                        target="_blank"
+                        class="link-card"
+                    >
+
+                        <img
+                            src="img/b5d4ce10a744861ffd3314d20d116976.jpg"
+                            alt="Discord"
+                        >
+
+                        <strong>Discord</strong>
+
+                        <span>Meu servidor</span>
+
+                    </a>
+
+
+                    <!-- PORTFÓLIO -->
+
+                    <a
+                        href="https://paleascendancy.github.io/index.html"
+                        target="_blank"
+                        class="link-card"
+                    >
+
+                        <img
+                            src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+                            alt="Portfólio"
+                        >
+
+                        <strong>Portfólio</strong>
+
+                        <span>Ver página</span>
+
+                    </a>
+
+                </div>
+
+            </div>
 
         </section>
 
 
-        <!-- =========================
-             TRABALHOS
-        ========================= -->
+        <!-- SERVIÇOS -->
 
-        <div class="section-title">
-            Meus trabalhos
-        </div>
+        <section id="servicos">
 
+            <div class="container">
 
-        <p class="portfolio-text">
-            Alguns projetos que fiz para estudar,
-            testar ideias e montar meu portfólio.
-        </p>
+                <div class="section-title">
 
+                    <small>SERVIÇOS</small>
 
-        <section class="projects">
-
-
-            <!-- GITHUB -->
-
-            <a
-                class="project"
-                href="https://github.com/callebydev"
-                target="_blank"
-                rel="noopener"
-            >
-
-                <img
-                    class="project-image"
-                    src="https://callebydev.github.io/link/img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
-                    alt=""
-                >
-
-
-                <div class="project-content">
-
-                    <span class="project-label">
-                        GITHUB
-                    </span>
-
-                    <h3>
-                        Meus projetos
-                    </h3>
+                    <h2>O que posso fazer</h2>
 
                     <p>
-                        Veja meus códigos e projetos
-                        diretamente no GitHub.
-                    </p>
-
-                    <span class="project-button">
-                        VER GITHUB →
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <!-- PORTFÓLIO -->
-
-            <a
-                class="project"
-                href="https://paleascendancy.github.io/index.html"
-                target="_blank"
-                rel="noopener"
-            >
-
-                <img
-                    class="project-image"
-                    src="https://callebydev.github.io/link/img/WA_1784422331777.jpeg"
-                    alt=""
-                >
-
-
-                <div class="project-content">
-
-                    <span class="project-label">
-                        PORTFÓLIO
-                    </span>
-
-                    <h3>
-                        Meu portfólio
-                    </h3>
-
-                    <p>
-                        Página onde posso apresentar
-                        meus projetos e trabalhos.
-                    </p>
-
-                    <span class="project-button">
-                        VISITAR →
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <!-- ESTE SITE -->
-
-            <article class="project">
-
-                <div class="project-content">
-
-                    <span class="project-label">
-                        PROJETO
-                    </span>
-
-                    <h3>
-                        Esta página
-                    </h3>
-
-                    <p>
-                        Esta página também faz parte dos
-                        meus projetos de desenvolvimento web.
+                        Alguns tipos de páginas que consigo criar
+                        usando HTML, CSS e JavaScript.
                     </p>
 
                 </div>
 
-            </article>
+
+                <div class="services">
+
+                    <div class="service">
+
+                        <span class="service-number">01</span>
+
+                        <h3>Página de Links</h3>
+
+                        <p>
+                            Uma página para reunir suas redes sociais,
+                            contatos e outros links em um só lugar.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service">
+
+                        <span class="service-number">02</span>
+
+                        <h3>Landing Page</h3>
+
+                        <p>
+                            Página para apresentar uma pessoa,
+                            projeto, serviço ou negócio.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service">
+
+                        <span class="service-number">03</span>
+
+                        <h3>Portfólio</h3>
+
+                        <p>
+                            Página para mostrar seus trabalhos,
+                            projetos, habilidades e contatos.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service">
+
+                        <span class="service-number">04</span>
+
+                        <h3>Página Personalizada</h3>
+
+                        <p>
+                            Crio a página de acordo com o estilo,
+                            informações e objetivo que você quiser.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service">
+
+                        <span class="service-number">05</span>
+
+                        <h3>Ajustes em Sites</h3>
+
+                        <p>
+                            Alterações de textos, imagens, cores,
+                            layout e outros detalhes.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service">
+
+                        <span class="service-number">06</span>
+
+                        <h3>Interface Web</h3>
+
+                        <p>
+                            Criação de páginas responsivas para
+                            diferentes tipos de projetos.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </section>
 
 
-        <!-- =========================
-             REDES
-        ========================= -->
+        <!-- PÁGINA PERSONALIZADA -->
 
-        <div class="section-title">
-            Redes
-        </div>
+        <section>
 
+            <div class="container">
 
-        <div class="social">
+                <div class="custom">
 
+                    <h2>Quer uma página própria?</h2>
 
-            <a
-                href="https://github.com/callebydev"
-                target="_blank"
-                rel="noopener"
-                aria-label="GitHub"
-            >
-
-                <img
-                    src="https://callebydev.github.io/link/img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
-                    alt="GitHub"
-                >
-
-            </a>
+                    <p>
+                        Posso criar uma página para você colocar
+                        seu portfólio, redes sociais, contatos,
+                        serviços ou outras informações.
+                    </p>
 
 
-            <a
-                href="https://www.instagram.com/rk.dacruz"
-                target="_blank"
-                rel="noopener"
-                aria-label="Instagram"
-            >
+                    <div class="tags">
 
-                <img
-                    src="https://callebydev.github.io/link/img/ae599d8043cac580437e26da1f8c8aeb.jpg"
-                    alt="Instagram"
-                >
+                        <span class="tag">Portfólio</span>
+                        <span class="tag">Instagram</span>
+                        <span class="tag">WhatsApp</span>
+                        <span class="tag">Discord</span>
+                        <span class="tag">Links</span>
+                        <span class="tag">Design personalizado</span>
 
-            </a>
+                    </div>
 
 
-            <a
-                href="https://discord.gg/H3mnq7Nfp"
-                target="_blank"
-                rel="noopener"
-                aria-label="Discord"
-            >
+                    <a
+                        href="https://wa.me/5595991501077?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20uma%20página%20personalizada."
+                        target="_blank"
+                        class="btn btn-primary"
+                    >
+                        Quero uma página →
+                    </a>
 
-                <img
-                    src="https://callebydev.github.io/link/img/b5d4ce10a744861ffd3314d20d116976.jpg"
-                    alt="Discord"
-                >
+                </div>
 
-            </a>
+            </div>
 
-        </div>
+        </section>
 
 
-        <footer>
+        <!-- PROJETOS -->
 
-            © 2026 RARISON — DESENVOLVIMENTO WEB
+        <section id="projetos">
 
-        </footer>
+            <div class="container">
+
+                <div class="section-title">
+
+                    <small>MEUS TRABALHOS</small>
+
+                    <h2>Projetos</h2>
+
+                    <p>
+                        Alguns projetos que fiz para estudar,
+                        testar ideias e montar meu portfólio.
+                    </p>
+
+                </div>
+
+
+                <div class="projects">
+
+
+                    <!-- PROJETO 1 -->
+
+                    <div class="project">
+
+                        <div class="project-image">
+
+                            <img
+                                src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+                                alt="Projeto GitHub"
+                            >
+
+                        </div>
+
+                        <div class="project-content">
+
+                            <h3>Projetos no GitHub</h3>
+
+                            <p>
+                                Meus códigos e projetos desenvolvidos
+                                durante meus estudos.
+                            </p>
+
+                            <a
+                                href="https://github.com/callebydev"
+                                target="_blank"
+                                class="project-link"
+                            >
+                                Ver no GitHub →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROJETO 2 -->
+
+                    <div class="project">
+
+                        <div class="project-image">
+
+                            <img
+                                src="img/ae599d8043cac580437e26da1f8c8aeb.jpg"
+                                alt="Projeto de portfólio"
+                            >
+
+                        </div>
+
+                        <div class="project-content">
+
+                            <h3>Portfólio</h3>
+
+                            <p>
+                                Uma página para apresentar projetos,
+                                informações e links.
+                            </p>
+
+                            <a
+                                href="https://paleascendancy.github.io/index.html"
+                                target="_blank"
+                                class="project-link"
+                            >
+                                Ver projeto →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROJETO 3 -->
+
+                    <div class="project">
+
+                        <div class="project-image">
+
+                            <img
+                                src="img/WA_1784422331777.jpeg"
+                                alt="Página pessoal"
+                            >
+
+                        </div>
+
+                        <div class="project-content">
+
+                            <h3>Esta página</h3>
+
+                            <p>
+                                Página pessoal criada com HTML e CSS
+                                para reunir meus links e apresentar meu trabalho.
+                            </p>
+
+                            <a
+                                href="#"
+                                class="project-link"
+                            >
+                                Você está aqui →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REDES -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="section-title" style="text-align:center;">
+
+                    <small>REDES</small>
+
+                    <h2>Vamos conversar?</h2>
+
+                    <p>
+                        Você pode entrar em contato comigo pelas redes abaixo.
+                    </p>
+
+                </div>
+
+
+                <div class="socials">
+
+
+                    <a
+                        href="https://wa.me/5595991501077"
+                        target="_blank"
+                        class="social"
+                    >
+
+                        <img
+                            src="img/ef55acaed134cf97d2a5f9f1e4815295.jp"
+                            alt="WhatsApp"
+                        >
+
+                        <span>WhatsApp</span>
+
+                    </a>
+
+
+                    <a
+                        href="https://www.instagram.com/rk.dacruz"
+                        target="_blank"
+                        class="social"
+                    >
+
+                        <img
+                            src="img/ae599d8043cac580437e26da1f8c8aeb.jpg"
+                            alt="Instagram"
+                        >
+
+                        <span>Instagram</span>
+
+                    </a>
+
+
+                    <a
+                        href="https://github.com/callebydev"
+                        target="_blank"
+                        class="social"
+                    >
+
+                        <img
+                            src="img/97cb12c0c2a5bb62c2d6fdcb9dfd0428.jpg"
+                            alt="GitHub"
+                        >
+
+                        <span>GitHub</span>
+
+                    </a>
+
+
+                    <a
+                        href="https://discord.gg/H3mnq7Nfp"
+                        target="_blank"
+                        class="social"
+                    >
+
+                        <img
+                            src="img/b5d4ce10a744861ffd3314d20d116976.jpg"
+                            alt="Discord"
+                        >
+
+                        <span>Discord</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
 
     </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                © 2026 RARISON — DESENVOLVIMENTO WEB
+            </p>
+
+        </div>
+
+    </footer>
 
 </body>
 </html>
