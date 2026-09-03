@@ -54,6 +54,17 @@
     .music-button,.music-nav{width:34px;height:34px;flex:0 0 34px;border:0;border-radius:50%;background:var(--color-crimson);color:var(--white);cursor:pointer;font-size:12px;font-weight:900;box-shadow:0 0 15px rgba(197,3,55,.28);transition:transform .25s ease,box-shadow .25s ease}.music-nav{background:rgba(197,3,55,.16);border:1px solid rgba(197,3,55,.3);box-shadow:none}.music-button:hover,.music-nav:hover{transform:scale(1.08);box-shadow:0 0 23px rgba(197,3,55,.45)}
     #musicInfo{min-width:0;max-width:190px}.music-label{display:block;color:var(--white-soft);font-size:10px;font-weight:800}.music-title{display:block;color:var(--white-muted);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
     @keyframes musicFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+    .music-visualizer{width:46px;height:34px;display:flex;align-items:center;justify-content:center;gap:3px;padding:0 3px}
+    .music-visualizer span{display:block;width:3px;height:8px;border-radius:4px;background:var(--color-crimson);box-shadow:0 0 8px rgba(197,3,55,.55);transform-origin:center;animation:barIdle 1.1s ease-in-out infinite}
+    .music-visualizer span:nth-child(2){animation-delay:-.85s}.music-visualizer span:nth-child(3){animation-delay:-.65s}.music-visualizer span:nth-child(4){animation-delay:-.45s}.music-visualizer span:nth-child(5){animation-delay:-.25s}
+    .music-player:not(.is-playing) .music-visualizer span{animation-play-state:paused;transform:scaleY(.35);opacity:.55}
+    @keyframes barIdle{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1.7)}}
+    .music-player.is-playing .music-visualizer{filter:drop-shadow(0 0 8px rgba(197,3,55,.35))}
+    .music-pulse{position:absolute;inset:-5px;border:1px solid rgba(197,3,55,.0);border-radius:32px;pointer-events:none}
+    .music-player.is-playing .music-pulse{animation:musicPulse 1.2s ease-out infinite}
+    @keyframes musicPulse{0%{transform:scale(.98);opacity:.65;border-color:rgba(197,3,55,.5)}100%{transform:scale(1.05);opacity:0;border-color:rgba(197,3,55,0)}}
+    body.music-active .orb{transition:transform .08s linear,opacity .08s linear}
+    body.music-active .background{filter:saturate(var(--music-saturation,1))}
     footer{width:100%;padding:28px 18px 35px;border-top:1px solid var(--border);text-align:center;color:rgba(255,255,255,.35);font-size:10px;letter-spacing:1.5px}
     @media(max-width:650px){.nav-inner{width:min(100% - 28px,760px);height:60px}.nav-links{gap:14px}.nav-links a{font-size:11px}.container{width:min(100% - 28px,760px)}.hero{min-height:370px;padding:42px 18px 22px}.avatar-wrapper{width:112px;height:112px}.hero h1{margin-top:15px}.hero-description{font-size:14px;margin-top:7px}.tech{font-size:10px;margin-top:5px}.availability{font-size:11px;margin-top:2px}.link-item{min-height:72px;padding:10px 13px;gap:12px}.link-icon{width:44px;height:44px}.link-title{font-size:14px}.link-description{font-size:11px}.about-grid{grid-template-columns:1fr}.highlight{padding:22px}.service{padding:16px}.music-player{right:12px;bottom:12px;padding:7px}.music-nav,.music-button{width:32px;height:32px;flex-basis:32px}#musicInfo{max-width:115px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
@@ -112,9 +123,11 @@
 
   <audio id="backgroundMusic" preload="auto"></audio>
 
-  <div class="music-player" aria-label="Player de música">
+  <div class="music-player" id="musicPlayer" aria-label="Player de música">
+    <div class="music-pulse"></div>
     <button class="music-nav" id="prevMusic" type="button" aria-label="Música anterior">‹</button>
     <button class="music-button" id="musicButton" type="button" aria-label="Tocar ou pausar música">▶</button>
+    <div class="music-visualizer" id="musicVisualizer" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
     <button class="music-nav" id="nextMusic" type="button" aria-label="Próxima música">›</button>
     <div id="musicInfo"><span class="music-label" id="musicText">Música</span><span class="music-title" id="musicTitle">Carregando...</span></div>
   </div>
@@ -144,10 +157,15 @@
        arquivos existentes na pasta audio.
     ================================= */
     const playlist=[
+      {file:"audio/meaningful love (slowed instrumental)(MP3_160K).mp3", name:"meaningful love — slowed instrumental"},
       {file:"audio/Joakim Karud - Canals(MP3_160K).mp3", name:"Joakim Karud — Canals"},
       {file:"audio/LAKEY INSPIRED - Better Days(MP3_160K).mp3", name:"LAKEY INSPIRED — Better Days"},
       {file:"audio/LAKEY INSPIRED - Chill Day(MP3_160K).mp3", name:"LAKEY INSPIRED — Chill Day"},
-      {file:"audio/New Jeans Jersey Remix SLOWED - (Jiandro x Dxrkaii)(MP3_160K).mp3", name:"New Jeans Jersey Remix SLOWED"}
+      {file:"audio/New Jeans Jersey Remix SLOWED - (Jiandro x Dxrkaii)(MP3_160K).mp3", name:"New Jeans Jersey Remix SLOWED"},
+      {file:"audio/Nuts Instrumental (Slowed)(MP3_160K).mp3", name:"Nuts — Instrumental (Slowed)"},
+      {file:"audio/The Neighbourhood- Sweater Weather (Official Instrumental)(MP3_160K).mp3", name:"The Neighbourhood — Sweater Weather (Instrumental)"},
+      {file:"audio/les childish gambino instrumental _foryoupage _song _fyp _slowandreverb _instrumental _Mreso(MP3).mp3", name:"Childish Gambino — Instrumental (Slow + Reverb)"},
+      {file:"audio/musica.mp3", name:"Música"}
     ];
 
     const music=document.getElementById("backgroundMusic");
@@ -234,6 +252,86 @@
     }
     document.addEventListener("click",firstInteraction);
     document.addEventListener("touchstart",firstInteraction,{passive:true});
+  
+    /* VISUALIZAÇÃO REATIVA À MÚSICA
+       Usa Web Audio API para analisar graves, médios e agudos em tempo real. */
+    const musicPlayer=document.getElementById("musicPlayer");
+    let audioContext=null, analyser=null, sourceNode=null, freqData=null, audioReady=false;
+
+    function setupAudioVisualizer(){
+      if(audioReady) return true;
+      try{
+        audioContext=new (window.AudioContext||window.webkitAudioContext)();
+        analyser=audioContext.createAnalyser();
+        analyser.fftSize=256;
+        analyser.smoothingTimeConstant=.78;
+        freqData=new Uint8Array(analyser.frequencyBinCount);
+        sourceNode=audioContext.createMediaElementSource(music);
+        sourceNode.connect(analyser);
+        analyser.connect(audioContext.destination);
+        audioReady=true;
+        return true;
+      }catch(e){ return false; }
+    }
+
+    function reactToMusic(){
+      requestAnimationFrame(reactToMusic);
+      if(!analyser || music.paused || music.ended) return;
+      analyser.getByteFrequencyData(freqData);
+      const n=freqData.length;
+      let bass=0, mids=0, highs=0;
+      for(let i=0;i<n;i++){
+        const v=freqData[i]/255;
+        if(i<n*.16) bass+=v;
+        else if(i<n*.55) mids+=v;
+        else highs+=v;
+      }
+      bass/=Math.max(1,n*.16); mids/=Math.max(1,n*.39); highs/=Math.max(1,n*.45);
+      const energy=Math.min(1,bass*.58+mids*.27+highs*.15);
+      const pulse=1+energy*.12;
+      document.documentElement.style.setProperty('--music-saturation',(1+energy*.35).toFixed(2));
+      document.documentElement.style.setProperty('--music-energy',energy.toFixed(3));
+      musicPlayer.style.setProperty('--beat-scale',pulse.toFixed(3));
+      musicPlayer.style.transform=`translateY(${(-3-energy*2).toFixed(2)}px) scale(${pulse})`;
+      const bars=document.querySelectorAll('.music-visualizer span');
+      bars.forEach((bar,i)=>{
+        const idx=Math.min(n-1,Math.floor((i+1)*n/7));
+        const val=freqData[idx]/255;
+        bar.style.transform=`scaleY(${Math.max(.35,.45+val*1.9+energy*.35)})`;
+      });
+      const orbs=document.querySelectorAll('.orb');
+      orbs.forEach((orb,i)=>{
+        const dir=i===1?-1:1;
+        const x=(bass*18+energy*8)*dir;
+        const y=(mids*12+energy*7)*(i===2?-1:1);
+        orb.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px) scale(${(1+energy*.08).toFixed(3)})`;
+        orb.style.opacity=(.32+energy*.18).toFixed(2);
+      });
+      document.documentElement.style.setProperty('--music-glow',`${Math.round(8+energy*24)}px`);
+    }
+    reactToMusic();
+
+    const originalStartMusic=startMusic;
+    startMusic=async function(){
+      try{
+        setupAudioVisualizer();
+        if(audioContext && audioContext.state==='suspended') await audioContext.resume();
+        await originalStartMusic();
+        if(playing){ musicPlayer.classList.add('is-playing'); document.body.classList.add('music-active'); }
+      }catch(e){}
+    };
+
+    music.addEventListener('play',()=>{
+      setupAudioVisualizer();
+      if(audioContext && audioContext.state==='suspended') audioContext.resume();
+      musicPlayer.classList.add('is-playing');
+      document.body.classList.add('music-active');
+    });
+    music.addEventListener('pause',()=>{
+      musicPlayer.classList.remove('is-playing');
+      document.body.classList.remove('music-active');
+      musicPlayer.style.transform='';
+    });
   </script>
 </body>
 </html>
