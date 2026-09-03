@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#05070b">
+  <meta name="description" content="Rarison Keven — Desenvolvedor Web. Desenvolvimento web, interfaces responsivas e projetos digitais.">
+  <meta property="og:title" content="Rarison Keven | Desenvolvedor Web">
+  <meta property="og:description" content="Desenvolvimento web & tecnologia. Projetos, serviços e contatos.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://callebydev.github.io/links">
+  <meta name="twitter:card" content="summary">
+  <title>Rarison Keven | Desenvolvedor Web</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+    :root {
+      --bg:#05070b; --panel:#0a0e14; --panel2:#0e141d; --text:#eef3f7;
+      --muted:#8d9aa8; --line:rgba(255,255,255,.09); --crimson:#d51f3f;
+      --crimson-soft:rgba(213,31,63,.16); --max:1040px;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      min-height:100vh; color:var(--text); background:
+      radial-gradient(circle at 50% -10%, rgba(213,31,63,.16), transparent 34rem),
+      radial-gradient(circle at 90% 55%, rgba(26,64,92,.12), transparent 30rem),
+      var(--bg); font-family:Inter,Arial,sans-serif; line-height:1.5; overflow-x:hidden;
+    }
+    body::before {
+      content:""; position:fixed; inset:0; pointer-events:none; opacity:.22;
+      background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size:48px 48px; mask-image:linear-gradient(to bottom,black,transparent 85%);
+    }
+    a { color:inherit; }
+    .wrap { width:min(calc(100% - 32px),var(--max)); margin:auto; }
+    header {
+      position:sticky; top:14px; z-index:20; margin:14px auto 0;
+      width:min(calc(100% - 24px),1100px); border:1px solid var(--line);
+      background:rgba(5,7,11,.68); backdrop-filter:blur(18px);
+      border-radius:18px; box-shadow:0 14px 40px rgba(0,0,0,.28);
+    }
+    .nav { min-height:62px; display:flex; align-items:center; justify-content:space-between; padding:0 18px; }
+    .brand { text-decoration:none; display:flex; align-items:center; gap:10px; font-family:"Space Grotesk"; font-weight:700; }
+    .brand-mark {
+      width:34px; height:34px; display:grid; place-items:center; border:1px solid rgba(213,31,63,.5);
+      border-radius:10px; color:#fff; background:linear-gradient(145deg,rgba(213,31,63,.28),rgba(255,255,255,.03));
+    }
+    .brand-mark::after { content:""; width:7px; height:7px; background:var(--crimson); border-radius:50%; box-shadow:0 0 16px var(--crimson); }
+    nav ul { list-style:none; display:flex; gap:6px; }
+    nav a { text-decoration:none; color:var(--muted); font-size:13px; padding:9px 12px; border-radius:10px; transition:.2s; }
+    nav a:hover, nav a.active { color:#fff; background:rgba(213,31,63,.1); }
+    nav a.active::after { content:""; display:inline-block; width:5px; height:5px; margin:0 0 2px 7px; border-radius:50%; background:var(--crimson); box-shadow:0 0 10px var(--crimson); }
+
+    .hero { min-height:680px; display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:30px; padding:80px 0 50px; }
+    .eyebrow { color:var(--crimson); font-size:12px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; margin-bottom:15px; }
+    h1 { font-family:"Space Grotesk"; font-size:clamp(46px,7vw,78px); line-height:.95; letter-spacing:-.05em; max-width:700px; }
+    h1 span { color:var(--crimson); }
+    .role { margin-top:17px; font-weight:700; font-size:16px; letter-spacing:.08em; text-transform:uppercase; }
+    .lead { max-width:590px; margin-top:16px; color:var(--muted); font-size:16px; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+    .chip { border:1px solid var(--line); color:#c8d1da; padding:7px 10px; border-radius:999px; font-size:12px; background:rgba(255,255,255,.025); }
+    .status { display:inline-flex; align-items:center; gap:8px; margin-top:18px; color:#b8c2cc; font-size:12px; }
+    .status i { width:7px; height:7px; background:var(--crimson); border-radius:50%; box-shadow:0 0 13px var(--crimson); }
+
+    .portrait { position:relative; width:min(360px,82vw); aspect-ratio:1; margin:auto; display:grid; place-items:center; }
+    .portrait::before {
+      content:""; position:absolute; inset:7%; border-radius:50%; background:var(--crimson);
+      filter:blur(70px); opacity:.24; animation:pulse 4s ease-in-out infinite;
+    }
+    .portrait::after {
+      content:""; position:absolute; inset:3%; border:1px solid rgba(213,31,63,.28);
+      border-radius:50%; transform:rotate(18deg); box-shadow:0 0 70px rgba(213,31,63,.08);
+    }
+    .portrait img {
+      position:relative; z-index:2; width:74%; height:74%; object-fit:cover; border-radius:50%;
+      border:2px solid rgba(255,255,255,.12); box-shadow:0 25px 80px rgba(0,0,0,.5);
+      background:#101721;
+    }
+
+    section { padding:82px 0; }
+    .section-head { margin-bottom:28px; }
+    .kicker { color:var(--crimson); font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
+    h2 { font-family:"Space Grotesk"; font-size:clamp(30px,5vw,46px); margin-top:6px; letter-spacing:-.04em; }
+    .sub { color:var(--muted); margin-top:7px; max-width:650px; }
+    .link-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .link-card {
+      position:relative; overflow:hidden; display:flex; align-items:center; justify-content:space-between; gap:15px;
+      min-height:78px; padding:17px 18px; border:1px solid var(--line); border-radius:16px;
+      text-decoration:none; background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+      transition:transform .25s,border-color .25s,background .25s;
+    }
+    .link-card::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--crimson); transform:scaleY(0); transition:.25s; }
+    .link-card:hover { transform:translateY(-3px); border-color:rgba(213,31,63,.55); background:linear-gradient(145deg,rgba(213,31,63,.12),rgba(255,255,255,.025)); }
+    .link-card:hover::before { transform:scaleY(1); }
+    .link-icon { width:42px; height:42px; display:grid; place-items:center; border-radius:12px; background:rgba(213,31,63,.1); color:#fff; font-weight:800; font-family:"Space Grotesk"; }
+    .link-info { flex:1; }
+    .link-title { font-weight:700; }
+    .link-desc { color:var(--muted); font-size:12px; margin-top:2px; }
+    .arrow { color:var(--muted); font-size:20px; transition:.2s; }
+    .link-card:hover .arrow { color:var(--crimson); transform:translateX(4px); }
+
+    .feature {
+      display:grid; grid-template-columns:1.2fr .8fr; gap:25px; padding:25px; border:1px solid var(--line);
+      border-radius:22px; background:linear-gradient(145deg,rgba(213,31,63,.08),rgba(255,255,255,.025));
+      box-shadow:0 30px 90px rgba(0,0,0,.22);
+    }
+    .preview { min-height:310px; border:1px solid var(--line); border-radius:15px; overflow:hidden; background:#07111a; position:relative; }
+    .preview::before { content:"PALE ASCENDANCY"; position:absolute; inset:0; display:grid; place-items:center; color:rgba(255,255,255,.15); font:700 clamp(24px,5vw,48px)/1 "Space Grotesk"; letter-spacing:.08em; }
+    .feature-copy { display:flex; flex-direction:column; justify-content:center; }
+    .feature-copy h3 { font:700 32px/1.05 "Space Grotesk"; }
+    .feature-copy p { color:var(--muted); margin:12px 0 20px; }
+    .btn { display:inline-flex; width:max-content; align-items:center; gap:10px; padding:12px 15px; border-radius:11px; background:var(--crimson); text-decoration:none; font-weight:800; font-size:13px; box-shadow:0 10px 30px rgba(213,31,63,.18); transition:.2s; }
+    .btn:hover { transform:translateY(-2px); filter:brightness(1.08); }
+
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .panel { border:1px solid var(--line); border-radius:18px; padding:23px; background:rgba(255,255,255,.025); }
+    .panel h3 { font:700 22px "Space Grotesk"; margin-bottom:9px; }
+    .panel p { color:var(--muted); font-size:14px; }
+    .skills { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+    .skill { padding:9px 11px; border-radius:10px; border:1px solid var(--line); background:#0a0f16; font-size:12px; font-weight:600; }
+
+    .services { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .service { position:relative; padding:23px; min-height:170px; border:1px solid var(--line); border-radius:17px; background:rgba(255,255,255,.025); transition:.25s; overflow:hidden; }
+    .service:hover { transform:translateY(-4px); border-color:rgba(213,31,63,.5); }
+    .service-num { color:rgba(213,31,63,.45); font:700 44px/1 "Space Grotesk"; }
+    .service h3 { margin-top:15px; font-size:16px; }
+    .service p { color:var(--muted); font-size:12px; margin-top:7px; }
+
+    .contact { text-align:center; padding-bottom:100px; }
+    .contact-box { border:1px solid var(--line); border-radius:22px; padding:45px 20px; background:radial-gradient(circle at 50% 0,rgba(213,31,63,.14),transparent 55%),rgba(255,255,255,.025); }
+    .contact-box p { color:var(--muted); max-width:550px; margin:10px auto 22px; }
+    footer { border-top:1px solid var(--line); padding:24px 0 30px; color:var(--muted); font-size:11px; text-align:center; }
+
+    @keyframes pulse { 0%,100%{transform:scale(.95);opacity:.18} 50%{transform:scale(1.04);opacity:.28} }
+    @media(max-width:760px) {
+      header { top:8px; margin-top:8px; }
+      nav ul { display:none; }
+      .hero { grid-template-columns:1fr; min-height:auto; padding-top:65px; text-align:center; }
+      .lead { margin-left:auto; margin-right:auto; }
+      .chips,.status { justify-content:center; }
+      .portrait { width:min(290px,78vw); order:-1; }
+      .link-grid,.about-grid { grid-template-columns:1fr; }
+      .services { grid-template-columns:1fr 1fr; }
+      .feature { grid-template-columns:1fr; }
+      .preview { min-height:210px; }
+    }
+    @media(max-width:480px) {
+      .wrap { width:min(calc(100% - 24px),var(--max)); }
+      section { padding:62px 0; }
+      .services { grid-template-columns:1fr; }
+      h1 { font-size:46px; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="#inicio" aria-label="Início">
+        <span class="brand-mark"></span><span>RK.</span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a class="active" href="#inicio">Início</a></li>
+          <li><a href="#conecte">Conecte-se</a></li>
+          <li><a href="#portfolio">Portfólio</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="inicio">
+      <div>
+        <div class="eyebrow">Disponível para projetos</div>
+        <h1>Rarison<br><span>Keven.</span></h1>
+        <div class="role">Desenvolvedor Web</div>
+        <p class="lead">Desenvolvimento web & tecnologia. Interfaces modernas, páginas responsivas e experiências digitais feitas para funcionar bem no celular.</p>
+        <div class="chips">
+          <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">GitHub</span>
+        </div>
+        <div class="status"><i></i> Aberto a novos projetos</div>
+      </div>
+
+      <div class="portrait">
+        <img src="img/perfil.png" alt="Foto de perfil de Rarison Keven">
+      </div>
+    </section>
+
+    <section id="conecte">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Conecte-se</div>
+          <h2>Me encontre por aqui.</h2>
+          <p class="sub">Links principais para contato, código, comunidade e redes.</p>
+        </div>
+        <div class="link-grid">
+          <a class="link-card" href="#" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp">
+            <span class="link-icon">WA</span><span class="link-info"><span class="link-title">WhatsApp</span><span class="link-desc">Contato direto</span></span><span class="arrow">→</span>
+          </a>
+          <a class="link-card" href="#" target="_blank" rel="noopener noreferrer" aria-label="Abrir GitHub">
+            <span class="link-icon">GH</span><span class="link-info"><span class="link-title">GitHub</span><span class="link-desc">Código e projetos</span></span><span class="arrow">→</span>
+          </a>
+          <a class="link-card" href="#" target="_blank" rel="noopener noreferrer" aria-label="Abrir Instagram">
+            <span class="link-icon">IG</span><span class="link-info"><span class="link-title">Instagram</span><span class="link-desc">@rk.dacruz</span></span><span class="arrow">→</span>
+          </a>
+          <a class="link-card" href="#" target="_blank" rel="noopener noreferrer" aria-label="Abrir Discord">
+            <span class="link-icon">DC</span><span class="link-info"><span class="link-title">Discord</span><span class="link-desc">Comunidade</span></span><span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Destaque</div>
+          <h2>Meu portfólio.</h2>
+        </div>
+        <div class="feature">
+          <div class="preview" role="img" aria-label="Prévia visual do projeto Pale Ascendancy"></div>
+          <div class="feature-copy">
+            <h3>Pale Ascendancy</h3>
+            <p>Projeto web desenvolvido para uma comunidade de editores e criadores. Projetos, experiência e desenvolvimento em um só lugar.</p>
+            <a class="btn" href="https://paleascendancy.github.io/index.html" target="_blank" rel="noopener noreferrer">Visitar portfólio <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Sobre mim</div>
+          <h2>Quem sou & o que faço.</h2>
+        </div>
+        <div class="about-grid">
+          <article class="panel">
+            <h3>Desenvolvimento com propósito.</h3>
+            <p>Trabalho com desenvolvimento web e estou construindo minha experiência em programação, interfaces e projetos digitais, sempre buscando unir visual, funcionalidade e evolução técnica.</p>
+          </article>
+          <article class="panel">
+            <h3>Habilidades</h3>
+            <p>Base atual de tecnologias e ferramentas utilizadas nos meus projetos.</p>
+            <div class="skills">
+              <span class="skill">HTML</span><span class="skill">CSS</span><span class="skill">JavaScript</span>
+              <span class="skill">GitHub</span><span class="skill">Responsivo</span><span class="skill">UI Web</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Serviços</div>
+          <h2>O que posso criar.</h2>
+        </div>
+        <div class="services">
+          <article class="service"><div class="service-num">01</div><h3>Página de Links</h3><p>Uma presença digital simples, rápida e personalizada.</p></article>
+          <article class="service"><div class="service-num">02</div><h3>Landing Page</h3><p>Páginas focadas em apresentar uma ideia, produto ou serviço.</p></article>
+          <article class="service"><div class="service-num">03</div><h3>Portfólio</h3><p>Mostre seus projetos com uma apresentação profissional.</p></article>
+          <article class="service"><div class="service-num">04</div><h3>Página Personalizada</h3><p>Interface construída de acordo com a identidade do projeto.</p></article>
+          <article class="service"><div class="service-num">05</div><h3>Reparos em Sites</h3><p>Correções de layout, responsividade e problemas visuais.</p></article>
+          <article class="service"><div class="service-num">06</div><h3>Interface Web</h3><p>Componentes e telas modernas para experiências digitais.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contato">
+      <div class="wrap">
+        <div class="contact-box">
+          <div class="kicker">Vamos conversar</div>
+          <h2>Tem um projeto em mente?</h2>
+          <p>Entre em contato pelo WhatsApp ou encontre meus outros canais acima.</p>
+          <a class="btn" href="#" target="_blank" rel="noopener noreferrer">Falar no WhatsApp →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Rarison Keven · Desenvolvimento Web & Tecnologia</div>
+  </footer>
+
+  <script>
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const navLinks = [...document.querySelectorAll('header nav a')];
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
